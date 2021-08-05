@@ -10,6 +10,7 @@ const non_repeat_substring = function (str) {
       // We want windowStart to slide up to the repeating character
       // so we can start counting the max no-repeat substring
       windowStart = Math.max(windowStart, freq[rightChar] + 1);
+      // freq[rightChar] + 1 will slide the window to the repeating char
     }
 
     // Want to keep track of the position of the character
