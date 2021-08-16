@@ -1,15 +1,15 @@
 var twoSum = function (nums, target) {
-  const numsMap = {};
+  const indexMap = {};
 
   for (let i = 0; i < nums.length; i++) {
-    const currentMapVal = numsMap[nums[i]];
+    const currentIndexVal = indexMap[nums[i]];
 
     // If we have the other pair in our map then we found the target
-    if (currentMapVal >= 0) return [currentMapVal, i];
+    if (currentIndexVal >= 0) return [currentIndexVal, i];
     else {
       // Storing the num we want to find on our map
       const numberToFind = target - nums[i];
-      numsMap[numberToFind] = i;
+      indexMap[numberToFind] = i;
     }
   }
 
