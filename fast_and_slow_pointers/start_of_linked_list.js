@@ -5,47 +5,51 @@ class Node {
   }
 }
 
-function find_cycle_start(head) {
+var detectCycle = function (head) {
   let slow = head,
     fast = head,
-    cycle_length = 0;
+    cycleLength = 0;
 
   while (fast !== null && fast.next !== null) {
     fast = fast.next.next;
     slow = slow.next;
 
     // If these values equal, that means we have a cycle
-    if (slow === fast) {
-      cycle_length = calculate_cycle_length(slow);
-      break;
+    if (fast === slow) {
+      cycleLength = calculateCycleLength(slow);
+      return detectStart(head, cycleLength);
     }
   }
-  return find_start(head, cycle_length);
-}
 
-function calculate_cycle_length(slow) {
+  return null;
+};
+
+var calculateCycleLength = function (slow) {
   let current = slow,
-    cycle_length = 0;
+    cycleLength = 0;
 
   while (true) {
     current = current.next;
-    cycle_length += 1;
+    cycleLength++;
 
     // If these equal that means we are at the
     // same node and are done calculating length
     if (current === slow) break;
   }
-  return cycle_length;
-}
 
-function find_start(head, cycle_length) {
+  return cycleLength;
+};
+
+var detectStart = function (head, cycleLength) {
   let pointer1 = head,
     pointer2 = head;
+
   // Move pointer2 ahead by 'cycle_length' nodes
-  while (cycle_length > 0) {
+  while (cycleLength > 0) {
     pointer2 = pointer2.next;
-    cycle_length -= 1;
+    cycleLength--;
   }
+
   // Increment both pointers until they meet at the start of the cycle
   while (pointer1 !== pointer2) {
     pointer1 = pointer1.next;
@@ -53,7 +57,7 @@ function find_start(head, cycle_length) {
   }
 
   return pointer1;
-}
+};
 
 const head = new Node(1);
 head.next = new Node(2);
