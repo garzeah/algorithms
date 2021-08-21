@@ -1,6 +1,4 @@
-const merge = function (intervals) {
-  if (intervals.length < 2) return intervals;
-
+var merge = function (intervals) {
   // Sorting by start time
   intervals.sort((a, b) => a[0] - b[0]);
 
