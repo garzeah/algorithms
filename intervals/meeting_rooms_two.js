@@ -8,9 +8,9 @@ var minMeetingRooms = function (intervals) {
 
   for (let i = 0; i < intervals.length; i++) {
     // If the end is greater than the start time,
-    // there is an overlap and we need a room
+    // there is no overlap and we need a new room
     if (ends[end] > starts[i]) rooms++;
-    // Otherwise, let's move to the other
+    // Otherwise, we have an overlap
     else end++;
   }
 
