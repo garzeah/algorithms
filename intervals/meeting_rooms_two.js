@@ -7,8 +7,8 @@ var minMeetingRooms = function (intervals) {
   const ends = intervals.map((a) => a[1]).sort((a, b) => a - b);
 
   for (let i = 0; i < intervals.length; i++) {
-    // If the end is greater than the start time,
-    // there is no overlap and we need a new room
+    // If there is a meeting that has ended by the time
+    // the meeting at `start_pointer` starts
     if (ends[end] > starts[i]) rooms++;
     // Otherwise, we have an overlap
     else end++;
