@@ -1,20 +1,18 @@
 function binarySearch(arr, target) {
-  let start = 0,
-    end = arr.length - 1,
-    middle = Math.floor((start + end) / 2);
+  let start = 0;
+  let end = arr.length - 1;
 
   while (start <= end) {
-    if (target < arr[middle]) end = middle - 1;
-    else start = middle + 1;
-
     // As we update the start and end, have to
     // recalculate new middle
-    middle = Math.floor((start + end) / 2);
+    let middle = Math.floor((start + end) / 2);
+
+    if (target < arr[middle]) end = middle - 1;
+    else if (target > arr[middle]) start = middle + 1;
+    else return middle;
   }
 
-  if (arr[middle] !== target) return -1;
-
-  return middle;
+  return -1;
 }
 
 console.log(binarySearch([2, 5, 6, 9, 13, 15, 28], 28));

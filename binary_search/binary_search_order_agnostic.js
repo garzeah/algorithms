@@ -1,12 +1,12 @@
 const binary_search = function (arr, key) {
-  let start = 0,
-    end = arr.length - 1,
-    middle = Math.floor((start + end) / 2);
-
+  let start = 0;
+  let end = arr.length - 1;
   // Check is array is sorted in an ascending or descending fashion
   let isAscending = arr[start] < arr[end];
 
   while (start <= end) {
+    middle = Math.floor((start + end) / 2);
+
     if (isAscending) {
       if (key < arr[middle]) end = middle - 1;
       else start = middle + 1;
