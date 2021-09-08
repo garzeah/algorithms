@@ -34,8 +34,8 @@ var minWindow = function (str, pattern) {
       // we'll decrement the matched count if a matched character
       // is going out of the window
       if (leftChar in charFreq) {
-        if (charFreq[leftChar] === 0) matched -= 1;
         charFreq[leftChar]++;
+        if (charFreq[leftChar] === 0) matched -= 1;
       }
     }
   }
