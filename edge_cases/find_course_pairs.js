@@ -108,20 +108,20 @@ const findPairs = (courses) => {
 
   // Mapping the id and courses together
   for (let course of courses) {
-    const { id, name } = course;
+    const [id, name] = course;
 
     if (!studentToCourses[id]) {
       studentToCourses[id] = [];
     }
 
-    studentToCourses[id].push(course[name]);
+    studentToCourses[id].push(name);
   }
 
   // Getting the student ids to maintain order and prevent dupes
   const studentIds = Object.keys(studentToCourses);
 
-  for (let i = 0; i < Object.keys(studentToCourses).length; i++) {
-    for (let j = i + 1; j < Object.keys(studentToCourses).length; j++) {
+  for (let i = 0; i < studentIds.length; i++) {
+    for (let j = i + 1; j < studentIds.length; j++) {
       let studentId1 = studentIds[i];
       let studentId2 = studentIds[j];
       let studentCourses1 = studentToCourses[studentId1];
