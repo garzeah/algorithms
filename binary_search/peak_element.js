@@ -1,14 +1,16 @@
 // This variation of of binary search helps us find the peak
-var findPeakElement = function (nums) {
+var findPeakElement = function (arr) {
   let start = 0,
-    end = nums.length - 1;
+    end = arr.length - 1;
 
   while (start < end) {
     let mid = Math.floor((start + end) / 2);
 
-    if (nums[mid] < nums[mid + 1]) start = mid + 1;
-    else end = mid;
+    // end = mid because mid might be the largest value
+    if (arr[mid] > arr[mid + 1]) end = mid;
+    // otherwise mid + 1 since there is no way it can be the max
+    else start = mid + 1;
   }
 
-  return start;
+  return end;
 };
