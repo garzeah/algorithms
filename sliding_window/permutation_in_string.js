@@ -28,7 +28,8 @@ var checkInclusion = function (pattern, str) {
 
     if (matched === Object.keys(charFrequency).length) return true;
 
-    // Shrink the sliding window
+    // Shrink the window in case the letters exist but
+    // do not follow the pattern
     if (windowEnd >= pattern.length - 1) {
       leftChar = str[windowStart];
       windowStart += 1;
