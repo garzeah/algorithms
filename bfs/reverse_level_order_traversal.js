@@ -1,14 +1,14 @@
 class TreeNode {
-  constructor(val) {
-    this.val = val;
+  constructor(value) {
+    this.value = value;
     this.left = null;
     this.right = null;
   }
 }
 
-function traverse(root) {
-  if (!root) return result;
+const traverse = function (root) {
   const result = [];
+  if (!root) return result;
 
   // Initializing our queue
   const queue = [root];
@@ -16,29 +16,29 @@ function traverse(root) {
   while (queue.length > 0) {
     // Getting the size of each tree level
     const levelSize = queue.length;
-    const currentLevel = [];
+    const level = [];
 
-    for (i = 0; i < levelSize; i++) {
+    for (let i = 0; i < levelSize; i++) {
       // Add the node to the current level
-      currentNode = queue.shift();
-      currentLevel.push(currentNode.val);
+      let currNode = queue.shift();
+      level.push(currNode.value);
 
       // Insert the children of current node in the queue
-      if (currentNode.left) queue.push(currentNode.left);
-      if (currentNode.right) queue.push(currentNode.right);
+      if (currNode.left) queue.push(currNode.left);
+      if (currNode.right) queue.push(currNode.right);
     }
 
-    // Add to the end to get level order traversal
-    result.push(currentLevel);
+    // Add to the beginning of the array to get reverse order
+    result.unshift(level);
   }
 
   return result;
-}
+};
 
-const root = new TreeNode(12);
+var root = new TreeNode(12);
 root.left = new TreeNode(7);
 root.right = new TreeNode(1);
 root.left.left = new TreeNode(9);
 root.right.left = new TreeNode(10);
 root.right.right = new TreeNode(5);
-console.log(`Level order traversal: ${traverse(root)}`);
+console.log(`Reverse level order traversal: ${traverse(root)}`);
