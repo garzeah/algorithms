@@ -1,3 +1,4 @@
+# Longest Subarray with Ones after Replacement
 def length_of_longest_substring(arr, k):
   start, max_repeat, max_length = 0, 0, 0;
   freq_map = {};

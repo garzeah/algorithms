@@ -7,7 +7,7 @@ def max_sub_array_of_size_k(k, arr):
     window_sum += arr[end] # add the next element
 
     # slide the window, we don't need to slide if we've not hit the required window size of 'k'
-    if end >= k - 1:
+    while end >= k - 1:
       max_sum = max(max_sum, window_sum)
       window_sum -= arr[start] # subtract the element going out
       start += 1 # slide the window ahead

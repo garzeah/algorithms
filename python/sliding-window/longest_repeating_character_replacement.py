@@ -1,3 +1,4 @@
+# Longest Repeating Character Replacement
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
         start, max_repeat, max_length = 0, 0, 0;

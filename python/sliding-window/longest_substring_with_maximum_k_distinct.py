@@ -1,5 +1,4 @@
 # Longest Substring with Maximum K Distinct Characters
-
 def longest_substring_with_k_distinct(str1, k):
   start, max_length, freq = 0, float('-inf'), {}
 
@@ -10,6 +9,8 @@ def longest_substring_with_k_distinct(str1, k):
       freq[rightElem] = 0
     freq[rightElem] += 1
 
+    # shrink the sliding window, until we are left
+    # with 'k' distinct characters in freq_map
     while (len(freq) > k):
       leftElem = str1[start]
       freq[leftElem] -= 1
