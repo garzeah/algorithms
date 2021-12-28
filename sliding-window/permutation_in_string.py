@@ -36,3 +36,11 @@ class Solution:
                         matched -= 1
                     pattern_freq[left_char] += 1
         return False
+
+# Time Complexity
+# is O(N + M) where N and M are the number of
+# characters in the input strings
+
+# Space Complexity
+# is O(M) b/c the worst case is that the pattern
+# has a distinct amount of characters
