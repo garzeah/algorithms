@@ -1,3 +1,4 @@
+# Minimum Window Substring
 class Solution:
     def minWindow(self, str1: str, pattern: str) -> str:
         window_start, matched, substr_start = 0, 0, 0
@@ -36,3 +37,9 @@ class Solution:
             return ""
 
         return str1[substr_start:substr_start + min_length]
+
+# Time Complexity: O(N + M) where N and M are the number of characters
+# in the input string.
+
+# Space Complexity: O(M) where it is the size of pattern that we take up
+# in pattern_freq
