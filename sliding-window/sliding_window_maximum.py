@@ -24,3 +24,10 @@ class Solution:
                 res.append(nums[deque[0]])
 
         return res
+
+# Time Complexity: O(n) because for every iteration we check the deque
+# a few times but not completely to where it can be considered
+# O(n^2)
+
+# Space Complexity: O(n) bc we have 2 arrays that we iterate through
+# and keep track of

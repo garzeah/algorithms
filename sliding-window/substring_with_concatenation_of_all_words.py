@@ -20,14 +20,14 @@ class Solution:
         for i in range((len(s) - len_substr)+1):
             words_seen = {}
 
-            # Our range given the length of our words array
+            # Searches for words in our given point in the substring
             for j in range(0, len_words):
                 next_word_index = i + j * len_word
 
                 # Get the next word from the string
                 word = s[next_word_index: next_word_index + len_word]
 
-                # Break if we don't need this word
+                # Break if we don't need this word and check next word
                 if word not in word_frequency:
                     break
 
@@ -36,7 +36,7 @@ class Solution:
                     words_seen[word] = 0
                 words_seen[word] += 1
 
-                # No need to process further if the word has higher frequency than required
+                # If the word_seen is not in word_freq then go to next word
                 if words_seen[word] > word_frequency.get(word, 0):
                     break
 
@@ -45,3 +45,11 @@ class Solution:
                     result_indices.append(i)
 
         return result_indices
+
+# Time Complexity: The time complexity of the above algorithm will be
+# O(N * M * Len) where ‘N’ is the number of characters in
+# the given string, ‘M’ is the total number of words, and ‘Len’
+# is the length of a word.
+
+# Space Complexity: The space complexity of the algorithm is O(M + N)
+# Since at most, we will be storing all the words in the two HashMaps.
