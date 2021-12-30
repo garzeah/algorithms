@@ -1,16 +1,13 @@
 class Solution:
     def findSubstring(self, s: str, words: List[str]) -> List[int]:
-        if len(words) == 0 or len(words[0]) == 0:
-            return []
-
-        word_frequency = {}
+        word_freq = {}
 
         for word in words:
-            if word not in word_frequency:
-              word_frequency[word] = 0
-            word_frequency[word] += 1
+            if word not in word_freq:
+              word_freq[word] = 0
+            word_freq[word] += 1
 
-        result_indices = []
+        result = []
         len_str = len(s)
         len_word = len(words[0])
         len_words = len(words)
@@ -28,7 +25,7 @@ class Solution:
                 word = s[next_word_index: next_word_index + len_word]
 
                 # Break if we don't need this word and check next word
-                if word not in word_frequency:
+                if word not in word_freq:
                     break
 
                 # Add the word to the 'words_seen' map
@@ -36,15 +33,17 @@ class Solution:
                     words_seen[word] = 0
                 words_seen[word] += 1
 
-                # If the word_seen is not in word_freq then go to next word
-                if words_seen[word] > word_frequency.get(word, 0):
+                # If the word is in words_seen but is not in
+                # word_freq then break bc we are looking
+                # for words in word_freq
+                if words_seen[word] > word_freq[word]:
                     break
 
                 # Store index if we have found all the words
                 if j + 1 == len_words:
-                    result_indices.append(i)
+                    result.append(i)
 
-        return result_indices
+        return result
 
 # Time Complexity: The time complexity of the above algorithm will be
 # O(N * M * Len) where ‘N’ is the number of characters in
