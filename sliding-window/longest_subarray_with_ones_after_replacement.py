@@ -29,3 +29,8 @@ def length_of_longest_substring(arr, k):
     max_length = max(max_length, end - start + 1)
 
   return max_length
+
+# Time Complexity: The above algorithm’s time complexity will be
+# O(N), where ‘N’ is the count of numbers in the input array.
+
+# Space Complexity: O(1)

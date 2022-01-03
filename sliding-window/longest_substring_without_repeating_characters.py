@@ -18,3 +18,8 @@ class Solution:
             max_length = max(max_length, end - start + 1)
 
         return max_length
+
+# Time Complexity: O(n)
+
+# Space Complexity: O(k) where k <= n b/c in the worst case
+# all the characters are distinct

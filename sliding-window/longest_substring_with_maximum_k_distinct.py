@@ -23,3 +23,12 @@ def longest_substring_with_k_distinct(str1, k):
     max_length = max(max_length, end - start + 1)
 
   return max_length
+
+# Time Complexity: The outer for loop runs for all
+# characters, and the inner while loop processes
+# each character only once; therefore, the time
+# complexity of the algorithm will be O(N+N), which
+# is asymptotically equivalent to O(N).
+
+# Space Complexity: O(K) where K is the amount of
+# distinct characters

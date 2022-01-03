@@ -14,4 +14,5 @@ def max_sub_array_of_size_k(k, arr):
 
   return max_sum
 
-# Time Complexity: 
+# Time Complexity: O(N)
+# Space Complexity: O(1)
