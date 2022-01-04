@@ -4,42 +4,41 @@ class Solution:
 
         for word in words:
             if word not in word_freq:
-              word_freq[word] = 0
+                word_freq[word] = 0
             word_freq[word] += 1
 
         result = []
-        len_str = len(s)
         len_word = len(words[0])
         len_words = len(words)
-        len_substr = len(words) * len_word # Length of concatenated word
+        len_substr = len_word * len_words
 
-        # Our range given our substring
-        for i in range((len(s) - len_substr)+1):
+        for i in range((len(s) - len_substr) + 1):
             words_seen = {}
-
-            # Searches for words in our given point in the substring
             for j in range(0, len_words):
+                # Gives us the index of the current next word
                 next_word_index = i + j * len_word
 
                 # Get the next word from the string
-                word = s[next_word_index: next_word_index + len_word]
+                word = s[next_word_index:next_word_index + len_word]
 
-                # Break if we don't need this word and check next word
+                # Since it's not in the list of words we're looking for
+                # head on to the next set of words
                 if word not in word_freq:
-                    break
+                    break;
 
-                # Add the word to the 'words_seen' map
+                # Since words are in word_freq, record it in words_seen
                 if word not in words_seen:
                     words_seen[word] = 0
                 words_seen[word] += 1
 
-                # If the word is in words_seen but is not in
-                # word_freq then break bc we are looking
-                # for words in word_freq
+                # If the frequencies don't match then while the word
+                # may be in the string but the concatenated substring
+                # is not
                 if words_seen[word] > word_freq[word]:
-                    break
+                    break;
 
-                # Store index if we have found all the words
+                # If we hit j + 1 == len_words, that means we found
+                # the substring w/ concatenation of all words
                 if j + 1 == len_words:
                     result.append(i)
 
