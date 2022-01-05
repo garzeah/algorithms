@@ -22,6 +22,7 @@ class Solution:
                 if pattern_freq[right_char] == 0:
                     matched += 1
 
+            # Means we have a permutation
             if matched == len(pattern_freq):
                 return True
 

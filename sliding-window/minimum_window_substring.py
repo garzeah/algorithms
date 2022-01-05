@@ -18,9 +18,7 @@ class Solution:
                 if pattern_freq[right_char] >= 0:
                     matched += 1
 
-            # Shrink the window if we can, finish as soon as we remove a matched character
-            # Don't want to use pattern_freq since it can have more than pattern
-            # since we are finding the minimum window substring
+            # When we find a match, record the min_length and update the substr_start
             while matched == len(pattern):
                 if min_length > end - start + 1:
                     min_length = end - start + 1
