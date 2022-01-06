@@ -18,7 +18,9 @@ class Solution:
                 if pattern_freq[right_char] >= 0:
                     matched += 1
 
-            # When we find a match, record the min_length and update the substr_start
+            # Pattern bc pattern_freq could be 1 if
+            # if we get an input like "aaaaaaaaaaa"
+            # Also means we found at least "matched" chars that fit the pattern
             while matched == len(pattern):
                 if min_length > end - start + 1:
                     min_length = end - start + 1

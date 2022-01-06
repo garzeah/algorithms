@@ -22,11 +22,12 @@ class Solution:
                 if pattern_freq[right_char] == 0:
                     matched += 1
 
-            # Means we have a permutation
+            # Means we have eaxctly matched the pattern
             if matched == len(pattern_freq):
                 return True
 
-            # shrink our current window by one character
+            # Pattern bc pattern_freq could be 1 if
+            # if we get an input like "aaaaaaaaaaa"
             if end >= len(pattern) - 1:
                 left_char = str1[start]
                 start += 1
