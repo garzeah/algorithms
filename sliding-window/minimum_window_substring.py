@@ -18,10 +18,9 @@ class Solution:
                 if pattern_freq[right_char] >= 0: # Count every match of a character
                     matched += 1
 
-            # Pattern bc pattern_freq could be 1 if
-            # if we get an input like "aaaaaaaaaaa"
-            # Also means we want to shrink the window when we can
-            # since we found len(pattern) matches
+            # Since pattern_freq[right_char] >= 0, we'll capture every
+            # occurrence of the pattern, which is why we use
+            # matched == len(pattern)
             while matched == len(pattern):
                 if min_length > end - start + 1:
                     min_length = end - start + 1

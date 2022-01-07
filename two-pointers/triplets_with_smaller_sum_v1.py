@@ -6,10 +6,9 @@ def triplet_with_smaller_sum(arr, target):
     left, right = i + 1, len(arr) - 1
 
     while left < right:
-      curr_sum = arr[left] + arr[right]
-      target_sum = target - arr[i]
+      curr_sum = arr[i] + arr[left] + arr[right]
 
-      if curr_sum < target_sum:
+      if curr_sum < target:
         # Since arr[right] >= arr[left], therefore, we can replace
         # arr[right] by any number between left and right to get
         # a sum less than the target sum. The remaining counts

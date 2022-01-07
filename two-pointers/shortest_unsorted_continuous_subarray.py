@@ -1,33 +1,35 @@
 def shortest_window_sort(arr):
-  low, high = 0, len(arr) - 1
-  # Find the first number out of sorting order from the beginning
-  while (low < len(arr) - 1 and arr[low] <= arr[low + 1]):
-    low += 1
+    left, right = 0, len(nums) - 1
 
-  if low == len(arr) - 1:  # If the array is sorted
-    return 0
+    # Find the first number out of sorting order from the beginning
+    while left < len(nums) - 1 and nums[left] <= nums[left + 1]:
+        left += 1
 
-  # Find the first number out of sorting order from the end
-  while (high > 0 and arr[high] >= arr[high - 1]):
-    high -= 1
+    if left == len(nums) - 1: # Array is sorted
+        return 0
 
-  # Find the maximum and minimum of the subarray
-  subarray_max = -math.inf
-  subarray_min = math.inf
-  for k in range(low, high + 1):
-    subarray_max = max(subarray_max, arr[k])
-    subarray_min = min(subarray_min, arr[k])
+    # Find the first number out of sorting order from the end
+    while right > 0 and nums[right] >= nums[right - 1]:
+        right -= 1
 
-  # To sort the whole array we need to include all such elements that are smaller than the
-  # biggest element of the subarray.
-  # Extend the subarray to include any number which is bigger than the minimum of the subarray
-  while (low > 0 and arr[low - 1] > subarray_min):
-    low -= 1
-  # Extend the subarray to include any number which is smaller than the maximum of the subarray
-  while (high < len(arr) - 1 and arr[high + 1] < subarray_max):
-    high += 1
+    # Find the max and min of the subarray
+    subarray_max = float('-inf')
+    subarray_min = float('inf')
+    for i in range(left, right + 1):
+        subarray_max = max(subarray_max, nums[i])
+        subarray_min = min(subarray_min, nums[i])
 
-  return high - low + 1
+    # Extend the subarray to include any number which is
+    # bigger than the minimum of the subarray
+    while left > 0 and nums[left - 1] > subarray_min:
+        left -= 1
+
+    # Extend the subarray to include any number which is
+    # smaller than the maximum of the subarray
+    while right < len(nums) - 1 and nums[right + 1] < subarray_max:
+        right += 1
+
+    return right - left + 1
 
   # Time Complexity: O(n)
   # Space Complexity: O(1)

@@ -1,6 +1,8 @@
 class Solution:
     def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
-        result = curr = ListNode(0)
+        # Referencing the same address in memory
+        curr = ListNode(0)
+        result = curr
 
         while l1 and l2:
             if l1.val < l2.val:

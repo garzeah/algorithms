@@ -20,9 +20,13 @@ class Solution:
                     smallest_difference = target_diff
 
                 if target_diff > 0:
-                    left += 1  # We need a triplet with a bigger sum
+                    # We need a triplet with a bigger sum that'll bring
+                    # our target_diff closer to 0 (which means our target)
+                    left += 1
                 else:
-                    right -= 1  # We need a triplet with a smaller sum
+                    # We need a triplet with a smaller sum that'll bring
+                    # our target_diff closer to 0 (which means our target)
+                    right -= 1
 
         # Return the closest number to target
         return target - smallest_difference

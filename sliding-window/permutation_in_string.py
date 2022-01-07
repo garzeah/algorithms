@@ -26,8 +26,8 @@ class Solution:
             if matched == len(pattern_freq):
                 return True
 
-            # Pattern bc pattern_freq could be 1 if
-            # if we get an input like "aaaaaaaaaaa"
+            # Has to be at least this long before we start
+            # sliding the window
             if end >= len(pattern) - 1:
                 left_char = str1[start]
                 start += 1

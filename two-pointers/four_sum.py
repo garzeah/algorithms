@@ -1,41 +1,37 @@
 class Solution:
-    def fourSum(self, arr: List[int], target: int) -> List[List[int]]:
-        arr.sort()
-        quadruplets = []
+    def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()
+        triplets = []
 
-        for i in range(len(arr)):
+        for i in range(len(nums)):
             # Skip same element to avoid duplicate quadruplets
-            if i > 0 and arr[i] == arr[i - 1]:
+            if i > 0 and nums[i - 1] == nums[i]:
                 continue
 
-
-            for j in range(i + 1, len(arr)):
+            for j in range(i + 1, len(nums)):
                 # Skip same element to avoid duplicate quadruplets
-                if j > i + 1 and arr[j] == arr[j - 1]:
+                if j > i + 1 and nums[j - 1] == nums[j]:
                     continue
-                Solution.search_pairs(arr, target, i, j, quadruplets)
 
-        return quadruplets
+                left, right = j + 1, len(nums) - 1
 
+                while left < right:
+                    curr_sum = nums[i] + nums[j] + nums[left] + nums[right]
 
+                    if curr_sum == target:
+                        triplets.append([nums[i], nums[j], nums[left], nums[right]])
+                        left += 1
+                        right -= 1
+                        while left < right and nums[left - 1] == nums[left]:
+                            left += 1
+                        while left < right and nums[right + 1] == nums[right]:
+                            right -= 1
+                    elif curr_sum < target:
+                        left += 1
+                    else:
+                        right -= 1
 
-    def search_pairs(arr, target, i, j, quadruplets):
-        left, right = j + 1, len(arr) - 1
-
-        while (left < right):
-            quad_sum = arr[i] + arr[j] + arr[left] + arr[right]
-            if quad_sum == target:  # Found the quadruplet
-                quadruplets.append([arr[i], arr[j], arr[left], arr[right]])
-                left += 1
-                right -= 1
-                while (left < right and arr[left] == arr[left - 1]):
-                    left += 1  # Skip same element to avoid duplicate quadruplets
-                while (left < right and arr[right] == arr[right + 1]):
-                    right -= 1  # Skip same element to avoid duplicate quadruplets
-            elif quad_sum < target:
-                left += 1  # We need a pair with a bigger sum
-            else:
-                right -= 1  # We need a pair with a smaller sum
+        return triplets
 
 # Time Complexity: Sorting the array will take O(N*logN). Overall
 # searchQuadruplets() will take O(N * logN + N^3), which is
