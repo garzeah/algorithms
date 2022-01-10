@@ -4,14 +4,14 @@ class Solution:
         if k <= 1:
             return 0
 
-        start, count, product = 0, 0, 1
+        start, count, window_product = 0, 0, 1
 
         for end in range(len(nums)):
-            product *= nums[end]
+            window_product *= nums[end]
 
             # Shrink the window since it is >= k
-            while product >= k:
-                product /= nums[start]
+            while window_product >= k:
+                window_product /= nums[start]
                 start += 1
 
             # Add the size of window to count since
