@@ -17,6 +17,8 @@ class Solution:
         # Use two pointer approach to compare the strings
         index1 = len(str1) - 1
         index2 = len(str2) - 1
+
+        # Have to use or
         while (index1 >= 0 or index2 >= 0):
             i1 = Solution.get_next_valid_char_index(str1, index1)
             i2 = Solution.get_next_valid_char_index(str2, index2)
