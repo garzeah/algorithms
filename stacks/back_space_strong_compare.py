@@ -7,7 +7,7 @@ class Solution:
                 # Push new char into stack
                 if char != '#':
                     stack.append(char)
-                elif stack:
+                elif stack and char == '#':
                 # Pop last char from stack, as a result of '#'
                     stack.pop()
 
