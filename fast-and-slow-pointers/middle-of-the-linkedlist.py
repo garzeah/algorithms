@@ -9,3 +9,6 @@ class Solution:
             fast = fast.next.next
 
         return slow
+
+# Time Complexity: O(n)
+# Space Complexity: O(1)
