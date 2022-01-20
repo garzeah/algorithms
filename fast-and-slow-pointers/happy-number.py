@@ -16,9 +16,9 @@ class Solution:
         result = 0
 
         while num > 0:
-            last = num % 10
-            result += last * last
-            num = num // 10
+            last_digit = num % 10 # Getting the last digit
+            result += last_digit * last_digit # Squaring and adding the results
+            num //= 10 # Getting the last digit
 
         return result
 
