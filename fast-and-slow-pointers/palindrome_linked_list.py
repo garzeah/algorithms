@@ -12,24 +12,24 @@ class Solution:
             fast = fast.next.next
 
         # Reversing the second half
-        head_second = self.reverse(slow)
+        right = self.reverse(slow)
         # Store the head of reversed part to revert back later
-        copy_head_second = head_second
+        right_copy = right
 
         # Comparing the both halves and checking if palindrome
-        while head and head_second:
-            if head.val != head_second.val:
+        while head and right:
+            if head.val != right.val:
                 break
 
             head = head.next
-            head_second = head_second.next
+            right = right.next
 
         # Repair the Linked List back to normal
-        self.reverse(copy_head_second)
+        self.reverse(right_copy)
 
         # Means both halves match (made it
         # through the whole loop without breaking)
-        if head is None or head_second is None:
+        if head is None or right_copy is None:
             return True
 
         return False

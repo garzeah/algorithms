@@ -11,7 +11,7 @@ class Solution:
             return head.next
 
         # Will take us right before the node we want to remove
-        while right.next != None:
+        while right.next:
             left = left.next
             right = right.next
 

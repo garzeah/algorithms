@@ -9,22 +9,23 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
 
-        second_half = self.reverse(slow) # Reversing the second half
-        first_half = head
+        # Reversing the second half from the middle
+        left, right = head, self.reverse(slow)
+
 
         # Rearrange to produce the LinkedList in the required order
-        while first_half is not None and second_half is not None:
-            temp = first_half.next
-            first_half.next = second_half
-            first_half = temp
+        while left is not None and right is not None:
+            next = left.next
+            left.next = right
+            left = next
 
-            temp = second_half.next
-            second_half.next = first_half
-            second_half = temp
+            next = right.next
+            right.next = left
+            right = next
 
         # Set the next of the last node to 'None'
-        if first_half is not None:
-            first_half.next = None
+        if left is not None:
+            left.next = None
 
     def reverse(self, head):
         prev = None

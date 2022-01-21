@@ -29,22 +29,20 @@ class Solution:
 
         return cycle_length
 
-    def find_start(head, cycle_length):
-        pointer1 = head
-        pointer2 = head
+    def find_start(self, head, cycle_length):
+        left, right = head, head
 
-        # Move pointer2 ahead 'cycle_length' nodes
-        while cycle_length > 0:
-            pointer2 = pointer2.next
-            cycle_length -= 1
+        # Move right ahead 'cycle_length' nodes
+        for _ in range(cycle_length):
+            right = right.next
 
-        # Increment both pointers until they meet at the
-        # start of the cycle
-        while pointer1 != pointer2:
-            pointer1 = pointer1.next
-            pointer2 = pointer2.next
+        # Increment both pointers until they meet
+        # at the start of the cycle
+        while left != right:
+            left = left.next
+            right = right.next
 
-        return pointer1
+        return left
 
 # Time Complexity: O(n)
 # Space Complexity: O(1)

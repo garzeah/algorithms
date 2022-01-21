@@ -19,13 +19,13 @@ def shortest_window_sort(arr):
         subarray_max = max(subarray_max, nums[i])
         subarray_min = min(subarray_min, nums[i])
 
-    # Extend the subarray to include any number which is
-    # bigger than the minimum of the subarray
+    # Extend the subarray from the beginning to include any number
+    # which is bigger than the minimum of the subarray
     while left > 0 and nums[left - 1] > subarray_min:
         left -= 1
 
-    # Extend the subarray to include any number which is
-    # smaller than the maximum of the subarray
+    # Extend the subarray from the end to include any number
+    # which is smaller than the maximum of the subarray
     while right < len(nums) - 1 and nums[right + 1] < subarray_max:
         right += 1
 
