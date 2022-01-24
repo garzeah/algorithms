@@ -1,6 +1,6 @@
 class Solution:
     def numSubarrayProductLessThanK(self, nums: List[int], k: int) -> int:
-        # Handling edge cases
+        # Negative numbers, 0 and 1 would break this
         if k <= 1:
             return 0
 
@@ -16,7 +16,6 @@ class Solution:
 
             # Add the size of window to count since
             # all their products are < k
-            print(end - start + 1)
             count += end - start + 1;
 
         return count;

@@ -11,17 +11,18 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
 
+        left = head
         # Reversing the second half
         right = self.reverse(slow)
         # Store the head of reversed part to revert back later
         right_copy = right
 
         # Comparing the both halves and checking if palindrome
-        while head and right:
-            if head.val != right.val:
+        while left and right:
+            if left.val != right.val:
                 break
 
-            head = head.next
+            left = left.next
             right = right.next
 
         # Repair the Linked List back to normal
@@ -29,7 +30,7 @@ class Solution:
 
         # Means both halves match (made it
         # through the whole loop without breaking)
-        if head is None or right_copy is None:
+        if left is None or right is None:
             return True
 
         return False

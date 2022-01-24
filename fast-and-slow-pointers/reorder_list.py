@@ -24,6 +24,8 @@ class Solution:
             right = next
 
         # Set the next of the last node to 'None'
+        # in 1,2,3,4 --> 1,4,2,3 we want 3 to point to nothing
+        # otherwise we get a cycle
         if left is not None:
             left.next = None
 
