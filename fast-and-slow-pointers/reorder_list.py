@@ -1,8 +1,5 @@
 class Solution:
     def reorderList(self, head: Optional[ListNode]) -> None:
-        if head is None or head.next is None:
-            return head
-
         # Find the middle
         slow, fast = head, head
         while fast and fast.next:
@@ -12,9 +9,9 @@ class Solution:
         # Reversing the second half from the middle
         left, right = head, self.reverse(slow)
 
-
         # Rearrange to produce the LinkedList in the required order
-        while left is not None and right is not None:
+        while left and right:
+            # left will point to the last node
             next = left.next
             left.next = right
             left = next
@@ -23,10 +20,11 @@ class Solution:
             right.next = left
             right = next
 
-        # Set the next of the last node to 'None'
-        # in 1,2,3,4 --> 1,4,2,3 we want 3 to point to nothing
-        # otherwise we get a cycle
-        if left is not None:
+        # If linked list length is even -> we need to set
+        # last node to none or we have a cycle
+
+        # If linked list length is odd -> it's already none
+        if left:
             left.next = None
 
     def reverse(self, head):

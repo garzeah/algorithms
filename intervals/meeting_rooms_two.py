@@ -9,7 +9,7 @@ class Solution:
         starts.sort()
         ends.sort()
 
-        # Min. number of rooms and end points
+        # Min. number of rooms and 'end' points
         # to the first available room
         rooms, end = 0, 0
 

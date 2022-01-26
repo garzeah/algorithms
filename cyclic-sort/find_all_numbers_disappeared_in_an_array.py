@@ -8,7 +8,7 @@ class Solution:
             # to ignore n since we can place it in the array
             j = nums[i] - 1
 
-            if nums[i] != nums[j]:
+            if nums[i] <= n and nums[i] != nums[j]:
                 nums[i], nums[j] = nums[j], nums[i]
             else:
                 i += 1

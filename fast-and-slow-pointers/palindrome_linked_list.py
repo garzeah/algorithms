@@ -1,12 +1,7 @@
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
-        # Checking for size 0 or 1
-        if head is None or head.next is None:
-            return True
-
         # Find the middle of the linked list
         slow, fast = head, head
-
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
