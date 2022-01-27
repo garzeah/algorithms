@@ -25,7 +25,7 @@ class Solution:
 
         # Means both halves match (made it
         # through the whole loop without breaking)
-        if left is None or right is None:
+        if right is None:
             return True
 
         return False
@@ -36,10 +36,10 @@ class Solution:
         prev = None
 
         while head:
-            next = head.next
-            head.next = prev
-            prev = head
-            head = next
+            next = head.next # Temporarily store the next node
+            head.next = prev # Reverse the current node
+            prev = head # Before we move to the next node, point previous to the current node
+            head = next # Move on the next node
 
         return prev
 

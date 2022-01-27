@@ -3,7 +3,10 @@ class Solution:
         # We want to find the interval with the earliest end time (greedy approach)
         intervals.sort(key = lambda x : x[1])
 
-        count = 0 # Min. number of intervals we need to remove to make it non-overlapping
+        # Min. number of intervals we need to remove to make it non-overlapping
+        count = 0
+
+        # Want the interval with the minimum end time and points to the first available room
         end = intervals[0][1]
 
         for i in range(1, len(intervals)):

@@ -20,10 +20,9 @@ class Solution:
             right.next = left
             right = next
 
+        # If linked list length is odd -> it's already none
         # If linked list length is even -> we need to set
         # last node to none or we have a cycle
-
-        # If linked list length is odd -> it's already none
         if left:
             left.next = None
 
@@ -31,10 +30,10 @@ class Solution:
         prev = None
 
         while head:
-            next = head.next
-            head.next = prev
-            prev = head
-            head = next
+            next = head.next # Temporarily store the next node
+            head.next = prev # Reverse the current node
+            prev = head # Before we move to the next node, point previous to the current node
+            head = next # Move on the next node
 
         return prev
 
