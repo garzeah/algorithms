@@ -5,12 +5,15 @@
 #         self.next = next
 class Solution:
     def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
-        dummy = head
+        if k <= 1 or head is None:
+            return head
+
+        curr = head
         k_length = 0
 
         # Calculating the number of k-groups in our linked list
-        while dummy:
-            dummy = dummy.next
+        while curr:
+            curr = curr.next
             k_length += 1
 
         k_length //= k
@@ -24,10 +27,10 @@ class Solution:
             i = 0
 
             while curr and i < k:  # Reverse 'k' nodes
-                next = curr.next
-                curr.next = prev
-                prev = curr
-                curr = next
+                temp_next = curr.next # Temporarily store the next node
+                curr.next = prev # Reverse the current node
+                prev = curr # Before we move to the next node, point previous to the current node
+                curr = temp_next # Move on the next node
                 i += 1
 
             # Connect with the previous part
@@ -39,8 +42,7 @@ class Solution:
             # Connect with the next part
             last_node_of_sub_list.next = curr
 
-            if curr is None:
-                break
+            # Assign the last node of the previous sub list to prev
             prev = last_node_of_sub_list
             k_length -= 1
         return head

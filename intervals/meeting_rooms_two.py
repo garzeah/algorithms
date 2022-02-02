@@ -14,10 +14,10 @@ class Solution:
         rooms, end = 0, 0
 
         for i in range(len(intervals)):
-            # Gives us an available room
+            # Checking for free rooms
             if ends[end] > starts[i]:
                 rooms += 1
-            # Check another time
+            # Not a free room and check the next end pointer
             else:
                 end += 1
 

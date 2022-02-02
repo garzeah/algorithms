@@ -6,8 +6,10 @@ class Solution:
         for _ in range(n):
             right = right.next
 
-        # Only happens when removing the first element
-        if right == None:
+        # If we don't have space to iterate through early
+        # because we pass in a small linked list then we
+        # want to remove the beginning of the linked list
+        if right is None:
             return head.next
 
         # Will take us right before the node we want to remove

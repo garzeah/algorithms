@@ -2,9 +2,8 @@ def reverse_every_k_elements(head, k):
     if k <= 1 or head is None:
         return head
 
-    curr, prev = head, None
-
-    while True:
+    prev, curr = None, head
+    while curr:
         # We are interested in three parts of the LinkedList, the part before index start of kth-group,
         # the part between the kth group, and the part after kth group
         last_node_of_pre_sub_list = prev
@@ -14,26 +13,23 @@ def reverse_every_k_elements(head, k):
         i = 0
 
         # Reverse nodes within the kth group
-        # curr will end at the first value at the end of the sublist
-        # prev will be at the start of the reversed portion
         while curr and i < k: # Reverse 'k' nodes
-            next = curr.next
-            curr.next = prev
-            prev = curr
-            curr = next
+            temp_next = curr.next # Temporarily store the next node
+            curr.next = prev # Reverse the current node
+            prev = curr # Before we move to the next node, point previous to the current node
+            curr = temp_next # Move on the next node
             i += 1
 
         # Connect with pre_sub_list
         if last_node_of_pre_sub_list:
+            # Since we reversed, prev will point to the first node in the reversed sub-list
             last_node_of_pre_sub_list.next = prev
         else:
+            # Since we reversed, curr will point to the first node post sub-list
             head = prev
 
         # Connect with the current next sub list
         last_node_of_sub_list.next = curr
-
-        if curr is None:
-            break
 
         # Getting ready to reverse the upcoming k-group
         prev = last_node_of_sub_list

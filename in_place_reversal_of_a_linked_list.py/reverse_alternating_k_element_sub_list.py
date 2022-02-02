@@ -2,25 +2,22 @@ def reverse_alternate_k_elements(head, k):
     if k <= 1 or head is None:
         return head
 
-    curr, prev = head, None
-    while curr: # Break if we've reached the end of the list
+    prev, curr = None, head
+    while curr:
         # We are interested in three parts of the LinkedList, the part before index start of kth-group,
         # the part between the kth group, and the part after kth group
         last_node_of_pre_sub_list = prev
 
         # After reversing the LinkedList 'curr' will become the last node of the sub-list
         last_node_of_sub_list = curr
-        next = None  # will be used to temporarily store the next node
-
         i = 0
+
         # Reverse nodes within the kth group
-        # curr will end at the first value at the end of the sublist
-        # prev will be at the start of the reversed portion
         while curr and i < k:
-            next = curr.next
-            curr.next = prev
-            prev = curr
-            curr = next
+            temp_next = curr.next # Temporarily store the next node
+            curr.next = prev # Reverse the current node
+            prev = curr # Before we move to the next node, point previous to the current node
+            curr = temp_next # Move on the next node
             i += 1
 
         # Connect with the current next sub list

@@ -12,13 +12,13 @@ class Solution:
         # Rearrange to produce the LinkedList in the required order
         while left and right:
             # left will point to the last node
-            next = left.next
+            temp_next = left.next
             left.next = right
-            left = next
+            left = temp_next
 
-            next = right.next
+            temp_next = right.next
             right.next = left
-            right = next
+            right = temp_next
 
         # If linked list length is odd -> it's already none
         # If linked list length is even -> we need to set
