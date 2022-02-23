@@ -26,6 +26,8 @@ def find_successor(root, key):
     if curr_node.val == key:
       break
 
+  # Return the first value in the queue since
+  # that will be the next level order successor
   return queue[0] if queue else None
 
 

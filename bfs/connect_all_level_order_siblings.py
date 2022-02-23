@@ -25,6 +25,8 @@ def connect_all_siblings(root):
   prev_node = None
   while queue:
     curr_node = queue.popleft()
+
+    # Using the prev_node to point the the next node
     if prev_node:
       prev_node.next = curr_node
     prev_node = curr_node

@@ -17,7 +17,7 @@ class Solution:
         queue.append(root)
 
         while queue:
-            prev_node = None
+            prev_node = None # Putting prev_node here resets it after every level
             level_size = len(queue)
 
             # Connect all nodes of this level
