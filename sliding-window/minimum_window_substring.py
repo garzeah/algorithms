@@ -15,7 +15,7 @@ class Solution:
 
             if right_char in pattern_freq:
                 pattern_freq[right_char] -= 1
-                if pattern_freq[right_char] >= 0: # Count every match of a character
+                if pattern_freq[right_char] >= 0: # Want to account for duplicates
                     matched += 1
 
             # Since pattern_freq[right_char] >= 0, we'll capture every
