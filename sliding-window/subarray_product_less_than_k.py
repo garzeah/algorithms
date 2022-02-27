@@ -14,11 +14,13 @@ class Solution:
                 window_product /= nums[start]
                 start += 1
 
-            # Add the size of window to count since
-            # all their products are < k
-            count += end - start + 1;
+            # Adding the size of the window to our count
+            # returns the number of contiguous subarrays
+            # where the product of all the elements in
+            # the subarray is < k
+            count += end - start + 1
 
-        return count;
+        return count
 
 # Time Complexity: The outer for loop runs for all elements, and
 # the inner while loop processes each element K times (the amount of

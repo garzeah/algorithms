@@ -9,26 +9,16 @@ class Solution:
         left = head
         # Reversing the second half
         right = self.reverse(slow)
-        # Store the head of reversed part to revert back later
-        right_copy = right
 
         # Comparing the both halves and checking if palindrome
         while left and right:
             if left.val != right.val:
-                break
+                return False
 
             left = left.next
             right = right.next
 
-        # Repair the Linked List back to normal
-        self.reverse(right_copy)
-
-        # Means both halves match (made it
-        # through the whole loop without breaking)
-        if right is None:
-            return True
-
-        return False
+        return True
 
 
     # Reversing the second half

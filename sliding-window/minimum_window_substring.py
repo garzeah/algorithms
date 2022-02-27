@@ -15,13 +15,13 @@ class Solution:
 
             if right_char in pattern_freq:
                 pattern_freq[right_char] -= 1
-                if pattern_freq[right_char] >= 0: # Want to account for duplicates
+                if pattern_freq[right_char] == 0:
                     matched += 1
 
             # Since pattern_freq[right_char] >= 0, we'll capture every
             # occurrence of the pattern, which is why we use
             # matched == len(pattern)
-            while matched == len(pattern):
+            while matched == len(pattern_freq):
                 if min_length > end - start + 1:
                     min_length = end - start + 1
                     substr_start = start
