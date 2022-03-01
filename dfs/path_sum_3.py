@@ -18,7 +18,7 @@ class Solution:
         path_count, path_sum = 0, 0
 
         # Find the sums of all sub-paths in the current path list
-        for i in range(len(curr_path)-1, -1, -1):
+        for i in range(len(curr_path) - 1, -1, -1):
             path_sum += curr_path[i]
             # If the sum of any sub-path is equal to 'targetSum' we increment our path count.
             if path_sum == targetSum:

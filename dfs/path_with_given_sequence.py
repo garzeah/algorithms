@@ -1,5 +1,5 @@
 def find_path(root, sequence):
-    if not root:
+    if root is None:
         return len(sequence) == 0
 
     return find_path_recursive(root, sequence, 0)
