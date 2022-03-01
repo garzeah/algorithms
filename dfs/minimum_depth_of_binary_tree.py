@@ -9,7 +9,7 @@ class Solution:
         if root is None:
             return 0
 
-        if None in [root.left, root.right]:
+        if root.left is None or root.right is None:
             return max(self.minDepth(root.left), self.minDepth(root.right)) + 1
         else:
             return min(self.minDepth(root.left), self.minDepth(root.right)) + 1

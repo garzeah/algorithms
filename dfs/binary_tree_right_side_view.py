@@ -15,8 +15,8 @@ class Solution:
             if depth == len(results):
                 results.append(curr_node.val)
 
-            self.find_right_side(curr_node.left, results, depth + 1)
             self.find_right_side(curr_node.right, results, depth + 1)
+            self.find_right_side(curr_node.left, results, depth + 1)
 
 # Time Complexity: O(n)
 # Space Complexity: O(n) bc of recursion stack

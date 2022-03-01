@@ -44,5 +44,5 @@ class Solution:
 
 # Space Complexity: The space complexity of the above algorithm will be O(N). This
 # space will be used to store the recursion stack. The worst case will happen
-#when the given tree is a linked list (i.e., every node has only one child).
+# when the given tree is a linked list (i.e., every node has only one child).
 # We also need O(N) space for storing the currentPath in the worst case.

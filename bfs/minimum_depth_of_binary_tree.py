@@ -21,7 +21,7 @@ class Solution:
                 curr_node = queue.popleft()
 
                 # Check if this is a leaf node
-                if not curr_node.left and not curr_node.right:
+                if curr_node.left is None and curr_node.right is None:
                     return min_tree_depth
 
                 # Insert the children of current node in the queue
