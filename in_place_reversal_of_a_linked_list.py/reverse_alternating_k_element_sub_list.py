@@ -29,10 +29,10 @@ def reverse_alternate_k_elements(head, k):
         # Getting ready to reverse the upcoming k-group
         last_node_of_sub_list.next = curr
 
-        # skip 'k' nodes
+        # Skip 'k' nodes
         i = 0
         while curr and i < k:
-            prev = curr
+            prev = curr # Prev should be the first node of reversed but this helps it catch up
             curr = curr.next
             i += 1
 

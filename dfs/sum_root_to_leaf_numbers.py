@@ -6,10 +6,10 @@
 #         self.right = right
 class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
-        return self.find_root_to_leaf_path_numbers(root, 0)
+        return self.find_sums(root, 0)
 
 
-    def find_root_to_leaf_path_numbers(self, curr_node, path_sum):
+    def find_sums(self, curr_node, path_sum):
         if curr_node is None:
             return 0
 
@@ -21,7 +21,7 @@ class Solution:
             return path_sum
 
         # Traverse the left and the right sub-tree
-        return self.find_root_to_leaf_path_numbers(curr_node.left, path_sum) + self.find_root_to_leaf_path_numbers(curr_node.right, path_sum)
+        return self.find_sums(curr_node.left, path_sum) + self.find_sums(curr_node.right, path_sum)
 
 # Time Complexity: The time complexity of the above algorithm is O(N),
 # where ‘N’ is the total number of nodes in the tree. This is due to
