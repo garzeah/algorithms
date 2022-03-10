@@ -18,6 +18,9 @@ class Solution:
             # repeating 'max_repeat' times and the remaining letters we should replace.if the
             # remaining letters are more than 'k', it is the time to shrink the window as we
             # are not allowed to replace more than 'k' letters
+
+            # end - start + 1 - max_repeat determines the amount of replacements we have to do
+            # if > k, then we slide the window
             while ((end - start + 1 - max_repeat) > k):
                 left_elem = s[start]
                 freq_map[left_elem] -= 1
