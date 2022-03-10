@@ -12,6 +12,7 @@ class Solution:
         if root is None:
             return depth
 
+        # Calculating the depth
         return max(self.dfs(root.left, depth + 1), self.dfs(root.right, depth + 1))
 
 # Time Complexity: O(n)
