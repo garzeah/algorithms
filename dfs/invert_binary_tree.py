@@ -7,16 +7,16 @@
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         if root:
-            # General case:
+            # Recursive case:
             # Invert child node of current root
             root.left, root.right = root.right, root.left
 
             # Invert subtree with DFS
             if root.left:
-                self.invertTree( root.left )
+                self.invertTree(root.left)
 
             if root.right:
-                self.invertTree( root.right )
+                self.invertTree(root.right)
 
             return root
         else:

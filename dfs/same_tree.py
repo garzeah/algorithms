@@ -6,10 +6,10 @@
 #         self.right = right
 class Solution:
     def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
-        # Paths equal
+        # Path ended at the same node
         if p is None and q is None:
             return True
-        # Paths do not equal
+        # Path did not end at the same node
         elif p is None or q is None:
             return False
         else:

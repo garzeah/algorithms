@@ -1,11 +1,12 @@
 def lowestCommonAncestor(self, root, p, q):
     while root:
-        if max(p.val, q.val) < root.val:
-            root = root.left
-        elif min(p.val, q.val) > root.val:
-            root = root.right
+        if root.val > max(p.val, q.val):
+            root = root.left # Want a smaller root that is between or equal to
+        elif root.val < min(p.val, q.val):
+            root = root.right # Want a bigger root that is between or equal to
         else:
             return root
+
     return None
 
 # Time Complexity: O(n)

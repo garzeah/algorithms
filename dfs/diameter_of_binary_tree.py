@@ -9,26 +9,22 @@ class Solution:
         self.tree_diameter = 0
 
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        self.calculate_height(root)
+        self.dfs(root)
         return self.tree_diameter
 
-    def calculate_height(self, curr_node):
+    def dfs(self, curr_node):
         if curr_node is None:
             return 0
 
-        left_tree_height = self.calculate_height(curr_node.left)
-        right_tree_height = self.calculate_height(curr_node.right)
+        left_tree_height = self.dfs(curr_node.left)
+        right_tree_height = self.dfs(curr_node.right)
 
-        # If the current node doesn't have a left or right subtree, we can't have
-        # a path passing through it, since we need a leaf node on each side
-        if left_tree_height is not None and right_tree_height is not None:
+        # Diameter at the current node will be equal to the
+        # height of left subtree + the height of right sub-trees
+        diameter = left_tree_height + right_tree_height
 
-            # Diameter at the current node will be equal to the
-            # height of left subtree + the height of right sub-trees
-            diameter = left_tree_height + right_tree_height
-
-            # Update the global tree diameter
-            self.tree_diameter = max(self.tree_diameter, diameter)
+        # Update the global tree diameter
+        self.tree_diameter = max(self.tree_diameter, diameter)
 
         # Height of the current node will be equal to the maximum of the
         # heights of left or right subtrees plus '1' for the current node
