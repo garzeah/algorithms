@@ -7,7 +7,5 @@ def lowestCommonAncestor(self, root, p, q):
         else:
             return root
 
-    return None
-
 # Time Complexity: O(n)
 # Space Complexity: O(1)

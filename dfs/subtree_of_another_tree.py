@@ -15,9 +15,11 @@ class Solution(object):
         if root is None:
             return False
 
+        # When we find matching nodes, want to check if it's the same
         if root.val == subRoot.val and self.checkTree(root, subRoot):
             return True
 
+        # Otherwise, keep traversing until we find matching nodes
         return self.dfs(root.left, subRoot) or self.dfs(root.right, subRoot)
 
     def checkTree(self, root1, root2):
