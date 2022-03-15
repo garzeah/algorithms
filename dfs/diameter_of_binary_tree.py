@@ -5,8 +5,10 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+    def __init__(self):
         self.tree_diameter = 0
+
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         self.dfs(root)
         return self.tree_diameter
 

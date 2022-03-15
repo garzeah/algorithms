@@ -6,12 +6,13 @@
 #         self.right = right
 class Solution:
     def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
-        if root1 and root2: # Sum the 2 values
+         # If we have 2 roots then sum both and build the left and right nodes
+        if root1 and root2:
             root = TreeNode(root1.val + root2.val)
             root.left = self.mergeTrees(root1.left, root2.left)
             root.right = self.mergeTrees(root1.right, root2.right)
             return root
-        else: # If we only have one root then let return that root
+        else: # If we only have 1 root then let whichever root takeover
             return root1 or root2
 
 # Time Complexity: O(n)

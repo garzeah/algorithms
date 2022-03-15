@@ -10,13 +10,13 @@ class Solution:
         return self.dfs(root, None)
 
     def dfs(self, curr_node, ans):
-        if curr_node is None or ans: # Stop early.
+        if curr_node is None:
             return ans
 
         # DFS in-order traversal
         ans = self.dfs(curr_node.left, ans)
-        self.k -= 1 # Decrement the counter until k is 0
 
+        self.k -= 1 # Decrement the counter until k is 0
         if self.k == 0:
             return curr_node.val # Set ans to node value.
 
