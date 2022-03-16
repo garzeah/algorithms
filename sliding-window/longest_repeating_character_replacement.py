@@ -13,23 +13,17 @@ class Solution:
             freq_map[right_elem] += 1
             max_repeat = max(max_repeat, freq_map[right_elem])
 
-            # Current window size is from 'start' to 'end', overall we have a letter which is
-            # repeating 'max_repeat' times, this means we can have a window which has one letter
-            # repeating 'max_repeat' times and the remaining letters we should replace.if the
-            # remaining letters are more than 'k', it is the time to shrink the window as we
-            # are not allowed to replace more than 'k' letters
-
-            # end - start + 1 - max_repeat determines the amount of replacements we have to do
-            # if > k, then we slide the window
+            # If we take the length - the most frequent character,
+            # this will give us the amount of characters we can replace
             while ((end - start + 1 - max_repeat) > k):
                 left_elem = s[start]
                 freq_map[left_elem] -= 1
-
-                if freq_map[left_elem] == 0:
-                    del freq_map[left_elem]
-
                 start += 1
 
             max_length = max(max_length, end - start + 1)
 
         return max_length
+
+# Time Complexity: O(n)
+# Space Complexity: O(1), max amt of chars we can store is
+# O(26) cuz of alphabet which is essential O(1)
