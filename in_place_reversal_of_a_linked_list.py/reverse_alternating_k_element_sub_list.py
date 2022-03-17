@@ -37,3 +37,6 @@ def reverse_alternate_k_elements(head, k):
             i += 1
 
     return head
+
+# Time Complexity: O(n)
+# Space Complexity: O(1)
