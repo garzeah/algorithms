@@ -11,7 +11,7 @@ class Solution:
 
     def find_sums(self, curr_node, path_sum):
         if curr_node is None:
-            return
+            return 0
 
         # Calculate the path number of the current node
         path_sum = 10 * path_sum + curr_node.val
