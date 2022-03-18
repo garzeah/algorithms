@@ -1,8 +1,7 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         # Start by initializing our subsets and adding an empty subset
-        subsets = []
-        subsets.append([])
+        subsets = [[]]
 
         for curr_num in nums:
             # We will take all existing subsets and insert
