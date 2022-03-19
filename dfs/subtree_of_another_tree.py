@@ -6,14 +6,14 @@
 #         self.right = right
 class Solution(object):
     def isSubtree(self, root, subRoot):
-        if subRoot is None:
-            return True
-
         return self.dfs(root, subRoot)
 
     def dfs(self, root, subRoot):
         if root is None:
             return False
+
+        if subRoot is None:
+            return True
 
         # When we find matching nodes, want to check if it's the same
         if root.val == subRoot.val and self.checkTree(root, subRoot):

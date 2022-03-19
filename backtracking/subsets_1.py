@@ -3,7 +3,7 @@ class Solution:
         # Start by initializing our subsets and adding an empty subset
         subsets = [[]]
 
-        for curr_num in nums:
+        for i in range(len(nums)):
             # We will take all existing subsets and insert
             # the current number in them to create new subsets
             n = len(subsets)
@@ -11,7 +11,7 @@ class Solution:
                 # Create a new subset from the existing subset
                 # and insert the current element to it
                 temp_set = list(subsets[i])
-                temp_set.append(curr_num)
+                temp_set.append(nums[i])
                 subsets.append(temp_set)
 
 
