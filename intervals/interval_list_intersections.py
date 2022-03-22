@@ -25,4 +25,4 @@ class Solution:
 # Time Complexity: O(N + M), where 'N' and 'M' are the total
 # number of intervals in the input arrays
 
-# Space Comeplexity: O(1)
+# Space Comeplexity: O(N)

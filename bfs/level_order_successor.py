@@ -8,27 +8,30 @@ class TreeNode:
 
 
 def find_successor(root, key):
-  if root is None:
+    if root is None:
+        return None
+
+    queue = deque([root])
+
+    while queue:
+        curr_node = queue.popleft()
+        # Insert the children of current node in the queue
+        if curr_node.left:
+            queue.append(curr_node.left)
+
+        if curr_node.right:
+            queue.append(curr_node.right)
+
+        # Break if we have found the key
+        if curr_node.val == key:
+            break
+
+    # Return the first value in the queue since
+    # that will be the next level order successor
+    if queue:
+        return queue[0]
+
     return None
-
-  queue = deque()
-  queue.append(root)
-
-  while queue:
-    curr_node = queue.popleft()
-    # Insert the children of current node in the queue
-    if curr_node.left:
-      queue.append(curr_node.left)
-    if curr_node.right:
-      queue.append(curr_node.right)
-
-    # Break if we have found the key
-    if curr_node.val == key:
-      break
-
-  # Return the first value in the queue since
-  # that will be the next level order successor
-  return queue[0] if queue else None
 
 
 def main():

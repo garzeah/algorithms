@@ -10,15 +10,13 @@ class Solution:
         if root is None:
             return result
 
-        queue = deque()
-        queue.append(root)
+        queue = deque([root])
         left_to_right = True
 
         while queue:
-            level_size = len(queue)
             curr_level = deque()
 
-            for _ in range(level_size):
+            for _ in range(len(queue)):
                 curr_node = queue.popleft()
 
                 # Add the node to the current level based on the traverse direction
