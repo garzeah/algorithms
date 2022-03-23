@@ -22,7 +22,7 @@ class Solution:
             root.right = self.buildTree(preorder, inorder[mid + 1:])
             return root
 
-# Time Complexity: O(n^2) because we are searching for the index and the recursion is O(n). We can optimize this using deque and popping left. This
-# would happen in the event our tree is a linked list.
+# Time Complexity: O(n^2) because we are searching for the index and we traverse each node once.
+# We can optimize this using deque and popping left.
 
-# Space Complexity: O(n^2) space in the event it is a linked list?
+# Space Complexity: O(n^2) because of recursion stack and slicing
