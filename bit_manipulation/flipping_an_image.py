@@ -1,11 +1,13 @@
 class Solution:
-    def flipAndInvertImage(self, matrix: List[List[int]]) -> List[List[int]]:
-        C = len(matrix)
-        for row in matrix:
-            for i in range((C+1)//2):
-                row[i], row[C - i - 1] = row[C - i - 1] ^ 1, row[i] ^ 1
+    def flipAndInvertImage(self, image: List[List[int]]) -> List[List[int]]:
+        n = len(image)
 
-        return matrix
+        for row in image:
+            for i in range((n + 1) // 2): # Getting the amount of times we need to swap
+                # Swapping the values and getting the inverted image using XOR
+                row[i], row[n - i - 1] = row[n - i - 1] ^ 1, row[i] ^ 1
+
+        return image
 
 # Time Complexity: O(n)
 # Space Complexity: O(1)
