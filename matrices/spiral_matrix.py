@@ -1,8 +1,8 @@
 class Solution:
     def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
-        output = []
         left, right = 0, len(matrix[0])
         top, bottom = 0, len(matrix)
+        output = []
 
         while left < right and top < bottom:
             # Get every i in the top row
@@ -36,5 +36,5 @@ class Solution:
         return output
 
 
-# Time Complexity: O(m*m)
-# Space Complexity: O(1)
+# Time Complexity: O(n*m)
+# Space Complexity: O(n)
