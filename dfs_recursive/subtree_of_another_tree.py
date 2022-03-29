@@ -34,7 +34,6 @@ class Solution(object):
 
         return self.checkTree(root1.left, root2.left) and self.checkTree(root1.right, root2.right)
 
-# Time Complexity: O(n*m) where n is the amount of nodes we traverse in dfs and m is the
-# amount of nodes we traverse when checking a tree
-
+# Time Complexity: O(n*m) where n is the amount of traversals for root and
+# m is the amount of traversals for subRoot
 # Space Complexity: O(n)
