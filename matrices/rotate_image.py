@@ -5,7 +5,7 @@ class Solution:
         """
         # Since it's n x n, we can get columns from
         # len(matrix) rather than len(matrix[0])
-        left, right = 0, len(matrix) - 1
+        left, right = 0, len(matrix[0]) - 1
 
         while left < right:
             # Iterating through the entire row except last element
