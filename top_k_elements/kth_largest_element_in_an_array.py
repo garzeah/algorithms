@@ -18,5 +18,6 @@ class Solution:
         # Return the Kth largest number
         return min_heap[0]
 
-# Time Complexity: O(log k) since we are inserting the into our heap
+# Time Complexity: O(n log k) since we iterate through the whole
+# array and inserting at log time.
 # Space Complexity: O(k) since we are only storing at most k numbers.
