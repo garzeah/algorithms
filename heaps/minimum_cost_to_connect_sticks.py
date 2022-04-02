@@ -4,8 +4,8 @@ class Solution:
         result = 0
 
         # Add all sticks to the min heap
-        for i in sticks:
-            heappush(min_heap, i)
+        for stick in sticks:
+            heappush(min_heap, stick)
 
         # Go through the values of the heap, in each step take
         # top (lowest) rope lengths from the min heap connect

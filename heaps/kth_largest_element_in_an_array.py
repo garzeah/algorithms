@@ -1,23 +1,15 @@
-class Solution:
-    def findKthLargest(self, nums: List[int], k: int) -> int:
-        min_heap = []
+def find_k_largest_numbers(nums, k):
+    min_heap = []
 
-        # Add the numbers in the min heap
-        for num in nums:
-            # Add the new number in the min heap
-            heappush(min_heap, num)
+    for i in range(len(nums)):
+        heappush(min_heap, nums[i])
 
-            # If heap has more than 'k' numbers, remove one number.
-            # We are going to keep the kth biggest numbers and since
-            # we are using a min_heap the kth largest element will
-            # always be at the root of our heap
-            if len(min_heap) > k:
-                heappop(min_heap)
+        # We are continually removing the smallest values
+        # in our min. heap until we have k values
+        if len(min_heap) > k:
+            heappop(min_heap)
 
+    return min_heap[0]
 
-        # Return the Kth largest number
-        return min_heap[0]
-
-# Time Complexity: O(n log k) since we iterate through the whole
-# array and inserting at log time.
-# Space Complexity: O(k) since we are only storing at most k numbers.
+# Time Complexity: O(n) * log(k)
+# Space Complexity: O(k)
