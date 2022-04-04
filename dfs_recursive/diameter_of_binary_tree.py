@@ -14,19 +14,19 @@ class Solution:
         if curr_node is None:
             return 0
 
-        left_tree_height = self.dfs(curr_node.left)
-        right_tree_height = self.dfs(curr_node.right)
+        left_depth = self.dfs(curr_node.left)
+        right_depth = self.dfs(curr_node.right)
 
         # Diameter at the current node will be equal to the
         # height of left subtree + the height of right sub-trees
-        diameter = left_tree_height + right_tree_height
+        diameter = left_depth + right_depth
 
         # Update the global tree diameter
         self.tree_diameter = max(self.tree_diameter, diameter)
 
         # Height of the current node will be equal to the maximum of the
         # heights of left or right subtrees plus '1' for the current node
-        return max(left_tree_height, right_tree_height) + 1
+        return max(left_depth, right_depth) + 1
 
 # Time Complexity: O(n) bc we traverse through each node once
 

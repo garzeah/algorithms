@@ -6,18 +6,15 @@
 #         self.right = right
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        return self.dfs(root, 0)
-
-    def dfs(self, curr_node, depth):
         # We have traveled every possible node
-        if curr_node is None:
-            return depth
+        if root is None:
+            return 0
 
-        # Finds the max of both sides of the tree
-        return max(
-            self.dfs(curr_node.left, depth + 1),
-            self.dfs(curr_node.right, depth + 1)
-        )
+        left_depth = self.dfs(root.left)
+        right_depth = self.dfs(root.right)
+
+        # Finds the max of both sides
+        return max(left_depth, right_depth) + 1
 
 # Time Complexity: O(n)
 # Space Complexity: O(n)
