@@ -11,21 +11,21 @@ class Solution:
 
         while max_heap:
             wait_list = []
-            tasks = n + 1  # Try to execute as many as 'k+1' tasks from the max-heap
-            while tasks > 0 and max_heap:
+            k = n + 1  # Try to execute as many as 'n + 1' tasks from the max-heap
+            while max_heap and k > 0:
                 interval_count += 1
                 frequency, char = heappop(max_heap)
                 if -frequency > 1:
                     # Decrement the frequency and add to the wait_list
-                    wait_list.append((frequency+1, char))
-                tasks -= 1
+                    wait_list.append((frequency + 1, char))
+                k -= 1
 
             # Put all the waiting list back on the heap
             for frequency, char in wait_list:
                 heappush(max_heap, (frequency, char))
 
             if max_heap:
-                interval_count += tasks # We'll be having 'n' idle intervals for the next iteration
+                interval_count += k # We'll be having 'n' idle intervals for the next iteration
 
         return interval_count
 
