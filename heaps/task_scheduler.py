@@ -7,7 +7,7 @@ class Solution:
 
         # Add all tasks to the max heap
         for char, frequency in freq_map.items():
-            heappush(max_heap, (-frequency, char))
+            heappush(max_heap, [-frequency, char])
 
         while max_heap:
             wait_list = []
@@ -17,12 +17,12 @@ class Solution:
                 frequency, char = heappop(max_heap)
                 if -frequency > 1:
                     # Decrement the frequency and add to the wait_list
-                    wait_list.append((frequency + 1, char))
+                    wait_list.append([frequency + 1, char])
                 k -= 1
 
             # Put all the waiting list back on the heap
             for frequency, char in wait_list:
-                heappush(max_heap, (frequency, char))
+                heappush(max_heap, [frequency, char])
 
             if max_heap:
                 interval_count += k # We'll be having 'n' idle intervals for the next iteration
