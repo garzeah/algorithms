@@ -35,7 +35,7 @@ class Solution:
         # Connect pre-sub-list with start of sub-list
         if last_node_of_pre_sub_list:
             last_node_of_pre_sub_list.next = prev
-        # Usually do this when the start and prev node overlap
+        # For connecting the tail end of the reversed list
         else:
             head = prev
 

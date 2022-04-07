@@ -36,7 +36,7 @@ class Solution:
             # Connect with the previous part
             if last_node_of_prev_part:
                 last_node_of_prev_part.next = prev
-            else: # For connecting the beginning
+            else: # For connecting the tail end of the reversed list
                 head = prev
 
             # Connect with the next part
