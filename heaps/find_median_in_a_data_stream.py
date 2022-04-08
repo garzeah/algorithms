@@ -20,14 +20,14 @@ class MedianFinder:
         # If the size difference is 2 or greater for
         # small then pop from small and add to large
         if len(self.small) > len(self.large) + 1:
-            val = heappop(self.small)
-            heappush(self.large, -val)
+            val = -heappop(self.small)
+            heappush(self.large, val)
 
         # If the size difference is 2 or greater for
         # large then pop from large and add to small
         if len(self.large) > len(self.small) + 1:
-            val = heappop(self.large)
-            heappush(self.small, -val)
+            val = -heappop(self.large)
+            heappush(self.small, val)
 
     def findMedian(self) -> float:
         # Since it is odd, return the median
