@@ -7,7 +7,7 @@ class Solution:
                 curr_num = -(nums1[i] + nums2[j])
 
                 if len(max_heap) < k:
-                    heappush(max_heap, (curr_num, i, j))
+                    heappush(max_heap, [curr_num, i, j])
                 else:
                     # If the sum of the two numbers from the two arrays is smaller
                     # than the smallest (top) element of the heap, we can 'break'
@@ -18,7 +18,7 @@ class Solution:
                     # We have a pair with a larger sum, remove top and insert this pair in the heap
                     else:
                         heappop(max_heap)
-                        heappush(max_heap, (curr_num, i, j))
+                        heappush(max_heap, [curr_num, i, j])
 
         for (num, i, j) in max_heap:
             output.append([nums1[i], nums2[j]])
