@@ -1,6 +1,6 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        output, subset = [], []
+        subset, output = [], []
         return self.dfs(0, nums, subset, output)
 
     def dfs(self, i, nums, subset, output):
