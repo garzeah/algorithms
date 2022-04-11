@@ -27,3 +27,5 @@ class Solution:
 # for the output list. Since we will have a total of O(2^N) subsets,
 # and each subset can take up to O(N) space, therefore, the space
 # complexity of our algorithm will be O(N*2^N).
+
+# Solution: https://www.youtube.com/watch?v=REOH22Xwdkk
