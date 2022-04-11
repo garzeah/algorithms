@@ -1,10 +1,10 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        freq_map, min_heap, output = {}, [], []
+        freq_map, min_heap, output = Counter(nums), [], []
 
         # Find the frequency of each number
-        for num in nums:
-            freq_map[num] = freq_map.get(num, 0) + 1
+        # for num in nums:
+        #     freq_map[num] = freq_map.get(num, 0) + 1
 
         # Go through all numbers of the freq_map and push them in
         # the min_heap, which will have top k frequent numbers.

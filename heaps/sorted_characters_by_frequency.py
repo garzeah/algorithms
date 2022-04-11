@@ -1,10 +1,10 @@
 class Solution:
     def frequencySort(self, s: str) -> str:
-        freq_map, max_heap, output = {}, [], []
+        freq_map, max_heap, output = Counter(s), [], []
 
         # Find the frequency of each character
-        for char in s:
-            freq_map[char] = freq_map.get(char, 0) + 1
+        # for char in s:
+        #     freq_map[char] = freq_map.get(char, 0) + 1
 
         # Add all characters to the max heap
         for char, frequency in freq_map.items():
