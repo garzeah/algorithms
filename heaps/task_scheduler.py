@@ -1,8 +1,9 @@
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
-        freq_map = Counter(tasks)
-        max_heap = [-count for count in freq_map.values()]
-        heapify(max_heap)
+        freq_map, max_heap = Counter(tasks), []
+
+        for count in freq_map.values():
+            heappush(max_heap, -count)
 
         # Queue will contain pairs of [-count, time until it can run again]
         queue, time = deque(), 0

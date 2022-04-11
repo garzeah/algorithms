@@ -4,8 +4,8 @@ class Solution:
 
         # Put the 1st element of each row in the min heap we
         # don't need to push more than 'k' elements in the heap
-        for i in range(len(matrix)):
-            heappush(min_heap, (matrix[i][0], 0, matrix[i]))
+        for row in matrix:
+            heappush(min_heap, (row[0], 0, row))
 
         # Take the smallest (top) element form the min heap, if
         # the running count is equal to k' return the number if
@@ -22,11 +22,11 @@ class Solution:
 
             # While can we still index a row
             if len(row) > i + 1:
-                heappush(min_heap, [row[i+1], i + 1, row])
+                heappush(min_heap, [row[i + 1], i + 1, row])
 
         return curr_num
 
-# Time Complexity: # First, we inserted at most ‘K’ or one element
+# Time Complexity: First, we inserted at most ‘K’ or one element
 # from each of the ‘N’ rows, which will take O(N). Then we went
 # through at most ‘K’ elements in the matrix and remove/add one
 # element in the heap in each step. As we can’t have more than
