@@ -17,8 +17,7 @@ class Solution:
                         break
                     # We have a pair with a larger sum, remove top and insert this pair in the heap
                     else:
-                        heappop(max_heap)
-                        heappush(max_heap, [curr_num, i, j])
+                        heappushpop(max_heap, [curr_num, i, j])
 
         for (num, i, j) in max_heap:
             output.append([nums1[i], nums2[j]])
