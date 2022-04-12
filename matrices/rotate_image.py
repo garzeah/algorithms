@@ -15,16 +15,16 @@ class Solution:
                 # Save the top left value
                 top_left = matrix[top][left + i]
 
-                # Move the bottom left into top left
+                # Replace top left with bottom left
                 matrix[top][left + i] = matrix[bottom - i][left]
 
-                # Move bottom right into bottom left
+                # Replace bottom left with bottom right
                 matrix[bottom - i][left] = matrix[bottom][right - i]
 
-                # Move top right into bottom right
+                # Replace bottom right with top right
                 matrix[bottom][right - i] = matrix[top + i][right]
 
-                # Move top left into top right
+                # Replace top right with top left
                 matrix[top + i][right] = top_left
 
             # Update our pointers
@@ -35,3 +35,4 @@ class Solution:
 
 # Time Complexity: O(n^2)
 # Space Complexity: O(1)
+# Solution: https://www.youtube.com/watch?v=fMSJSS7eO1w

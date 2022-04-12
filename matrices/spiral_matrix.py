@@ -17,7 +17,8 @@ class Solution:
 
             right -= 1 # Shifting it to the left by 1
 
-            # If the pointers have crossed then break out of loop
+            # If the pointers have crossed then break
+            # otherwise we will get repeating values
             if not (left < right and top < bottom):
                 break
 
@@ -38,3 +39,4 @@ class Solution:
 
 # Time Complexity: O(n*m)
 # Space Complexity: O(n)
+# Solution: https://www.youtube.com/watch?v=BJnMZNwUk1M
