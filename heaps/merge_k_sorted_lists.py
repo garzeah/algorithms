@@ -22,6 +22,7 @@ class Solution:
 
         while min_heap:
             val, i, node = min_heap[0]
+
             if node.next is None: # We've exhausted a linked list
                 heappop(min_heap)
             else:
@@ -41,3 +42,5 @@ class Solution:
 
 # Space Complexity: The space complexity will be O(K) because, at any time, our
 # min-heap will be storing one number from all the ‘K’ input arrays.
+
+# Solution: https://www.youtube.com/watch?v=kpCesr9VXDA

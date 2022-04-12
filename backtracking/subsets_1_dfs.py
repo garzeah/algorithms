@@ -6,7 +6,7 @@ class Solution:
     def dfs(self, i, nums, subset, output):
         # Base Case, means we are out of bounds
         if i >= len(nums):
-            output.append(subset.copy())
+            output.append(list(subset))
             return
 
         # Decision to include nums[i]

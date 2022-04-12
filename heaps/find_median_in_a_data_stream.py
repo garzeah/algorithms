@@ -45,3 +45,5 @@ class MedianFinder:
 
 # Space Complexity: The space complexity will be O(N) because, as at any
 # time, we will be storing all the numbers.
+
+# Solution: https://www.youtube.com/watch?v=Z6idIicFDOE
