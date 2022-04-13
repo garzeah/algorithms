@@ -1,5 +1,6 @@
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
+    # Want numbers with the highest frequency at the top
         freq_map, max_heap = Counter(tasks), []
 
         for count in freq_map.values():
