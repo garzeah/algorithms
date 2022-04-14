@@ -13,9 +13,11 @@ class Solution:
         # All subsets that include nums[i]
         curr_path.append(nums[i])
         self.backtrack(nums, i + 1, curr_path, output)
-        curr_path.pop()
 
         # All subsets that don't include nums[i]
+        curr_path.pop()
+
+        # Want to avoid duplicates by going to next non-duped num
         while i + 1 < len(nums) and nums[i] == nums[i + 1]:
             i += 1
         self.backtrack(nums, i + 1, curr_path, output)

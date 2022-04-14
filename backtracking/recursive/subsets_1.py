@@ -1,21 +1,21 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        curr_subset, output = [], []
-        return self.dfs(nums, 0, curr_subset, output)
+        curr_path, output = [], []
+        return self.backtrack(nums, 0, curr_path, output)
 
-    def dfs(self, nums, i, curr_subset, output):
+    def backtrack(self, nums, i, curr_path, output):
         # Base Case, means we are out of bounds
-        if i >= len(nums):
-            output.append(list(curr_subset))
+        if i == len(nums):
+            output.append(list(curr_path))
             return
 
         # Decision to include nums[i]
-        curr_subset.append(nums[i])
-        self.dfs(nums, i + 1, curr_subset, output)
+        curr_path.append(nums[i])
+        self.backtrack(nums, i + 1, curr_path, output)
 
         # Decision to not include nums[i]
-        curr_subset.pop()
-        self.dfs(nums, i + 1, curr_subset, output)
+        curr_path.pop()
+        self.backtrack(nums, i + 1, curr_path, output)
 
         return output
 
