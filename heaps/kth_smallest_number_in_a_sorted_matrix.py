@@ -11,20 +11,20 @@ class Solution:
         # the running count is equal to k' return the number if
         # the row of the top element has more elements, add the
         # next element to the heap
-        num_count, curr_num = 0, 0
+        k_count = 0
         while min_heap:
             curr_num, i, row = heappop(min_heap)
             num_count += 1
 
             # We are at the kth element
-            if num_count == k:
-                break
+            if k_count == k:
+                return curr_num
 
             # While can we still index a row
             if len(row) > i + 1:
                 heappush(min_heap, [row[i + 1], i + 1, row])
 
-        return curr_num
+        return None
 
 # Time Complexity: First, we inserted at most ‘K’ or one element
 # from each of the ‘N’ rows, which will take O(N). Then we went
