@@ -1,7 +1,7 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         curr_subset, output = [], []
-        return self.dfs(0, nums, curr_subset, output)
+        return self.dfs(nums, 0, curr_subset, output)
 
     def dfs(self, nums, i, curr_subset, output):
         # Base Case, means we are out of bounds

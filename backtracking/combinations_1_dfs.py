@@ -1,20 +1,22 @@
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        comb, output = [], []
-        self.dfs(n, k, 1, comb, output)
+        curr_comb, output = [], []
+        self.dfs(n, k, 1, curr_comb, output)
         return output
 
-    def dfs(self, n, k, index, comb, output):
-        # Base Case
-        if len(comb) == k:
-            output.append(list(comb))
+    def dfs(self, n, k, index, curr_comb, output):
+        # When our current combination is equal to k
+        # we can add it to our output
+        if len(curr_comb) == k:
+            output.append(list(curr_comb))
             return
 
-        # Decision Tree
         for i in range(index, n + 1):
-            comb.append(i)
-            self.dfs(n, k, i + 1, comb, output)
-            comb.pop()
+            curr_comb.append(i)
+            self.dfs(n, k, i + 1, curr_comb, output)
+            # Want to remove the value we just added before
+            # adding in the next number
+            curr_comb.pop()
 
 # Time Complexity: O(K*N^K) because we'll have N choices at each level which will
 # double as we go down a level. K will serve as the size of the combination and

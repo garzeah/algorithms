@@ -10,7 +10,7 @@ class Solution:
             output.append(curr_perm)
         else:
             # Create a new permutation by adding the current number at every position
-            for i in range(len(curr_perm) + 1 ):
+            for i in range(len(curr_perm) + 1):
                 new_perm = list(curr_perm)
                 new_perm.insert(i, nums[index])
                 self.bfs(nums, index + 1, new_perm, output)
