@@ -1,28 +1,34 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        curr_nums, output = [], []
-        self.dfs(candidates, target, 0, curr_nums, 0, output)
+        curr_path, output = [], []
+        self.backtrack(candidates, target, 0, curr_path, 0, output)
         return output
 
-    def dfs(self, candidates, target, i, curr_nums, total_sum, output):
-        # Base Case
-        if total_sum == target:
-            output.append(list(curr_nums))
-            return
-
+    def backtrack(self, candidates, target, i, curr_path, total_sum, output):
+        # In the event our index or total sum gets to large, return
         if i >= len(candidates) or total_sum > target:
             return
 
-        curr_nums.append(candidates[i])
-        self.dfs(candidates, target, i, curr_nums, total_sum + candidates[i], output)
+        # We found a sum, record it!
+        if total_sum == target:
+            output.append(list(curr_path))
+            return
 
-        curr_nums.pop()
-        self.dfs(candidates, target, i + 1, curr_nums, total_sum, output)
+        # Finding combinations on the left side of the tree
+        curr_path.append(candidates[i])
+        self.backtrack(candidates, target, i, curr_path, total_sum + candidates[i], output)
+
+        # When we pop the value, shift i by one so it doesn't include
+        # the prior value in order to prevent duplicates
+        curr_path.pop()
+        self.backtrack(candidates, target, i + 1, curr_path, total_sum, output)
 
 # Time Complexity: O(2^t) where t is the target value since at most our
 # decision tree can reach a height of t with the levels either growing
 # or getting smaller.
 
-# Space Complexity: ?
+# Space Complexity: O(2^t) kind of what to get since it's really
+# mathematical to me and I'd have to do some research but the
+# upper bound would be O(2^t) as well.
 
 # Solution: https://www.youtube.com/watch?v=GBKI9VSKdGg

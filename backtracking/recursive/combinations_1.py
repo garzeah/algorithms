@@ -5,17 +5,16 @@ class Solution:
         return output
 
     def backtrack(self, n, k, index, curr_path, output):
-        # When our current combination is equal to k
-        # we can add it to our output
         if len(curr_path) == k:
             output.append(list(curr_path))
             return
 
+        # For each level, we want to add all the numbers
+        # from 1 to n for each of our current paths
         for i in range(index, n + 1):
             curr_path.append(i)
             self.backtrack(n, k, i + 1, curr_path, output)
-            # Want to remove the value we just added before
-            # adding in the next number
+            # Want to remove the value we added for the next sibling
             curr_path.pop()
 
 # Time Complexity: O(K*N^K) because we'll have N choices at each level which will
