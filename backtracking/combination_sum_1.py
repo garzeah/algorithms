@@ -27,8 +27,6 @@ class Solution:
 # decision tree can reach a height of t with the levels either growing
 # or getting smaller.
 
-# Space Complexity: O(2^t) kind of what to get since it's really
-# mathematical to me and I'd have to do some research but the
-# upper bound would be O(2^t) as well.
+# Space Complexity: ?
 
 # Solution: https://www.youtube.com/watch?v=GBKI9VSKdGg
