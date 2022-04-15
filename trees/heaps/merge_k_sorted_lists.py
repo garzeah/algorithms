@@ -35,9 +35,9 @@ class Solution:
         return dummy.next
 
 # Time Complexity: O(N * K * log(k)) since the while loop will run for as many nodes
-# there are in the linked lists which is O(N * K) where N is the length of the list and
-# k is the amount of linked lists. Heappop and heappush take O(log(k)) time since
-# we'll have at most k linked lists in our heap.
+# there are in the linked lists which is O(N * K) where N is the length of the list
+# and k is the amount of linked lists. Heappop and heappush take O(log(k)) time
+# since we'll have at most k linked lists in our heap.
 
 # Space Complexity: The space complexity will be O(N * K) where N is the amount of
 # nodes in a list and K is the total amount of linked lists.
