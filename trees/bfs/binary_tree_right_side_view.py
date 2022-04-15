@@ -6,22 +6,18 @@
 #         self.right = right
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        result = []
         if root is None:
-            return result
+            return root
 
-        queue = deque()
-        queue.append(root)
+        result = []
+        queue = deque([root])
 
         while queue:
-            levelSize = len(queue)
+            # Appending the last value of the queue
+            result.append(queue[-1])
 
-            for i in range(levelSize):
+            for _ in range(len(queue)):
                 curr_node = queue.popleft()
-
-                # If it is the last node of this level, add it to the result
-                if i == levelSize - 1:
-                    result.append(curr_node.val)
 
                 # Insert the children of current node in the queue
                 if curr_node.left:

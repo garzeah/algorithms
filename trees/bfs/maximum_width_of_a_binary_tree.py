@@ -17,20 +17,16 @@ class Solution:
             left, right = queue[0][1], queue[-1][1]
             # Formula for calculating the width using indexes
             max_width = max(max_width, right - left + 1)
-            # Used to access the first and last child of next level
-            next_level = deque()
+
             for _ in range(len(queue)):
                 curr_node, index = queue.popleft()
 
                 # Adding the next levels while calculating their indexes
                 if curr_node.left:
-                    next_level.append([curr_node.left, index * 2])
+                    queue.append([curr_node.left, index * 2])
 
                 if curr_node.right:
-                    next_level.append([curr_node.right, index * 2 + 1])
-
-            # Replacing so that we can access the first and last child
-            queue = next_level
+                    queue.append([curr_node.right, index * 2 + 1])
 
         return max_width
 
