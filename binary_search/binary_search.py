@@ -11,12 +11,12 @@ class Solution:
                 return mid
 
             if is_ascending: # Ascending order
-                if target < nums[mid]:
+                if nums[mid] > target:
                     end = mid - 1  # The 'target' can be in the first half
                 else:  # target > nums[mid]
                     start = mid + 1  # The 'target' can be in the second half
             else:  # Descending order
-                if target > nums[mid]:
+                if nums[mid] > target:
                     end = mid - 1  # The 'target' can be in the first half
                 else:  # target < nums[mid]
                     start = mid + 1  # The 'target' can be in the second half
