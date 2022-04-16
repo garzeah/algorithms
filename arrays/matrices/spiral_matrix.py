@@ -19,7 +19,7 @@ class Solution:
 
             # If the pointers have crossed then break
             # otherwise we will get repeating values
-            if not (left < right and top < bottom):
+            if (left < right and top < bottom) is False:
                 break
 
             # Get every i in the bottom row
