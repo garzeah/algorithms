@@ -33,6 +33,8 @@ class Solution:
 
         return matrix
 
-# Time Complexity: O(n^2)
+# Time Complexity: O(n^2) since we are looking at each cell only once.
+
 # Space Complexity: O(1)
+
 # Solution: https://www.youtube.com/watch?v=fMSJSS7eO1w
