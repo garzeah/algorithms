@@ -1,12 +1,12 @@
 class Solution:
     def peakIndexInMountainArray(self, arr: List[int]) -> int:
-        left, right = 0, len(arr) - 1
+        start, end = 0, len(arr) - 1
 
-        while left < right:
-            mid = (left + right) // 2
+        while start < end:
+            mid = (start + end) // 2
             print(mid)
             # If the the middle is greater than both
-            # left and right sides then we have found a peak
+            # start and end sides then we have found a peak
             if arr[mid] >= arr[mid - 1] and arr[mid] >= arr[mid + 1]:
                 return mid
 
@@ -14,9 +14,9 @@ class Solution:
             # completely sorted and want to check if the values
             # next to it could possibly be a peak
             elif arr[mid] < arr[mid + 1]:
-                left = mid
+                start = mid
             else:
-                right = mid
+                end = mid
 
 # Time Complexity: O(logN)
 # Space Complexity: O(1)
