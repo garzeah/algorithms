@@ -23,5 +23,8 @@ class Solution:
             for i in range(len(matrix)):
                 matrix[i][col] = 0;
 
-# Time Complexity: O(n*m)
-# Space Complexity: O(n+m)
+# Time Complexity: O(n*m) where n is the length of columns and m is
+# the length of the rows.
+
+# Space Complexity: O(n+m) where m is the length of the rows set and
+# n is the length of the columns set.
