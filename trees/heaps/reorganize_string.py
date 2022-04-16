@@ -9,12 +9,12 @@ class Solution:
         for char, frequency in freq_map.items():
             heappush(max_heap, [-frequency, char])
 
-        prev_char, prev_freq = None, 0
+        prev_char, prev_freq = None, None
         while max_heap:
             frequency, char = heappop(max_heap)
 
             # Add the previous entry back in the heap if its frequency is greater than zero
-            if prev_char and -prev_freq > 0:
+            if prev_char and prev_freq:
                 heappush(max_heap, [prev_freq, prev_char])
 
             # Append the current character to the result string and decrement its count

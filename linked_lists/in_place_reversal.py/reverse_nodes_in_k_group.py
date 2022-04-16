@@ -20,7 +20,7 @@ class Solution:
 
         curr, prev = head, None
         while k_length != 0:
-            last_node_of_prev_part = prev
+            last_node_of_pre_sub_list = prev
 
             # After reversing the LinkedList 'curr' will become the last node of the sub-list
             last_node_of_sub_list = curr
@@ -34,8 +34,8 @@ class Solution:
                 i += 1
 
             # Connect with the previous part
-            if last_node_of_prev_part:
-                last_node_of_prev_part.next = prev
+            if last_node_of_pre_sub_list:
+                last_node_of_pre_sub_list.next = prev
             else: # For connecting the tail end of the reversed list
                 head = prev
 

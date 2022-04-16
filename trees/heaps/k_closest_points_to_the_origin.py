@@ -15,5 +15,7 @@ class Solution:
 
         return output
 
-# Time Complexity: O(n*logk)
+# Time Complexity: O(n*logk) where k is the amount of elements inside our heap
+# and n is for iterating through the points.
+
 # Space Complexity: O(k)

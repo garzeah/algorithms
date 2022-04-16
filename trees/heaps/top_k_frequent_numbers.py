@@ -20,5 +20,8 @@ class Solution:
 
         return output
 
-# Time Complexity: O(N + N*logK)
+# Time Complexity: O(N + N*logK) is the worst case scenario where
+# N is the amount of unique numbers in our input array and k is
+# equal to N. We would have to iterate N/K times for both.
+
 # Space Complexity: O(N) bc we store every value in our map
