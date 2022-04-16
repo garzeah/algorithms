@@ -1,25 +1,25 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        start, end = 0, len(nums) - 1
-        is_ascending = nums[start] < nums[end]
+        left, right = 0, len(nums) - 1
+        is_ascrighting = nums[left] < nums[right]
 
-        while start <= end:
+        while left <= right:
             # Calculate the middle of the current range
-            mid = start + (end - start) // 2
+            mid = left + (right - left) // 2
 
             if target == nums[mid]:
                 return mid
 
-            if is_ascending: # Ascending order
+            if is_ascrighting: # Ascending order
                 if nums[mid] > target:
-                    end = mid - 1  # The 'target' can be in the first half
+                    right = mid - 1  # The 'target' can be in the first half
                 else:  # target > nums[mid]
-                    start = mid + 1  # The 'target' can be in the second half
+                    left = mid + 1  # The 'target' can be in the second half
             else:  # Descending order
                 if nums[mid] > target:
-                    end = mid - 1  # The 'target' can be in the first half
+                    right = mid - 1  # The 'target' can be in the first half
                 else:  # target < nums[mid]
-                    start = mid + 1  # The 'target' can be in the second half
+                    left = mid + 1  # The 'target' can be in the second half
 
         return -1  # Element not found
 
