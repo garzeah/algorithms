@@ -1,5 +1,5 @@
 class Solution:
-    def peakIndexInMountainArray(self, arr: List[int]) -> int:
+    def findPeakElement(self, arr: List[int]) -> int:
         start, end = 0, len(arr) - 1
 
         while start < end:
