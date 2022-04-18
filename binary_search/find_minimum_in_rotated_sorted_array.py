@@ -26,3 +26,4 @@ class Solution:
 
 # Time Complexity: O(logn)
 # Space Complexity: O(1)
+# Solution: https://www.youtube.com/watch?v=nIVW4P8b1VA
