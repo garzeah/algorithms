@@ -1,7 +1,6 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        prefix = [1] * len(nums)
-        postfix = [1] * len(nums)
+        prefix, postfix, output = [], [], []
 
         # Want the value before the first index, since it
         # doesn't exist just use 1 as default
@@ -17,11 +16,8 @@ class Solution:
             postfix[i] = postfix_sum
             postfix_sum *= nums[i]
 
-
-        output = []
-
         for i in range(len(nums)):
-            output.append(postfix[i] * prefix[i])
+            output.append(postfix[i] * prefix[len(nums) - 1 - i])
 
         return output
 
