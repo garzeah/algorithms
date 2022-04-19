@@ -13,7 +13,9 @@ class Solution:
             else:
                 start = mid + 1
 
-        # Whenever binary search finishes, start == len(nums) + 1
+        # Whenever binary search finishes, our start
+        # will be in the position it would've been
+        # if it were inside the array
         return start
 
 # Time Complexity: O(logN)

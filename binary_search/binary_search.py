@@ -1,7 +1,6 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         start, end = 0, len(nums) - 1
-        is_ascending = nums[start] < nums[end]
 
         while start <= end:
             # Calculate the middle of the current range
@@ -9,18 +8,10 @@ class Solution:
 
             if target == nums[mid]:
                 return mid
-
-            if is_ascending: # Ascending order
-                if nums[mid] > target:
-                    end = mid - 1  # The 'target' can be in the first half
-                else:  # target > nums[mid]
-                    start = mid + 1  # The 'target' can be in the second half
-            else:  # Descending order
-                if nums[mid] > target:
-                    end = mid - 1  # The 'target' can be in the first half
-                else:  # target < nums[mid]
-                    start = mid + 1  # The 'target' can be in the second half
-
+            elif nums[mid] > target:
+                end = mid - 1  # The 'target' can be in the first half
+            else:  # target > nums[mid]
+                start = mid + 1  # The 'target' can be in the second half
         return -1  # Element not found
 
 # Time Complexity: Since, we are reducing the search range by half at every

@@ -1,8 +1,7 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         curr_path, output = [], []
-        self.backtrack(candidates, target, 0, curr_path, 0, output)
-        return output
+        return self.backtrack(candidates, target, 0, curr_path, 0, output)
 
     def backtrack(self, candidates, target, i, curr_path, total_sum, output):
         # In the event our index or total sum gets to large, return
@@ -16,12 +15,14 @@ class Solution:
 
         # Finding combinations on the left side of the tree
         curr_path.append(candidates[i])
-        self.backtrack(candidates, target, i, curr_path, total_sum + candidates[i], output)
+        self.backtrack(candidates, target, i, total_sum + candidates[i], curr_path, output)
 
         # When we pop the value, shift i by one so it doesn't include
         # the prior value in order to prevent duplicates
         curr_path.pop()
-        self.backtrack(candidates, target, i + 1, curr_path, total_sum, output)
+        self.backtrack(candidates, target, i + 1, total_sum, curr_path, output)
+
+        return output
 
 # Time Complexity: O(2^t) where t is the target value since at most our
 # decision tree can reach a height of t with the levels either growing

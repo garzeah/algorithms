@@ -2,8 +2,7 @@ class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         nums.sort()
         curr_path, output = [], []
-        self.backtrack(nums, 0, curr_path, output)
-        return output
+        return self.backtrack(nums, 0, curr_path, output)
 
     def backtrack(self, nums, i, curr_path, output):
         if i == len(nums):
@@ -21,6 +20,8 @@ class Solution:
         while i + 1 < len(nums) and nums[i] == nums[i + 1]:
             i += 1
         self.backtrack(nums, i + 1, curr_path, output)
+
+        return output
 
 # Time Complexity: Since, in each step, the number of subsets doubles (if not duplicate) as
 # we add each element to all the existing subsets, therefore, we will have a total of

@@ -2,8 +2,7 @@ class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         curr_path, output = [], []
         count = Counter(nums) # Using a counter to prevent dupes
-        self.backtrack(nums, count, curr_path, output)
-        return output
+        return self.backtrack(nums, count, curr_path, output)
 
     def backtrack(self, nums, count, curr_path, output):
         if len(curr_path) == len(nums):
@@ -21,6 +20,8 @@ class Solution:
 
                 count[key] += 1
                 curr_path.pop()
+
+        return output
 
 # Time Complexity: We know that there can be a total of N! permutations of a set with
 # ‘N’ numbers. We are also iterating through our counter for each path which is O(N)

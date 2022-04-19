@@ -10,9 +10,11 @@ class Solution:
             else: # target < letters[mid]:
                 start = mid + 1
 
-        # Since the loop is running until 'start <= end',
-        # so at the end of the while loop, 'start == end + 1'
-        return letters[start] if left != len(letters) else letters[0]
+
+        # Whenever binary search finishes, our start will be in the position
+        # it would've been if it were inside the array Since it wraps around,
+        # when our start == len(letters), we want to return the 1st value
+        return letters[start] if start != len(letters) else letters[0]
 
 # Time Complexity: O(logN)
 # Space Complexity: O(1)

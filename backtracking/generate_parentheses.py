@@ -1,8 +1,7 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         curr_path, output = [], []
-        self.backtrack(n, 0, 0, curr_path, output)
-        return output
+        return self.backtrack(n, 0, 0, curr_path, output)
 
     def backtrack(self, n, opening, closing, curr_path, output):
         # We have found a valie parentheses
@@ -22,6 +21,7 @@ class Solution:
             self.backtrack(n, opening, closing + 1, curr_path, output)
             curr_path.pop()
 
+        return output
 
 # Time Complexity: O(N * 2^n) because let’s try to estimate how many
 # combinations we can have for ‘N’ pairs of balanced parentheses.

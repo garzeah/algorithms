@@ -2,8 +2,7 @@ class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
         candidates.sort()
         curr_path, output = [], []
-        self.backtrack(candidates, target, 0, curr_path, output)
-        return output
+        return self.backtrack(candidates, target, 0, curr_path, output)
 
     def backtrack(self, candidates, target, start, curr_path, output):
         if target == 0:
@@ -24,6 +23,8 @@ class Solution:
 
             curr_path.pop()
             prev = candidates[i]
+
+        return output
 
 # Time Complexity: O(N*2^N) where N is the length of the candidates array.
 
