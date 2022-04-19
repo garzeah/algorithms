@@ -3,15 +3,15 @@ class Solution:
         """
         Do not return anything, modify matrix in-place instead.
         """
-        rows, columns = set(), set()
+        rows, columns = [], []
 
         # For every value that equals zero, we want to record
         # which row and column we will set to zero
         for i in range(len(matrix)):
             for j in range(len(matrix[0])):
                 if matrix[i][j] == 0:
-                    rows.add(i);
-                    columns.add(j);
+                    rows.append(i);
+                    columns.append(j);
 
         # Setting entire row to 0
         for row in rows:
