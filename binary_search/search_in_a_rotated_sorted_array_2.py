@@ -9,7 +9,6 @@ class Solution:
             while start < end and nums[end] == nums[end - 1]:
                 end -= 1
 
-
             mid = (start + end) // 2
 
             if nums[mid] == target:
