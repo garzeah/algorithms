@@ -3,10 +3,17 @@ class Solution:
         start, end = 0, len(nums) - 1
 
         while start <= end:
+            # Shifting to remove duplicate elements
+            while start < end and nums[start] == nums[start + 1]:
+                start += 1
+            while start < end and nums[end] == nums[end - 1]:
+                end -= 1
+
+
             mid = (start + end) // 2
 
             if nums[mid] == target:
-                return mid
+                return True
 
             # If in left sorted portion, search right sorted portion
             elif nums[mid] >= nums[start]:
@@ -30,8 +37,8 @@ class Solution:
                 else:
                     start = mid + 1
 
-        return -1
+        return False
 
 # Time Complexity: O(log n)
 # Space Complexity: O(1)
-# Solution: https://www.youtube.com/watch?v=U8XENwh8Oy8
+# Solution: https://leetcode.com/problems/search-in-rotated-sorted-array-ii/discuss/1890363/python-or-binary-search-or-explained-or
