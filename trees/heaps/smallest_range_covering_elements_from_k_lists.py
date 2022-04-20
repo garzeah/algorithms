@@ -1,7 +1,7 @@
 class Solution:
     def smallestRange(self, nums: List[List[int]]) -> List[int]:
         min_heap = []
-        curr_max = float('-inf')
+        curr_max = float('-inf') # Holds curr_max of each lists
         start, end = 0, float('inf')
 
         # Inserting the 1st element of each array in the min heap
@@ -15,12 +15,14 @@ class Solution:
         # if it gives us smaller range, update the ranges if
         # the array of the top element has more elements,
         # insert the next element in the heap
-        while len(min_heap) == len(nums): # If they didn't equal then we can't get range of all 3
-            num, i, arr = heappop(min_heap)
+        # If they didn't equal then we can't get range of all
+        # 3 since we ran of out values if one of the array
+        while len(min_heap) == len(nums):
+            curr_num, i, arr = heappop(min_heap)
 
             # Want to find the smallest range between these pair of numbers
-            if end - start > curr_max - num:
-                start = num
+            if end - start > curr_max - curr_num:
+                start = curr_num
                 end = curr_max
 
             # If the array still has remaining elements, go to the next value
