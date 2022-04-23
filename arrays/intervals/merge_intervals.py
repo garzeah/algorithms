@@ -3,7 +3,7 @@ class Solution:
         # Sorting by start time
         intervals.sort(key = lambda x: x[0])
 
-        merged_intervals = []
+        merged = []
         start = intervals[0][0]
         end = intervals[0][1]
 
@@ -15,13 +15,13 @@ class Solution:
                 end = max(end, interval[1])
             # Non-overlapping intervals, we push a new interval in
             else:
-                merged_intervals.append([start, end])
+                merged.append([start, end])
                 start = interval[0]
                 end = interval[1]
 
         # Adding the last interval
-        merged_intervals.append([start, end])
-        return merged_intervals
+        merged.append([start, end])
+        return merged
 
 # Time Complexity: O(nlogn) bc of sorting
 # Space Complexity: O(n)
