@@ -2,9 +2,6 @@ class Solution:
     def reorganizeString(self, s: str) -> str:
         freq_map, max_heap, output = Counter(s), [], []
 
-        # for char in s:
-        #     freq_map[char] = freq_map.get(char, 0) + 1
-
         # Add all characters to the max heap
         for char, frequency in freq_map.items():
             heappush(max_heap, [-frequency, char])
