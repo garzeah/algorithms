@@ -14,7 +14,7 @@ class Solution:
 
         while queue:
             # Appending the last value of the queue
-            result.append(queue[-1])
+            result.append(queue[-1].val)
 
             for _ in range(len(queue)):
                 curr_node = queue.popleft()
