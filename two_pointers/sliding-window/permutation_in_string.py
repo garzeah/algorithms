@@ -1,42 +1,34 @@
 # Permutation in String
 class Solution:
-    def checkInclusion(self, pattern: str, str1: str) -> bool:
+    def checkInclusion(self, pattern: str, s: str) -> bool:
         start, matched = 0, 0
-        pattern_freq = {}
+        freq_map = Counter(pattern)
 
-        # recording the frequency of each character in the pattern
-        for char in pattern:
-            if char not in pattern_freq:
-                pattern_freq[char] = 0
-            pattern_freq[char] += 1
-
-        # our goal is to match all the characters from the 'pattern_freq' with
+        # Our goal is to match all the characters from the 'freq_map' with
         # the current window try to extend the range [start, end]
-        for end in range(len(str1)):
-            right_char = str1[end]
+        for end in range(len(s)):
+            right_char = s[end]
 
-            if right_char in pattern_freq:
-                # decrement the frequency of matched character
-                pattern_freq[right_char] -= 1
-
-                if pattern_freq[right_char] == 0:
+            # Checking if the end of the window has a match
+            if right_char in freq_map:
+                freq_map[right_char] -= 1
+                if freq_map[right_char] == 0:
                     matched += 1
 
             # Means we have eaxctly matched the pattern
-            if matched == len(pattern_freq):
+            if matched == len(freq_map):
                 return True
 
-            # Has to be at least this long before we start
-            # sliding the window
+            # Has to be at least this long before we start sliding the window
             if end >= len(pattern) - 1:
-                left_char = str1[start]
+                left_char = s[start]
                 start += 1
-                # "reseting" the conditions for our
-                # current window to see if is a permutation
-                if left_char in pattern_freq:
-                    if pattern_freq[left_char] == 0:
+
+                # Sliding the window
+                if left_char in freq_map:
+                    if freq_map[left_char] == 0:
                         matched -= 1
-                    pattern_freq[left_char] += 1
+                    freq_map[left_char] += 1
         return False
 
 # Time Complexity
