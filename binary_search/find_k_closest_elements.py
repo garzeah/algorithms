@@ -1,20 +1,20 @@
 class Solution:
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
-        left, right = 0, len(arr) - k # Max start point
+        start, end = 0, len(arr) - k # Max start point
 
-        while left < right:
-            mid = (left + right) // 2
+        while start < end:
+            mid = (start + end) // 2
 
-            # mid + k is closer to x, discard mid by assigning left = mid + 1
+            # mid + k is closer to x, discard mid by assigning start = mid + 1
             if x - arr[mid] > arr[mid + k] - x:
-                left = mid + 1
+                start = mid + 1
 
             # mid is equal or closer to x than mid + k, remains mid as candidate
             else:
-                right = mid
+                end = mid
 
-        # left == right, which makes both left and left + k have same diff with x
-        return arr[left : left + k]
+        # start == end, which makes both start and start + k have same diff with x
+        return arr[start : start + k]
 
 # Time Complexity: O(log(n - k) + k)
 # Space Complexity: O(k)
