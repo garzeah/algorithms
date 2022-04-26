@@ -13,7 +13,7 @@ class Solution(object):
             mid = (start + end) // 2
             if nums[mid] == target:
                 res = mid
-                end = mid - 1 # Left bias, will keep shifting right until start index of target
+                end = mid - 1 # Left bias, will keep shifting left until we find the left-most target
             elif nums[mid] > target:
                 end = mid - 1
             else:
@@ -26,7 +26,7 @@ class Solution(object):
             mid = (start + end) // 2
             if nums[mid] == target:
                 res = mid
-                start = mid + 1 # Right bias, will keep shifting left until last index of target
+                start = mid + 1 # Right bias, will keep shifting right until we find the right-most target
             elif nums[mid] > target:
                 end = mid - 1
             else:

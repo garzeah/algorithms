@@ -16,19 +16,21 @@ class Solution:
 
             # If in left sorted portion
             elif nums[mid] >= nums[start]:
-                # If target is not between start and mid, search right side
+                # If target is greater than mid or smaller
+                # than the start, search to the right
                 if target > nums[mid] or target < nums[start]:
                     start = mid + 1
-                # Otherwise, it is so search left side
+                # Otherwise, search to the left
                 else:
                     end = mid - 1
 
             # If in right sorted portion
             else:
-                # If target is not between mid and end, search left side
+                # If target is less than mid or greater than
+                # the end, search to the left
                 if target < nums[mid] or target > nums[end]:
                     end = mid - 1
-                # Otherwise, it is so search right side
+                # Otherwise, search to the right
                 else:
                     start = mid + 1
 
