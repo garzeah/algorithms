@@ -26,6 +26,8 @@ class Solution:
         if left:
             left.next = None
 
+        return head
+
     def reverse(self, head):
         prev = None
 
