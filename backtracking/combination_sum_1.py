@@ -1,9 +1,9 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         curr_path, output = [], []
-        return self.backtrack(candidates, target, 0, curr_path, 0, output)
+        return self.backtrack(candidates, target, 0, 0, curr_path, output)
 
-    def backtrack(self, candidates, target, i, curr_path, total_sum, output):
+    def backtrack(self, candidates, target, i, total_sum, curr_path, output):
         # In the event our index or total sum gets to large, return
         if i >= len(candidates) or total_sum > target:
             return
