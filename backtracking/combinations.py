@@ -3,14 +3,14 @@ class Solution:
         curr_path, output = [], []
         return self.backtrack(n, k, 1, curr_path, output)
 
-    def backtrack(self, n, k, index, curr_path, output):
+    def backtrack(self, n, k, start, curr_path, output):
         if len(curr_path) == k:
             output.append(list(curr_path))
             return
 
         # For each level, we want to add all the numbers
         # from 1 to n for each of our current paths
-        for i in range(index, n + 1):
+        for i in range(start, n + 1):
             curr_path.append(i)
             self.backtrack(n, k, i + 1, curr_path, output)
             # Want to remove the value we added for the next sibling
