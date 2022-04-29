@@ -1,25 +1,23 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         curr_path, output = [], []
-        return self.backtrack(candidates, target, 0, 0, curr_path, output)
+        return self.backtrack(candidates, target, 0, curr_path, output)
 
-    def backtrack(self, candidates, target, i, total_sum, curr_path, output):
-        # In the event our index or total sum gets to large, return
-        if i >= len(candidates) or total_sum > target:
-            return
-
-        # We found a sum, record it!
-        if total_sum == target:
+    def backtrack(self, candidates, target, start, curr_path, output):
+        # When target is equal to 0, we have found a valid combination
+        if target == 0:
             output.append(list(curr_path))
             return
 
-        # Decision to include candidates[i]
-        curr_path.append(candidates[i])
-        self.backtrack(candidates, target, i, total_sum + candidates[i], curr_path, output)
+        # Invalid combination
+        if target < 0:
+            return
 
-        # Decision to not include candidates[i]
-        curr_path.pop()
-        self.backtrack(candidates, target, i + 1, total_sum, curr_path, output)
+        # Performing dfs on each candidate
+        for i in range(start, len(candidates)):
+            curr_path.append(candidates[i])
+            self.backtrack(candidates, target - candidates[i], i, curr_path, output)
+            curr_path.pop()
 
         return output
 

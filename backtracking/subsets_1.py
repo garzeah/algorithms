@@ -1,31 +1,27 @@
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         curr_path, output = [], []
-        return self.backtrack(nums, 0, curr_path, output)
+        return self.backtrack(sorted(nums), 0, curr_path, output)
 
-    def backtrack(self, nums, i, curr_path, output):
-        # Base Case, means we are out of bounds
-        if i == len(nums):
-            output.append(list(curr_path))
-            return
+    def backtrack(self, nums, start, curr_path, output):
+        output.append(list(curr_path))
 
-        # Decision to include nums[i]
-        curr_path.append(nums[i])
-        self.backtrack(nums, i + 1, curr_path, output)
+        for i in range(start, len(nums)):
+            if i > start and nums[i] == nums[i - 1]:
+                continue
 
-        # Decision to not include nums[i]
-        curr_path.pop()
-        self.backtrack(nums, i + 1, curr_path, output)
+            curr_path.append(nums[i])
+            self.backtrack(nums, i + 1, curr_path, output)
+            curr_path.pop()
 
         return output
 
-# Time Complexity: O(n*2^n), where n is the amount of numbers we have
-# in our array and 2^n is because of the decision tree, for each
-# we have, it doubles as we hit the next level of our tree.
+# Time Complexity: Since, in each step, the number of subsets doubles (if not duplicate) as
+# we add each element to all the existing subsets, therefore, we will have a total of
+# O(2^N) subsets, where ‘N’ is the total number of elements in the input set. And
+# since we construct a new subset from an existing set, therefore, the time
+# complexity of the above algorithm will be O(N*2^N).
 
-# Space Complexity: All the additional space used by our algorithm is
-# for the output list. Since we will have a total of O(2^N) subsets,
-# and each subset can take up to O(N) space, therefore, the space
-# complexity of our algorithm will be O(N*2^N).
-
-# Solution: https://www.youtube.com/watch?v=REOH22Xwdkk
+# Space Complexity: All the additional space used by our algorithm is for the output list.
+# Since, at most, we will have a total of O(2^N) subsets, and each subset can take up to
+# O(N) space, therefore, the space complexity of our algorithm will be O(N*2^N).

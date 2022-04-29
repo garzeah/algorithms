@@ -5,24 +5,23 @@ class Solution:
         return self.backtrack(candidates, target, 0, curr_path, output)
 
     def backtrack(self, candidates, target, start, curr_path, output):
+        # Found a match
         if target == 0:
             output.append(list(curr_path))
             return
 
-        if target <= 0:
+        # Invalid match
+        if target < 0:
             return
 
-        prev = None
+        # Performing dfs and handling duplicates
         for i in range(start, len(candidates)):
-            if candidates[i] == prev:
+            if i > start and candidates[i] == candidates[i-1]:
                 continue
 
             curr_path.append(candidates[i])
-
             self.backtrack(candidates, target - candidates[i], i + 1, curr_path, output)
-
             curr_path.pop()
-            prev = candidates[i]
 
         return output
 
