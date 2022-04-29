@@ -1,25 +1,18 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        nums.sort()
         curr_path, output = [], []
-        return self.backtrack(nums, 0, curr_path, output)
+        return self.backtrack(sorted(nums), 0, curr_path, output)
 
-    def backtrack(self, nums, i, curr_path, output):
-        if i == len(nums):
-            output.append(list(curr_path))
-            return
+    def backtrack(self, nums, start, curr_path, output):
+        output.append(list(curr_path))
 
-        # All subsets that include nums[i]
-        curr_path.append(nums[i])
-        self.backtrack(nums, i + 1, curr_path, output)
+        for i in range(start, len(nums)):
+            if i > start and nums[i] == nums[i - 1]:
+                continue
 
-        # All subsets that don't include nums[i]
-        curr_path.pop()
-
-        # Want to avoid duplicates by going to next non-duped num
-        while i + 1 < len(nums) and nums[i] == nums[i + 1]:
-            i += 1
-        self.backtrack(nums, i + 1, curr_path, output)
+            curr_path.append(nums[i])
+            self.backtrack(nums, i + 1, curr_path, output)
+            curr_path.pop()
 
         return output
 

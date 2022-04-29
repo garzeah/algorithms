@@ -1,5 +1,5 @@
 class Solution:
-    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
         curr_path, output = [], []
         return self.backtrack(sorted(nums), 0, curr_path, output)
 
@@ -7,9 +7,6 @@ class Solution:
         output.append(list(curr_path))
 
         for i in range(start, len(nums)):
-            if i > start and nums[i] == nums[i - 1]:
-                continue
-
             curr_path.append(nums[i])
             self.backtrack(nums, i + 1, curr_path, output)
             curr_path.pop()

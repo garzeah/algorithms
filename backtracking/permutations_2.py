@@ -2,7 +2,7 @@ class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         curr_path, output = [], []
         count = Counter(nums) # Using a counter to prevent dupes
-        return self.backtrack(nums, count, curr_path, output)
+        return self.backtrack(sorted(nums), count, curr_path, output)
 
     def backtrack(self, nums, count, curr_path, output):
         if len(curr_path) == len(nums):
