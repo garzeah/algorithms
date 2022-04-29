@@ -13,18 +13,17 @@ class Solution:
             output.append(list(curr_path))
             return
 
-        # Finding combinations on the left side of the tree
+        # Decision to include candidates[i]
         curr_path.append(candidates[i])
         self.backtrack(candidates, target, i, total_sum + candidates[i], curr_path, output)
 
-        # When we pop the value, shift i by one so it doesn't include
-        # the prior value in order to prevent duplicates
+        # Decision to not include candidates[i]
         curr_path.pop()
         self.backtrack(candidates, target, i + 1, total_sum, curr_path, output)
 
         return output
 
-# Time Complexity: O(2^t) where t is the target value since at most our
+# Time Complexity: O(N*2^t) where t is the target value since at most our
 # decision tree can reach a height of t with the levels either growing
 # or getting smaller.
 
