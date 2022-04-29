@@ -8,12 +8,12 @@ class Solution:
             output.append(list(curr_path))
             return
 
-        # For each level, we want to add all the numbers
-        # from 1 to n for each of our current paths
+            # From the start to end, we want to find all
+            # possible subsets from the index (start) to
+            # the numbers right of it to get all subsets
         for i in range(start, n + 1):
             curr_path.append(i)
             self.backtrack(n, k, i + 1, curr_path, output)
-            # Want to remove the value we added for the next sibling
             curr_path.pop()
 
         return output

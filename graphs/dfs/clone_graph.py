@@ -11,22 +11,22 @@ class Solution:
         if node is None:
             return
 
-        # Used to keep track of new cloned nodes
-        # by mapping old node to new node
-        old_to_new = {}
+        old_to_new = {} # Keeping track of whether a node has been cloned or not
         return self.dfs(node, old_to_new)
 
     def dfs(self, curr_node, old_to_new):
+        # If it already has been cloned, return new node
         if curr_node in old_to_new:
             return old_to_new[curr_node]
 
-        # Updating the nodes we have cloned so far
+        # Otherwise, create a clone of the node
         copy = Node(curr_node.val)
         old_to_new[curr_node] = copy
 
-        # Making copies of the neighbors
-        for neighbor in curr_node.neighbors:
-            copy.neighbors.append(self.dfs(neighbor, old_to_new))
+        # Traversing through each node and adding the
+        # neighbors it has in the original node
+        for nei in curr_node.neighbors:
+            copy.neighbors.append(self.dfs(nei, old_to_new))
 
         return copy
 
