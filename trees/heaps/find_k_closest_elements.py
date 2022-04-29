@@ -11,8 +11,7 @@ class Solution:
                 # If the smallest distance is bigger than the current
                 # distance, record new smallest distance
                 if -max_heap[0][0] > curr_dist:
-                    heappop(max_heap)
-                    heappush(max_heap, [-curr_dist, num])
+                    heappushpop(max_heap, [-curr_dist, num])
 
         for (curr_dist, num) in max_heap:
             output.append(num)

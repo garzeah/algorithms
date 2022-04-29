@@ -4,20 +4,17 @@ class Solution:
 
         for i in range(len(nums1)):
             for j in range(len(nums2)):
-                curr_sum = -(nums1[i] + nums2[j])
+                curr_sum = nums1[i] + nums2[j]
 
                 if len(max_heap) < k:
-                    heappush(max_heap, [curr_sum, i, j])
+                    heappush(max_heap, [-curr_sum, i, j])
                 else:
-                    # If the sum of the two numbers from the two arrays is smaller
-                    # than the smallest (top) element of the heap, we can 'break'
-                    # here. Since the arrays are sorted in the descending order,
-                    # we'll not be able to find a pair with a higher sum moving forward
-                    if curr_sum < max_heap[0][0]:
-                        break
-                    # We have a pair with a larger sum, remove top and insert this pair in the heap
+                    # If we find a smaller sum, pop and add it in
+                    if -max_heap[0][0] > curr_sum:
+                        heappushpop(max_heap, [-curr_sum, i, j])
+                    # No point in checking and move to next sum
                     else:
-                        heappushpop(max_heap, [curr_sum, i, j])
+                        break
 
         for (num, i, j) in max_heap:
             output.append([nums1[i], nums2[j]])
