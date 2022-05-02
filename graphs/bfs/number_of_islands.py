@@ -16,7 +16,7 @@ class Solution:
                 # If we changed this to pop, it'd be iterative DFS
                 row, col = queue.popleft()
                 # Right, left, up, down directions
-                directions = [[1, 0], [-1, 0], [0, 1], [0, - 1]]
+                directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
 
                 # Checking for adjacent positions
                 for dr, dc in directions:
@@ -26,8 +26,8 @@ class Solution:
                         c in range(cols) and
                         grid[r][c] == "1" and
                         (r, c) not in visited):
-                            queue.append((r, c))
-                            visited.add((r, c))
+                        queue.append((r, c))
+                        visited.add((r, c))
 
         # Doing bfs search whenever we find an island
         for row in range(rows):
