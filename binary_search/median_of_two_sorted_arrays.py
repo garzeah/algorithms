@@ -1,12 +1,11 @@
 class Solution:
-    def findMedianSortedArrays(self, nums1: List[int], nums2: List[int]) -> float:
-        A, B = nums1, nums2
-        total = len(nums1) + len(nums2)
-        half = total // 2
-
+    def findMedianSortedArrays(self, A: List[int], B: List[int]) -> float:
         # Want A to contain the smaller array
-        if len(B) < len(A):
+        if len(A) > len(B):
             A, B = B, A
+
+        total = len(A) + len(B)
+        half = total // 2
 
         start, end = 0, len(A) - 1
         while True:
@@ -35,7 +34,5 @@ class Solution:
 # Time Complexity: Log(min(nums1, nums2)) since we're performing binary
 # search on the smallest array.
 
-# Space Complexity: O(m + n) for reassigning the arrays but can easily
-# turn to O(1).
-
+# Space Complexity: O(1)
 # Solution: https://www.youtube.com/watch?v=q6IEA26hvXc

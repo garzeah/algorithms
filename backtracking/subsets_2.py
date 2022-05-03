@@ -8,13 +8,14 @@ class Solution:
 
 
         for i in range(start, len(nums)):
-            # Want to handle duplicates
-            if i > start and nums[i] == nums[i - 1]:
+            # "i > start" signifies paths that we haven't
+            # visited yet. If i and start are equal then
+            # we haven't visited it yet. If i is > than
+            # start then we already have visited it
+            if i > start and nums[i - 1] == nums[i]:
                 continue
 
-            # From the start to end, we want to find all
-            # possible subsets from the index (start) to
-            # the numbers right of it to get all subsets
+            # Decision to include nums[i] and not include nums[i]
             curr_path.append(nums[i])
             self.backtrack(nums, i + 1, curr_path, output)
             curr_path.pop()
