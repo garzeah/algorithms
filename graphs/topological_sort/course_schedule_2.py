@@ -1,8 +1,9 @@
 class Solution:
-    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        in_degree, graph, sorted_order = {}, {}, []
+    def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         if numCourses <= 0:
             return sorted_order
+
+        in_degree, graph, sorted_order = {}, {}, []
 
         # a. Initialize the graph
         for i in range(numCourses):
@@ -10,8 +11,7 @@ class Solution:
             graph[i] = [] # Adjacency list graph
 
         # b. Build the graph
-        for edge in prerequisites:
-            parent, child = edge[0], edge[1]
+        for parent, child in prerequisites:
             graph[parent].append(child)  # Put the child into it's parent's list
             in_degree[child] += 1  # Increment child's in_degree
 
@@ -36,9 +36,9 @@ class Solution:
 
         # Topological sort is not possible as the graph has a cycle
         if len(sorted_order) != numCourses:
-            return False
+            return []
 
-        return True
+        return sorted_order
 
 # Time Complexity: In step ‘d’, each vertex will become a source only
 # once and each edge will be accessed and removed once. Therefore,

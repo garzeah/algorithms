@@ -25,7 +25,9 @@ class Solution:
 
         return output
 
-# Time Complexity: O(N*2^N) where N is the length of the candidates array.
+# Time Complexity: O(N*2^t) where t is the target value since at most our
+# decision tree can reach a height of t with the levels either growing
+# or getting smaller.
 
 # Space Complexity: ?
 

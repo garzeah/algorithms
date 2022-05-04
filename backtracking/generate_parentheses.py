@@ -9,13 +9,13 @@ class Solution:
             output.append("".join(curr_path))
             return
 
-        # Only add opening parentheses when it is less than n
+        # Only can add opening parentheses as long as it's < n
         if opening < n:
             curr_path.append('(')
             self.backtrack(n, opening + 1, closing, curr_path, output)
             curr_path.pop()
 
-        # Only add closing parentheses when it is smaller than opening
+        # Only can add closing parentheses as long as it's < opening
         if closing < opening:
             curr_path.append(')')
             self.backtrack(n, opening, closing + 1, curr_path, output)
