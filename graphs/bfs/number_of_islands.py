@@ -22,10 +22,12 @@ class Solution:
                 for dr, dc in directions:
                     r, c = row + dr, col + dc
 
-                    if (r in range(rows) and
+                    if (
+                        r in range(rows) and
                         c in range(cols) and
                         grid[r][c] == "1" and
-                        (r, c) not in visited):
+                        (r, c) not in visited
+                    ):
                         queue.append((r, c))
                         visited.add((r, c))
 

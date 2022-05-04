@@ -8,9 +8,9 @@ class Solution:
             output.append(list(curr_path))
             return
 
-            # From the start to end, we want to find all
-            # possible subsets from the index (start) to
-            # the numbers right of it to get all subsets
+        # From the start to end, we want to find all
+        # possible subsets from the index (start) to
+        # the numbers right of it to get all subsets
         for i in range(start, n + 1):
             curr_path.append(i)
             self.backtrack(n, k, i + 1, curr_path, output)
