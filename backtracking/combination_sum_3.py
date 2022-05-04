@@ -4,36 +4,18 @@ class Solution:
         return self.backtrack(k, n, 0, 0, curr_path, output)
 
     def backtrack(self, k, target, digit, start, curr_path, output):
+        if target < 0 and digit >= k:
+            return
+
         # Want to make sure target matches and digit is unique
         if target == 0 and digit == k:
             output.append(list(curr_path))
-
-        if target < 0 or digit >= k:
-            return
 
         # From the start to end, we want to find all possible
         # unique combinations that equal our target
         for i in range(start + 1, 10):
             curr_path.append(i)
             self.backtrack(k, target - i, digit + 1, i, curr_path, output)
-            curr_path.pop()
-
-        return output
-
-    def combinationSum3(self, k: int, n: int) -> List[List[int]]:
-        curr_path, output = [], []
-        return self.dfs(k, n, 0, 0, curr_path, output)
-
-    def dfs(self, k, target, digit, start, curr_path, output):
-        if target == 0 and digit == k:
-            output.append(list(curr_path))
-
-        if target < 0 or digit >= k:
-            return
-
-        for i in range(start + 1, 10):
-            curr_path.append(i)
-            self.dfs(k, target - i, digit + 1, i, curr_path, output)
             curr_path.pop()
 
         return output

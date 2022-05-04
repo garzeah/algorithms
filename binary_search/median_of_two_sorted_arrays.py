@@ -6,15 +6,15 @@ class Solution:
 
         total = len(A) + len(B)
         half = total // 2
-
         start, end = 0, len(A) - 1
+
         while True:
             i = (start + end) // 2 # A
             j = half - i - 2 # B, subtracting 2 to fix indexing issues
 
             A_left = A[i] if i >= 0 else float('-inf')
-            A_right = A[i + 1] if (i + 1) < len(A) else float('inf')
             B_left = B[j] if j >= 0 else float('-inf')
+            A_right = A[i + 1] if (i + 1) < len(A) else float('inf')
             B_right = B[j + 1] if (j + 1) < len(B) else float('inf')
 
             # Left partition of sorted numbers is correct
