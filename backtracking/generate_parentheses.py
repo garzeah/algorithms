@@ -11,13 +11,13 @@ class Solution:
 
         # Only add opening parentheses when it is less than n
         if opening < n:
-            curr_path.append("(")
+            curr_path.append('(')
             self.backtrack(n, opening + 1, closing, curr_path, output)
             curr_path.pop()
 
         # Only add closing parentheses when it is smaller than opening
         if closing < opening:
-            curr_path.append(")")
+            curr_path.append(')')
             self.backtrack(n, opening, closing + 1, curr_path, output)
             curr_path.pop()
 
@@ -32,6 +32,6 @@ class Solution:
 # the actual number will be less than 2^N. Also, we need to
 # concatenate each string which would take O(n).
 
-# Space Complexity: O(n)
+# Space Complexity: O(N * 2^n)
 
 # Solution: https://www.youtube.com/watch?v=s9fokUqJ76A
