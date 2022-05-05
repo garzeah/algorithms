@@ -13,14 +13,14 @@ class Solution:
         output = []
         return self.backtrack(digits, digit_to_char, 0, [], output)
 
-    def backtrack(self, digits, digit_to_char, i, curr_path, output):
+    def backtrack(self, digits, digit_to_char, start, curr_path, output):
         if len(curr_path) == len(digits):
             output.append("".join(curr_path))
             return
 
-        for char in digit_to_char[digits[i]]:
-            curr_path.append(char)
-            self.backtrack(digits, digit_to_char, i + 1, curr_path, output)
+        for digit in digit_to_char[digits[start]]:
+            curr_path.append(digit)
+            self.backtrack(digits, digit_to_char, start + 1, curr_path, output)
             curr_path.pop()
 
         return output
