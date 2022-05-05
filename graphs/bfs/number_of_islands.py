@@ -3,7 +3,7 @@ class Solution:
         if grid is None:
             return 0
 
-        rows, cols = len(grid), len(grid[0])
+        ROWS, COLS = len(grid), len(grid[0])
         visited = set()
         islands = 0
 
@@ -23,8 +23,8 @@ class Solution:
                     r, c = row + dr, col + dc
 
                     if (
-                        r in range(rows) and
-                        c in range(cols) and
+                        r in range(ROWS) and
+                        c in range(COLS) and
                         grid[r][c] == "1" and
                         (r, c) not in visited
                     ):
@@ -32,8 +32,8 @@ class Solution:
                         visited.add((r, c))
 
         # Doing bfs search whenever we find an island
-        for row in range(rows):
-            for col in range(cols):
+        for row in range(ROWS):
+            for col in range(COLS):
                 if grid[row][col] == "1" and (row, col) not in visited:
                     bfs(row, col)
                     islands += 1

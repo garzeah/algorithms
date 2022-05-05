@@ -1,6 +1,6 @@
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        rows, cols = len(heights), len(heights[0])
+        ROWS, COLS = len(heights), len(heights[0])
         pac, atl = set(), set()
         output = []
 
@@ -8,7 +8,7 @@ class Solution:
             if (
                 (row, col) in visited or
                 row < 0 or col < 0 or
-                row == rows or col == cols or
+                row == ROWS or col == COLS or
                 heights[row][col] < prev_height
             ):
                 return
@@ -19,16 +19,16 @@ class Solution:
             dfs(row, col + 1, visited, heights[row][col])
             dfs(row, col - 1, visited, heights[row][col])
 
-        for col in range(cols):
+        for col in range(COLS):
             dfs(0, col, pac, heights[0][col])
-            dfs(rows - 1, col, atl, heights[rows - 1][col])
+            dfs(ROWS - 1, col, atl, heights[ROWS - 1][col])
 
-        for row in range(rows):
+        for row in range(ROWS):
             dfs(row, 0, pac, heights[row][0])
-            dfs(row, cols - 1, atl, heights[row][col])
+            dfs(row, COLS - 1, atl, heights[row][col])
 
-        for row in range(rows):
-            for col in range(cols):
+        for row in range(ROWS):
+            for col in range(COLS):
                 if (row, col) in pac and (row, col) in atl:
                     output.append([row, col])
 

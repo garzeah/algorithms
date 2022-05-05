@@ -19,12 +19,10 @@ class Solution:
 
             # Left partition of sorted numbers is correct
             if A_left <= B_right and B_left <= A_right:
-                # Odd
-                if (total % 2) > 0:
-                    return min(A_right, B_right)
+                if (total % 2) == 0: # Even
+                    return (max(A_left, B_left) + min(A_right, B_right)) / 2
 
-                # Even
-                return (max(A_left, B_left) + min(A_right, B_right)) / 2
+                return min(A_right, B_right) # Odd
             elif A_left > B_right: # Reduce the size of the left partition for A
                 end = i - 1
             else: # Increase the size of the left partition for A
