@@ -11,7 +11,7 @@ class Solution:
             graph[i] = [] # Adjacency list graph
 
         # b. Build the graph
-        for parent, child in prerequisites:
+        for child, parent in prerequisites:
             graph[parent].append(child)  # Put the child into it's parent's list
             in_degree[child] += 1  # Increment child's in_degree
 
