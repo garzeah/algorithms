@@ -1,7 +1,7 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
-        curr_path, output = [], []
-        return self.backtrack(n, 0, 0, curr_path, output)
+        output = []
+        return self.backtrack(n, 0, 0, [], output)
 
     def backtrack(self, n, opening, closing, curr_path, output):
         # We have found a valie parentheses

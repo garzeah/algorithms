@@ -1,7 +1,7 @@
 class Solution:
     def combinationSum3(self, k: int, n: int) -> List[List[int]]:
-        curr_path, output = [], []
-        return self.backtrack(k, n, 0, 0, curr_path, output)
+        output = []
+        return self.backtrack(k, n, 0, 1, [], output)
 
     def backtrack(self, k, target, digit, start, curr_path, output):
         if target < 0 and digit >= k:
@@ -13,9 +13,9 @@ class Solution:
 
         # From the start to end, we want to find all possible
         # unique combinations that equal our target
-        for i in range(start + 1, 10):
+        for i in range(start, 10):
             curr_path.append(i)
-            self.backtrack(k, target - i, digit + 1, i, curr_path, output)
+            self.backtrack(k, target - i, digit + 1, i + 1, curr_path, output)
             curr_path.pop()
 
         return output

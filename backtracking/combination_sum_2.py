@@ -1,8 +1,7 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        candidates.sort()
-        curr_path, output = [], []
-        return self.backtrack(candidates, target, 0, curr_path, output)
+        output = []
+        return self.backtrack(sorted(candidates), target, 0, [], output)
 
     def backtrack(self, candidates, target, start, curr_path, output):
         # Found a match

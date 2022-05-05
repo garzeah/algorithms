@@ -1,7 +1,7 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        curr_path, output = [], []
-        return self.backtrack(candidates, target, 0, curr_path, output)
+        output = []
+        return self.backtrack(candidates, target, 0, [], output)
 
     def backtrack(self, candidates, target, start, curr_path, output):
         # When target is equal to 0, we have found a valid combination

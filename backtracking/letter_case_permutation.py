@@ -1,7 +1,7 @@
 class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
-        curr_path, output = [], []
-        return self.backtrack(s, 0, curr_path, output)
+        output = []
+        return self.backtrack(s, 0, [], output)
 
     def backtrack(self, s, i, curr_path, output):
         if len(curr_path) == len(s):

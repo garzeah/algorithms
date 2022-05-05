@@ -10,8 +10,8 @@ class Solution:
             "8": "tuv",
             "9": "wxyz"
         }
-        curr_path, output = [], []
-        return self.backtrack(digits, digit_to_char, 0, curr_path, output)
+        output = []
+        return self.backtrack(digits, digit_to_char, 0, [], output)
 
     def backtrack(self, digits, digit_to_char, i, curr_path, output):
         if len(curr_path) == len(digits):

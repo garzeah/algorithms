@@ -1,7 +1,7 @@
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        curr_path, output = [], []
-        return self.backtrack(n, k, 1, curr_path, output)
+        output = []
+        return self.backtrack(n, k, 1, [], output)
 
     def backtrack(self, n, k, start, curr_path, output):
         if len(curr_path) == k:

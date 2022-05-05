@@ -1,7 +1,7 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        curr_path, output = [], []
-        return self.backtrack(nums, curr_path, output)
+        output = []
+        return self.backtrack(nums, [], output)
 
     def backtrack(self, nums, curr_path, output):
         if len(curr_path) == len(nums):
