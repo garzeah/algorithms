@@ -34,3 +34,5 @@ class Solution:
 # each node once.
 
 # Space Complexity: O(V + E) to build out the adjaceny list.
+
+# Solution: https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/discuss/400707/Simple-DFS-and-BFS-Python-solutions-using-a-dictionary
