@@ -16,6 +16,7 @@ class Solution:
         # Performing dfs on each candidate
         for i in range(start, len(candidates)):
             curr_path.append(candidates[i])
+            # Passing it as i let's candidates[i] get chosen as much as possible
             self.backtrack(candidates, target - candidates[i], i, curr_path, output)
             curr_path.pop()
 
