@@ -1,18 +1,17 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        in_degree, adj, sorted_order = {}, {}, []
         if numCourses <= 0:
             return sorted_order
 
-        in_degree, graph, sorted_order = {}, {}, []
-
-        # a. Initialize the graph
+        # a. Initializing incoming degrees and adjancey list
         for i in range(numCourses):
             in_degree[i] = 0 # Count of incoming prerequisites
-            graph[i] = [] # Adjacency list graph
+            adj[i] = [] # Adjacency list
 
-        # b. Build the graph
+        # b. Build the adjacency list
         for child, parent in prerequisites:
-            graph[parent].append(child)  # Put the child into it's parent's list
+            adj[parent].append(child)  # Put the child into it's parent's list
             in_degree[child] += 1  # Increment child's in_degree
 
         # c. Find all sources i.e., all numCourses with 0 in-degrees
@@ -29,7 +28,7 @@ class Solution:
             sorted_order.append(vertex)
 
             # Get the node's children to decrement their in-degrees
-            for child in graph[vertex]:
+            for child in adj[vertex]:
                 in_degree[child] -= 1
                 if in_degree[child] == 0:
                     sources.append(child)

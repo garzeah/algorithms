@@ -1,6 +1,6 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        digit_to_char = {
+        digits_to_char = {
             "2": "abc",
             "3": "def",
             "4": "ghi",
@@ -11,16 +11,16 @@ class Solution:
             "9": "wxyz"
         }
         output = []
-        return self.backtrack(digits, digit_to_char, 0, [], output)
+        return self.backtrack(digits, digits_to_char, 0, [], output)
 
-    def backtrack(self, digits, digit_to_char, start, curr_path, output):
+    def backtrack(self, digits, digits_to_char, start, curr_path, output):
         if len(curr_path) == len(digits):
             output.append("".join(curr_path))
             return
 
-        for digit in digit_to_char[digits[start]]:
-            curr_path.append(digit)
-            self.backtrack(digits, digit_to_char, start + 1, curr_path, output)
+        for char in digits_to_char[digits[start]]:
+            curr_path.append(char)
+            self.backtrack(digits, digits_to_char, start + 1, curr_path, output)
             curr_path.pop()
 
         return output
