@@ -17,11 +17,12 @@ class Solution:
         queue, visited = deque([0]), set({0})
 
         while queue:
-            node = queue.popleft()
-            for neighbor in adj[node]:
-                if neighbor not in visited:
-                    visited.add(neighbor)
-                    queue.append(neighbor)
+            curr_node = queue.popleft()
+
+            for nei in adj[curr_node]:
+                if nei not in visited:
+                    visited.add(nei)
+                    queue.append(nei)
 
         return len(visited) == n
 

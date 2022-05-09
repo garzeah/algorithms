@@ -1,9 +1,8 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        in_degree, graph, sorted_order = {}, {}, []
         if numCourses <= 0:
             return sorted_order
-
-        in_degree, graph, sorted_order = {}, {}, []
 
         # a. Initialize the graph
         for i in range(numCourses):
