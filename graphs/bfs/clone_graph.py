@@ -13,13 +13,17 @@ class Solution:
 
             visited.add(curr_node)
 
+            # Creating a clone
             if curr_node not in old_to_new:
                 old_to_new[curr_node] = Node(curr_node.val)
 
+            # Appending all the corresponding neighbors
             for nei in curr_node.neighbors:
+                # Creating a clone for the neighbors
                 if nei not in old_to_new:
                     old_to_new[nei] = Node(nei.val)
 
+                # Adding the neighbors to our cloned node
                 old_to_new[curr_node].neighbors.append(old_to_new[nei])
                 queue.append(nei)
 

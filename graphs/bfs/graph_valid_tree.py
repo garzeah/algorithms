@@ -1,11 +1,11 @@
 class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
+        # Not a valid tree
         if len(edges) != n - 1:
             return False
 
-        adj = {}
-
         # Setting up our adjacent list
+        adj = {}
         for i in range(n):
             adj[i] = []
 
