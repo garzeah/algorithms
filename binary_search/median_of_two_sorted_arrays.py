@@ -23,9 +23,13 @@ class Solution:
                     return (max(A_left, B_left) + min(A_right, B_right)) / 2
 
                 return min(A_right, B_right) # Odd
-            elif A_left > B_right: # Reduce the size of the left partition for A
+            # Reduce the size of the left partition for A
+            # because we want all values of A to be less than B?
+            elif A_left > B_right:
                 end = i - 1
-            else: # Increase the size of the left partition for A
+            # Increase the size of the left partition for A
+            # because we want all values of A to be less than B?
+            else:
                 start = i + 1
 
 
