@@ -18,9 +18,10 @@ class Solution:
                 # Right, left, up, down directions
                 directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
 
-                # Checking for adjacent positions
-                for dr, dc in directions:
-                    r, c = row + dr, col + dc
+                # Making sure that as we check adj. positions it is within
+                # range, it is an island and it hasn't been visited yet
+                for x, y in directions:
+                    r, c = row + x, col + y
 
                     if (
                         r in range(ROWS) and
@@ -31,9 +32,9 @@ class Solution:
                         queue.append((r, c))
                         visited.add((r, c))
 
-        # Doing bfs search whenever we find an island
         for row in range(ROWS):
             for col in range(COLS):
+                # When we find an island, want to search it and record it
                 if grid[row][col] == "1" and (row, col) not in visited:
                     bfs(row, col)
                     islands += 1
