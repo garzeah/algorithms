@@ -19,17 +19,21 @@ class Solution:
 
             # Left partition of sorted numbers is correct
             if A_left <= B_right and B_left <= A_right:
-                if (total % 2) == 0: # Even
+                # Since it is even, we want to find the max and min of
+                # both left and right partions to get the middlest values
+                if (total % 2) == 0:
                     return (max(A_left, B_left) + min(A_right, B_right)) / 2
 
-                return min(A_right, B_right) # Odd
-            # Reduce the size of the left partition for A
-            # because we want all values of A to be less than B?
+                # Since it is odd, we want to find the
+                # minimum of both the right partitions
+                return min(A_right, B_right)
+            # Reduce the size of A's left partition so that
+            # all values are smaller than B's right partition
             elif A_left > B_right:
                 end = i - 1
-            # Increase the size of the left partition for A
-            # because we want all values of A to be less than B?
-            else:
+            # Increase the size of A's left partition so that
+            # all values in B_left are smaller than A_right
+            else: # B_left > A_right
                 start = i + 1
 
 
