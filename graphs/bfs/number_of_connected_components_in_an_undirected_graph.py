@@ -1,22 +1,25 @@
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        adj, visited, queue, count = {}, set(), deque(), 0
-
+        adj = {}
         for i in range(n):
             adj[i] = []
 
         # Building out our adjaceny list
-        for x, y in edges:
-            adj[x].append(y)
-            adj[y].append(x)
+        for n1, n2 in edges:
+            adj[n1].append(n2)
+            adj[n2].append(n1)
 
+        queue, visited = deque(), set()
+        count = 0
+
+        # For each vertex, we want to calculate the number of
+        # times we do one cycle of bfs per connected graph
         for vertex in range(n):
             if vertex in visited:
                 continue
 
             queue.append(vertex)
 
-            # Using BFS to visit each node
             while queue:
                 curr_node = queue.popleft()
 

@@ -3,7 +3,8 @@ class Solution:
         if node is None:
             return node
 
-        old_to_new, visited, queue = {}, set(), deque([node])
+        queue, visited = deque([node]), set()
+        old_to_new = {}
 
         while queue:
             curr_node = queue.popleft()
@@ -13,13 +14,13 @@ class Solution:
 
             visited.add(curr_node)
 
-            # Creating a clone
+            # If it hasn't been cloned yet then create one
             if curr_node not in old_to_new:
                 old_to_new[curr_node] = Node(curr_node.val)
 
-            # Appending all the corresponding neighbors
+            # Visiting corresponding neighbors
             for nei in curr_node.neighbors:
-                # Creating a clone for the neighbors
+                # If the neighbor hasn't been cloned yet, create one
                 if nei not in old_to_new:
                     old_to_new[nei] = Node(nei.val)
 
