@@ -3,32 +3,36 @@ class Solution:
         rows, cols = len(board), len(board[0])
         curr_path = set() # Since we don't revisit the same pos
 
-        def dfs(r, c, i):
+        def dfs(row, col, i):
             if i == len(word):
                 return True
 
-            if (r < 0 or c < 0 or # Out of bounds
-                r >= rows or c >= cols or # Out of bounds
-                word[i] != board[r][c] or # Not matching
-                (r, c) in curr_path): # Already visited
+            if (
+                row < 0 or col < 0 or # Out of bounds
+                row >= rows or col >= cols or # Out of bounds
+                word[i] != board[row][col] or # Not matching
+                (row, col) in curr_path # Already visited
+            ):
                 return False
 
-            curr_path.add((r, c))
 
-            # Running dfs in all 4 adjacent positions
-            res = (dfs(r + 1, c, i + 1) or # Down
-                   dfs(r - 1, c, i + 1) or # Up
-                   dfs(r, c + 1, i + 1) or # Right
-                   dfs(r, c - 1, i + 1)) # Left
+            curr_path.add((row, col))
 
-            # Remove the position we just added to the path
-            # since we are no longer visiting that position
-            curr_path.remove((r, c))
-            return res
+            # Check adjacent positions for our word
+            output = (
+                dfs(row + 1, col, i + 1) or # Right
+                dfs(row - 1, col, i + 1) or # Left
+                dfs(row, col + 1, i + 1) or # Up
+                dfs(row, col - 1, i + 1) # Down
+            )
 
-        for r in range(rows):
-            for c in range(cols):
-                if dfs(r, c, 0):
+            curr_path.remove((row, col))
+
+            return output
+
+        for row in range(rows):
+            for col in range(cols):
+                if dfs(row, col, 0):
                     return True
 
         return False
