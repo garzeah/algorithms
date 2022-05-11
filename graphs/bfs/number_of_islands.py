@@ -24,9 +24,9 @@ class Solution:
                     r, c = row + x, col + y
 
                     if (
+                        (r, c) not in visited and
                         r in range(ROWS) and
                         c in range(COLS) and
-                        (r, c) not in visited and
                         grid[r][c] == "1"
                     ):
                         queue.append((r, c))
