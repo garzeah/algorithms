@@ -11,13 +11,14 @@ class Trie:
         curr_node = self.root
 
         for char in word:
-            # If character not in trie, insert it
+            # If character not in trie, create new node
             if char not in curr_node.children:
                 curr_node.children[char] = TrieNode()
 
-            # Otherwise, map it
+            # Check the next node (letter)
             curr_node = curr_node.children[char]
 
+        # For the last node, update the end of word flag
         curr_node.end_of_word = True
 
     def search(self, word: str) -> bool:
@@ -28,8 +29,7 @@ class Trie:
             if char not in curr_node.children:
                 return False
 
-            # If it does exist, update the curr_node
-            # with the child node in our trie
+            # Check the next node (letter)
             curr_node = curr_node.children[char]
 
         return curr_node.end_of_word
@@ -42,7 +42,7 @@ class Trie:
             if char not in curr_node.children:
                 return False
 
-            # Otherwise, update curr_node
+            # Check the next node (letter)
             curr_node = curr_node.children[char]
 
         return True
