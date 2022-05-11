@@ -26,8 +26,8 @@ class Solution:
                     if (
                         r in range(ROWS) and
                         c in range(COLS) and
-                        grid[r][c] == "1" and
-                        (r, c) not in visited
+                        (r, c) not in visited and
+                        grid[r][c] == "1"
                     ):
                         queue.append((r, c))
                         visited.add((r, c))
