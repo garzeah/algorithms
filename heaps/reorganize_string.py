@@ -10,8 +10,11 @@ class Solution:
         while max_heap:
             frequency, char = heappop(max_heap)
 
-            # Add the previous entry back in the heap if its frequency is greater than zero
-            if prev_char and prev_freq:
+            # Since we only want a freq. that is > 0, we will only
+            # be able to append adj. characters since we can't
+            # add in the same consecutive character unless
+            # a different character comes before it
+            if prev_freq > 0:
                 heappush(max_heap, [prev_freq, prev_char])
 
             # Append the current character to the result string and decrement its count
