@@ -10,7 +10,7 @@ class Solution:
                     heappush(max_heap, [-curr_sum, i, j])
                 else:
                     # If we find a smaller sum, pop and add it in
-                    if -max_heap[0][0] > curr_sum:
+                    if curr_sum < -max_heap[0][0]:
                         heappushpop(max_heap, [-curr_sum, i, j])
                     # No point in checking and move to next sum
                     else:
