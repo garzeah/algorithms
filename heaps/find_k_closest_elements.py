@@ -10,7 +10,7 @@ class Solution:
             else:
                 # If the smallest distance is bigger than the current
                 # distance, record new smallest distance
-                if -max_heap[0][0] > curr_dist:
+                if curr_dist < -max_heap[0][0]:
                     heappushpop(max_heap, [-curr_dist, num])
 
         for (curr_dist, num) in max_heap:
