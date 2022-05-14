@@ -14,7 +14,7 @@ class Solution:
         k_count = 0
         while min_heap:
             curr_num, i, row = heappop(min_heap)
-            num_count += 1
+            k_count += 1
 
             # We are at the kth element
             if k_count == k:
