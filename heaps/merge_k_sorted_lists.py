@@ -22,15 +22,15 @@ class Solution:
         while min_heap:
             val, i, node = min_heap[0]
 
-            if node.next is None: # We've exhausted a linked list
-                heappop(min_heap)
-            else:
-                # Pop the smallest value and append the next value in line
-                heappop(min_heap)
-                heappush(min_heap, [node.next.val, i, node.next])
-
             curr.next = node
             curr = curr.next
+
+            # We've exhausted a linked list
+            if node.next is None:
+                continue
+
+            # Check the next value in the node
+            heappush(min_heap, (node.next.val, i, node.next))
 
         return dummy.next
 
