@@ -5,10 +5,12 @@ class Solution:
         while start <= end:
             mid = start + (end - start) // 2
 
-            if letters[mid] > target:
-                end = mid - 1
-            else: # target <= letters[mid]:
+            # If we move the start pointer when it equals target,
+            # then start will end at the value after target
+            if letters[mid] <= target:
                 start = mid + 1
+            else: # target > letters[mid]:
+                end = mid - 1
 
         # Whenever binary search finishes, our start will always be
         # ahead of end and we can use that to determine the next
