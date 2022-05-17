@@ -14,7 +14,7 @@ class Solution:
 
             visited.add(curr_node)
 
-            # If it hasn't been cloned yet then create one
+            # If curr_node hasn't been cloned yet then create one
             if curr_node not in old_to_new:
                 old_to_new[curr_node] = Node(curr_node.val)
 
@@ -24,9 +24,9 @@ class Solution:
                 if nei not in old_to_new:
                     old_to_new[nei] = Node(nei.val)
 
-                # Adding the neighbors to our cloned node
+                # Want to add the corresponding neighbors to the cloned node
                 old_to_new[curr_node].neighbors.append(old_to_new[nei])
-                queue.append(nei)
+                queue.append(nei) # BFS
 
         return old_to_new[node]
 
