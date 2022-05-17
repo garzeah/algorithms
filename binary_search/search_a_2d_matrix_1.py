@@ -8,8 +8,8 @@ class Solution:
         while start <= end:
             mid = (start + end) // 2
 
-            i = mid // len(matrix[0])
-            j = mid % len(matrix[0])
+            i = mid // len(matrix[0]) # Gives us row pos.
+            j = mid % len(matrix[0]) # Gives us col pos.
 
             if matrix[i][j] == target:
                 return True
