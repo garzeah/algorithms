@@ -22,5 +22,5 @@ class Solution:
         return image
 
 # Time Complexity: O(n * m)
-# Space Complexity: O(1)
+# Space Complexity: O(n * m) bc of stack space.
 # Solution: https://www.youtube.com/watch?v=hEZ8uGqaC2c
