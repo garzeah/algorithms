@@ -1,7 +1,7 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         ROWS, COLS = len(board), len(board[0])
-        visited = set() # Since we don't revisit the same pos
+        curr_path = set() # Since we don't revisit the same pos
 
         def backtrack(row, col, i):
             # Base case for when we find the word
@@ -10,7 +10,7 @@ class Solution:
 
             # Base case for when we don't find the word
             if (
-                (row, col) in visited or # Already visited
+                (row, col) in curr_path or # Already visited
                 row < 0 or row >= ROWS or # Out of bounds
                 col < 0 or col >= COLS or # Out of bounds
                 board[row][col] != word[i] # Not matching
@@ -18,7 +18,7 @@ class Solution:
                 return False
 
 
-            visited.add((row, col))
+            curr_path.add((row, col))
 
             # Checking adjacent positions for our word
             output = (
@@ -28,7 +28,7 @@ class Solution:
                 backtrack(row, col - 1, i + 1) # Down
             )
 
-            visited.remove((row, col))
+            curr_path.remove((row, col))
 
             return output
 

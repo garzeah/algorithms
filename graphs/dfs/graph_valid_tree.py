@@ -14,26 +14,26 @@ class Solution:
             adj[n1].append(n2)
             adj[n2].append(n1)
 
-        # Checking for cycles and if we have visited every node
+        # Checking for cycles and if graph is connected
         return self.dfs(0, -1, visited, adj) and n == len(visited)
 
-    def dfs(self, vertex, prev, visited, adj):
+    def dfs(self, curr_node, prev, visited, adj):
         # If vertex is in visited, then we have a cycle
-        if vertex in visited:
+        if curr_node in visited:
             return False
 
-        visited.add(vertex)
+        visited.add(curr_node)
 
         # Checking the neighbors of our vertex
-        for nei in adj[vertex]:
-            # If our neighbor is equal to the previous node
-            # then skip to the next iteration because it is
-            # a false positive since it is an undirected graph
+        for nei in adj[curr_node]:
+            # If our neighbor is equal to the previous vertex then we
+            # want to continue since it is a false positive because
+            # it'll be marked as visited marked as visited already
             if nei == prev:
                 continue
 
             # Checking if the remaining vertices are are a valid tree
-            if self.dfs(nei, vertex, visited, adj) is False:
+            if self.dfs(nei, curr_node, visited, adj) is False:
                 return False
 
         return True
