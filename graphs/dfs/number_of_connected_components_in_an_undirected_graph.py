@@ -13,20 +13,20 @@ class Solution:
         # then recording it in our adj_list
         for vertex in range(n):
             if vertex not in visited:
-                self.dfs(vertex, edges, visited, adj)
+                self.dfs(vertex, adj, visited)
                 count += 1
 
         return count
 
-    def dfs(self, vertex, edges, visited, adj):
-        if vertex in visited:
+    def dfs(self, curr_node, adj, visited):
+        if curr_node in visited:
             return
 
         # Recording each vertex we visit
-        visited.add(vertex)
+        visited.add(curr_node)
 
-        for nei in adj[vertex]:
-            self.dfs(nei, edges, visited, adj)
+        for nei in adj[curr_node]:
+            self.dfs(nei, adj, visited)
 
 # Time complexity: O(V + E) because we are traversing
 # each node once.
