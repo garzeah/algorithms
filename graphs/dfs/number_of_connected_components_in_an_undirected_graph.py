@@ -1,14 +1,14 @@
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        adj, visited, count = {}, set(), 0
+        adj = {}
+        for vertex in range(n):
+            adj[vertex] = []
 
-        for i in range(n):
-            adj[i] = []
+        for n1, n2 in edges:
+            adj[n1].append(n2)
+            adj[n2].append(n1)
 
-        for x, y in edges:
-            adj[x].append(y)
-            adj[y].append(x)
-
+        visited, count = set(), 0
         # Using dfs to check each connected graph
         # then recording it in our adj_list
         for vertex in range(n):

@@ -1,23 +1,21 @@
 class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
-        if n <= 0:
-            return True
-
-        adj, visited = {}, set()
-
         # Setting up our adjacent list
-        for i in range(n):
-            adj[i] = []
+        adj = {}
+        for vertex in range(n):
+            adj[vertex] = []
 
         # Adding our connections in our adjaceny list
         for n1, n2 in edges:
             adj[n1].append(n2)
             adj[n2].append(n1)
 
-        # Checking for cycles and if graph is connected
-        return self.dfs(0, -1, visited, adj) and n == len(visited)
+        visited = set()
 
-    def dfs(self, curr_node, prev, visited, adj):
+        # Checking for cycles and if graph is connected
+        return self.dfs(adj, visited, 0, -1) and n == len(visited)
+
+    def dfs(self, adj, visited, curr_node, prev):
         # If vertex is in visited, then we have a cycle
         if curr_node in visited:
             return False
@@ -33,7 +31,7 @@ class Solution:
                 continue
 
             # Checking if the remaining vertices are are a valid tree
-            if self.dfs(nei, curr_node, visited, adj) is False:
+            if self.dfs(adj, visited, nei, curr_node) is False:
                 return False
 
         return True
