@@ -25,4 +25,4 @@ class Solution:
 # Time Complexity: O(n^2) because we are searching for the index and we traverse each node once.
 # We can optimize this using deque and popping left.
 
-# Space Complexity: O(n^2) because of recursion stack and slicing
+# Space Complexity: O(n) because of recursion stack.
