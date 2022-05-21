@@ -2,7 +2,8 @@ class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
         ROWS, COLS = len(image), len(image[0])
         directions = [[1, 0], [-1, 0],[0, 1], [0, -1]] # All possible directions
-        starting_pixel = image[sr][sc] # The current color of our pixel
+
+        old_color = image[sr][sc] # The current color of our pixel
         queue = deque([[sr,sc]]) # Initialise the queue for BFS
 
         while queue:
@@ -15,7 +16,7 @@ class Solution:
                     r in range(ROWS) and
                     c in range(COLS) and
                     image[r][c] != newColor and
-                    image[r][c] == starting_pixel
+                    image[r][c] == old_color
                 ):
                     queue.append((r, c))
 

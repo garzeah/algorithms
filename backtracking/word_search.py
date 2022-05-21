@@ -4,7 +4,10 @@ class Solution:
         curr_path = set() # Since we don't revisit the same pos
 
         def backtrack(row, col, i):
-            # Base case for when we find the word
+            # Base case for when we find the word. This
+            # has to be on top because we want to check
+            # if we have a matching word first before
+            # it is out of bounds.
             if i == len(word):
                 return True
 

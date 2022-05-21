@@ -1,26 +1,26 @@
 class Solution:
     def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
-        ROWS, COLS = len(image) - 1, len(image[0]) - 1
+        ROWS, COLS = len(image), len(image[0])
+        directions = [[1, 0], [-1, 0],[0, 1], [0, -1]] # All possible directions
 
-        def dfs(image, row, col, newColor, starting_pixel):
-            if (
-                row < 0 or row > ROWS or
-                col < 0 or col > COLS or
-                image[row][col] == newColor or
-                image[row][col] != starting_pixel
-            ):
-                return
+        old_color = image[sr][sc] # The current color of our pixel
+        queue = deque([[sr,sc]]) # Initialise the queue for BFS
 
-            image[row][col] = newColor
-            directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        while queue:
+            row, col = queue.pop()
+            image[row][col] = newColor # Update the colour with newColor
 
             for x, y in directions:
                 r, c = row + x, col + y
-                dfs(image, r, c, newColor, starting_pixel)
+                if (
+                    r in range(ROWS) and
+                    c in range(COLS) and
+                    image[r][c] != newColor and
+                    image[r][c] == old_color
+                ):
+                    queue.append((r, c))
 
-        dfs(image, sr, sc, newColor, image[sr][sc])
         return image
 
 # Time Complexity: O(n * m)
-# Space Complexity: O(n * m) bc of stack space.
-# Solution: https://www.youtube.com/watch?v=hEZ8uGqaC2c
+# Space Complexity: O(n * m) bc of queue space.
