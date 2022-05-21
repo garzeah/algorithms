@@ -9,7 +9,7 @@ class Solution:
             adj[n1].append(n2)
             adj[n2].append(n1)
 
-        queue, visited = deque(), set()
+        visited = set()
         count = 0
 
         # For each vertex, we want to calculate the number of
@@ -18,17 +18,17 @@ class Solution:
             if vertex in visited:
                 continue
 
-            queue.append(vertex)
+            queue = deque([vertex])
 
             while queue:
-                curr_node = queue.popleft()
+                vertex = queue.popleft()
 
-                if curr_node in visited:
+                if vertex in visited:
                     continue
 
-                visited.add(curr_node)
+                visited.add(vertex)
 
-                for nei in adj[curr_node]:
+                for nei in adj[vertex]:
                     queue.append(nei)
 
             count += 1

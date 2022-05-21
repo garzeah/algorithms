@@ -20,12 +20,14 @@ class Solution:
 
             # Visiting corresponding neighbors
             for nei in curr_node.neighbors:
+                clone = old_to_new[curr_node]
+
                 # If the neighbor hasn't been cloned yet, create one
                 if nei not in old_to_new:
                     old_to_new[nei] = Node(nei.val)
 
                 # Want to add the corresponding neighbors to the cloned node
-                old_to_new[curr_node].neighbors.append(old_to_new[nei])
+                clone.neighbors.append(old_to_new[nei])
                 queue.append(nei) # BFS
 
         return old_to_new[node]
