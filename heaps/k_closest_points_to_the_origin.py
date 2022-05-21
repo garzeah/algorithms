@@ -3,12 +3,14 @@ class Solution:
         max_heap, output = [], []
 
         for (x, y) in points:
-            dist = -(x * x + y * y)
-            heappush(max_heap, (dist, x, y))
+            dist = -(x*x + y*y)
 
-            # Getting the max k distances
-            if len(max_heap) > k:
-                heappop(max_heap)
+            if len(max_heap) < k:
+                heappush(max_heap, (dist, x, y))
+            else:
+                # Only adding the distance if it is smaller
+                if dist < -max_heap[0][0]:
+                    heappushpop(max_heap, (dist, x, y))
 
         for (dist, x, y) in max_heap:
             output.append([x, y])

@@ -1,15 +1,16 @@
 def find_Kth_smallest_number(nums, k):
-    max_heap = []
+  max_heap = []
 
-    for i in range(len(nums)):
-        heappush(max_heap, -nums[i])
+  for num in nums:
+    if len(max_heap) < k:
+      heappush(max_heap, -num)
 
-        # We are continually removing the smallest values
-        # in our min. heap until we have k values
-        if len(max_heap) > k:
-            heappop(max_heap)
+    else:
+      # Only pushing and popping if we have a smaller number
+      if num < -max_heap[0]:
+        heappushpop(max_heap, -num)
 
-    return -max_heap[0]
+  return -max_heap[0]
 
 # Time Complexity: O(n * log(k))
 # Space Complexity: O(k)
