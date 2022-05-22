@@ -42,8 +42,10 @@ class Solution:
 
         return output
 
-# Time Complexity: O(N * M) bc ...?
+# Time Complexity: O(N * M) where n and m is the rows and columns of
+# the matrix. Also, we will be revisiting nodes at most a few times.
 
-# Space Complexity: O(N * M) bc we can at most have N * M values.
+# Space Complexity: O(N * M) where n and m is the rows and columns of
+# the matrix. We can only have at most n * m positions.
 
 # Solution: https://www.youtube.com/watch?v=s-VkcjHqkGI
