@@ -12,7 +12,7 @@ class Solution:
 
         visited = set()
 
-        # Checking for cycles and if graph is connected
+        # Checking for valid tree and if the graph is connected
         return self.dfs(adj, visited, 0, -1) and n == len(visited)
 
     def dfs(self, adj, visited, curr_node, prev):
@@ -24,13 +24,14 @@ class Solution:
 
         # Checking the neighbors of our vertex
         for nei in adj[curr_node]:
-            # If our neighbor is equal to the previous vertex then we
-            # want to continue since it is a false positive because
-            # it'll be marked as visited marked as visited already
+            # If our neighbor is equal to the previous vertex then we want to
+            # continue since it is a false positive because it is marked as
+            # visited already so we want to check the next neighbor
             if nei == prev:
                 continue
 
-            # Checking if the remaining vertices are are a valid tree
+            # Checking if have visited the remaining nodes, if
+            # we have then we no lone have a valid tree anymore
             if self.dfs(adj, visited, nei, curr_node) is False:
                 return False
 
