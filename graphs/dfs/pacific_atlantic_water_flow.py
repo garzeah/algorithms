@@ -4,8 +4,8 @@ class Solution:
         pac, atl = set(), set()
 
         def dfs(row, col, visited, prev_height):
-            visited.add((row, col))
             directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+            visited.add((row, col))
 
             for x, y in directions:
                 r, c = row + x, col + y
