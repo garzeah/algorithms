@@ -25,10 +25,10 @@ class Solution:
 
             # Checking adjacent positions for our word
             output = (
-                backtrack(row + 1, col, i + 1) or # Right
-                backtrack(row - 1, col, i + 1) or # Left
-                backtrack(row, col + 1, i + 1) or # Up
-                backtrack(row, col - 1, i + 1) # Down
+                backtrack(row + 1, col, i + 1) or # Bottom
+                backtrack(row - 1, col, i + 1) or # Top
+                backtrack(row, col + 1, i + 1) or # Right
+                backtrack(row, col - 1, i + 1) # Left
             )
 
             curr_path.remove((row, col))
