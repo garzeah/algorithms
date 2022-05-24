@@ -13,9 +13,9 @@ class Solution:
 
             # Base case for when we don't find the word
             if (
-                (row, col) in curr_path or # Already visited
                 row < 0 or row >= ROWS or # Out of bounds
                 col < 0 or col >= COLS or # Out of bounds
+                (row, col) in curr_path or # Already visited
                 board[row][col] != word[i] # Not matching
             ):
                 return False
