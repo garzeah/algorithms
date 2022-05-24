@@ -20,14 +20,15 @@ class Solution:
                 ):
                     dfs(r, c, visited, heights[r][c])
 
-        # Using the top and bottom borders to check if a
-        # position can visit the pacific and atlantic ocean
+        # For each border we know that whatever ocean it touches
+        # that it can reach it. So we want to check for every
+        # border whether or not the adjacent positions can
+        # reach their respective ocean as well and whichever
+        # overlaps is able to reach both.
         for col in range(COLS):
             dfs(0, col, pac, heights[0][col]) # Top
             dfs(ROWS - 1, col, atl, heights[ROWS - 1][col]) # Bottom
 
-        # Using the left and right borders to check if a
-        # position can visit the pacific and atlantic ocean
         for row in range(ROWS):
             dfs(row, 0, pac, heights[row][0]) # Left
             dfs(row, COLS - 1, atl, heights[row][COLS - 1]) # Right

@@ -19,14 +19,21 @@ class Solution:
                 parent, child = w1[j], w2[j]
                 index += 1
 
-                if parent != child:  # If the two characters differ...
+                # Since it is lexicographically sorted in the alien's dictionary, we
+                # want to find out where the characters differ so we can use that
+                # information to see which letter comes first. Then we can use
+                # the toplogical sort algorithm to create a word in lexicographic order
+                if parent != child:
                     # Put the child into it's parent's list
                     adj[parent].append(child)
                     in_degree[child] += 1  # Increment child's in_degree
-                    break  # Only the first different character between the two words will help us find the other
+                    break  # Check the next letter
 
-                # If all chars are same while word 1 is longer than word 2
-                # then we want to return "" instead of the connected string
+                # If the first min(len(w1), len(w2)) letters are the same,
+                # then w1 is smaller if and only if w1.length < w2 t.length.
+                # is a rule we need to be aware of. In the event the first
+                # word is larger than the second word, we need to handle
+                # this edge case by using index to keep track of the min_length
                 if index == min(len(w1), len(w2)) and len(w1) > len(w2):
                     return ""
 
@@ -38,7 +45,7 @@ class Solution:
 
         # d. For each source, add it to the sorted_order and subtract one
         # from all of its children's in-degrees if a child's in-degree
-        # becomes zero, add it to the sources queue
+        # becomes zero, add it to the sources queue.
         sorted_order = []
         while sources:
             vertex = sources.popleft()
