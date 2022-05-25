@@ -15,8 +15,8 @@ class Solution:
             # Find ordering of characters from adjacent words
             w1, w2 = words[i], words[i + 1]
             index = 0
-            for j in range(min(len(w1), len(w2))):
-                parent, child = w1[j], w2[j]
+            for char in range(min(len(w1), len(w2))):
+                parent, child = w1[char], w2[char]
                 index += 1
 
                 # Since it is lexicographically sorted in the alien's dictionary, we
