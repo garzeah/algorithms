@@ -1,6 +1,6 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        dp = [0 for x in range(n + 1)]
+        dp = [0 for _ in range(n + 1)]
         return self.climb_stairs_recursive(dp, n)
 
     def climb_stairs_recursive(self, dp, n):

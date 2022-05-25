@@ -1,16 +1,16 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        n1, n2 = 1, 1
+        one_step, two_step = 1, 1
 
         # Since this follows the fibonacci sequence,
         # we can use the previous sub-problems to
         # arrive at the solution
-        for i in range(2, n + 1):
-            temp = n1
-            n1 = n1 + n2
-            n2 = temp
+        for _ in range(2, n + 1):
+            temp = one_step
+            one_step = one_step + two_step
+            two_step = temp
 
-        return n1
+        return one_step
 
 # Time Complexity: O(n)
 # Space Complexity: O(1)
