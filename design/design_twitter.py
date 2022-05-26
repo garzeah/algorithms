@@ -2,51 +2,51 @@ class Twitter:
 
     def __init__(self):
         self.count = 0 # Used to figure out most recent tweet
-        self.tweetMap = defaultdict(list) # userId -> list of [count, tweetIds]
-        self.followMap = defaultdict(set) # userId -> set of followeeId
+        self.tweet_map = defaultdict(list) # userId -> list of [count, tweetIds]
+        self.follow_map = defaultdict(set) # userId -> set of followeeId
 
 
     def postTweet(self, userId: int, tweetId: int) -> None:
-        self.tweetMap[userId].append([self.count, tweetId])
+        self.tweet_map[userId].append([self.count, tweetId])
         self.count -= 1 # For our min_heap
 
 
     def getNewsFeed(self, userId: int) -> List[int]:
         res = [] # Ordered starting from recent
-        minHeap = []
+        min_heap = []
 
-        self.followMap[userId].add(userId) # Since it factors user following himself
+        self.follow_map[userId].add(userId) # Since it factors user following himself
 
         # Want the most recent tweet
-        for followeeId in self.followMap[userId]:
+        for followeeId in self.follow_map[userId]:
             # Checking if we have a tweet
-            if followeeId in self.tweetMap:
-                index = len(self.tweetMap[followeeId]) - 1
-                count, tweetId = self.tweetMap[followeeId][index]
+            if followeeId in self.tweet_map:
+                index = len(self.tweet_map[followeeId]) - 1
+                count, tweetId = self.tweet_map[followeeId][index]
                 # Want to get next tweet from this followeeId
-                heappush(minHeap, [count, tweetId, followeeId, index - 1])
+                heappush(min_heap, [count, tweetId, followeeId, index - 1])
 
         # Getting 10 most recent tweets
-        while minHeap and len(res) < 10:
-            count, tweetId, followeeId, index = heappop(minHeap)
+        while min_heap and len(res) < 10:
+            count, tweetId, followeeId, index = heappop(min_heap)
             res.append(tweetId)
 
             # As long as there are still elements...
             if index >= 0:
-                count, tweetId = self.tweetMap[followeeId][index]
-                heappush(minHeap, [count, tweetId, followeeId, index - 1])
+                count, tweetId = self.tweet_map[followeeId][index]
+                heappush(min_heap, [count, tweetId, followeeId, index - 1])
 
         return res
 
 
     def follow(self, followerId: int, followeeId: int) -> None:
-        self.followMap[followerId].add(followeeId)
+        self.follow_map[followerId].add(followeeId)
 
 
     def unfollow(self, followerId: int, followeeId: int) -> None:
         # Checking if they are following first
-        if followeeId in self.followMap[followerId]:
-            self.followMap[followerId].remove(followeeId)
+        if followeeId in self.follow_map[followerId]:
+            self.follow_map[followerId].remove(followeeId)
 
 # Your Twitter object will be instantiated and called as such:
 # obj = Twitter()
@@ -55,7 +55,7 @@ class Twitter:
 # obj.follow(followerId,followeeId)
 # obj.unfollow(followerId,followeeId)
 
-# Time Complexity: O(k * logk) where k is the number of tweetMaps
+# Time Complexity: O(k * logk) where k is the number of tweet_maps
 # pairs we access when accessing the news feed.
 
 # Space Complexity: O(n x m) where n is the amount unique ids
