@@ -46,6 +46,6 @@ class Solution:
 # and m in the number of ROWS. For some positions, we will have
 # at most 4 possible choices to backtrack from.
 
-# Space Complexity: O(1) since we are just returning a bool value.
+# Space Complexity: O(n * m * 4^n) because of the call stack.
 
 # Solution: https://www.youtube.com/watch?v=pfiQ_PS1g8E
