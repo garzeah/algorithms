@@ -6,23 +6,33 @@
 #         self.right = right
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        # While we still have sub-arrays
+        queue = deque()
+        for num in preorder:
+            queue.append(num)
+
+        return self.buildTreeHelper(queue, inorder)
+
+    def buildTreeHelper(self, preorder, inorder):
+        queue = deque()
+        for num in preorder:
+            queue.append(num)
+
+        return self.buildTreeHelper(queue, inorder)
+
+    def buildTreeHelper(self, preorder, inorder):
         if inorder:
-            # Getting the index of the first value of preorder in inorder
-            # since it is the root. As preoreder shrinks, we can use each value
-            # we pop to find the left and right subtrees when we search for the
-            # index of it in inorder since everything to the left belongs on
-            # the left sub-tree and everything on the right belongs to the right sub-tree
-            mid = inorder.index(preorder.pop(0))
+            # Want to pop the first value of preorder and use that with inorder
+            # to build a tree since all the values of the left and right of the
+            # popped value can be use to build both sides of the tree
+            preorder_num = preorder.popleft()
+            mid = inorder.index(preorder_num)
 
-            # Root will always be the index of the first
             root = TreeNode(inorder[mid])
+            root.left = self.buildTreeHelper(preorder, inorder[:mid]) # Want all values left of mid
+            root.right = self.buildTreeHelper(preorder, inorder[mid + 1:]) # Want all values right of mid
 
-            root.left = self.buildTree(preorder, inorder[0:mid])
-            root.right = self.buildTree(preorder, inorder[mid + 1:])
             return root
 
-# Time Complexity: O(n^2) because we are searching for the index and we traverse each node once.
-# We can optimize this using deque and popping left.
+# Time Complexity: O(n) because of the recursion stack.
 
 # Space Complexity: O(n) because of recursion stack.
