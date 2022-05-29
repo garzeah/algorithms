@@ -1,6 +1,6 @@
 class Solution:
     def findClosestElements(self, arr: List[int], k: int, x: int) -> List[int]:
-        max_heap, output = [], []
+        max_heap = []
 
         for num in arr:
             curr_dist = abs(num - x)
@@ -13,6 +13,7 @@ class Solution:
                 if curr_dist < -max_heap[0][0]:
                     heappushpop(max_heap, [-curr_dist, num])
 
+        output = []
         for (curr_dist, num) in max_heap:
             output.append(num)
 
