@@ -1,35 +1,44 @@
 class Solution:
-    def findMin(self, nums: List[int]) -> int:
+    def search(self, nums: List[int], target: int) -> int:
         start, end = 0, len(nums) - 1
-        min_num = float('inf')
 
         while start <= end:
+            # Shifting to remove duplicate elements
             while start < end and nums[start] == nums[start + 1]:
                 start += 1
             while start < end and nums[end] == nums[end - 1]:
                 end -= 1
 
-            # If we get to a subarray that is already sorted then
-            # we can update our result to the min of itself
-            # and break out of the loop
-            if nums[start] < nums[end]:
-                min_num = min(min_num, nums[start])
-                break
 
             mid = (start + end) // 2
-            min_num = min(min_num, nums[mid])
 
-            # If it is part the of left sorted portion so
-            # we want to search the right sorted portion
-            if nums[mid] >= nums[start]:
-                start = mid + 1
-            # If it is part the of right sorted portion do
-            # we want to search the left sorted portion
+            if nums[mid] == target:
+                return True
+
+            # If in left sorted portion, search right sorted portion
+            elif nums[mid] >= nums[start]:
+                # If mid is smaller than target or start is greater
+                # than target, we want to search the right side
+                if nums[mid] < target or nums[start] > target:
+                    start = mid + 1
+                # Otherwise, our mid is greater than target and our
+                # start is less than target so search the left side
+                else:
+                    end = mid - 1
+
+            # If in right sorted portion, search left sorted portion
             else:
-                end = mid - 1
+                # If mid is bigger than target or end is smaller
+                # than target, we want to search the left side
+                if nums[mid] > target or nums[end] < target:
+                    end = mid - 1
+                # Otherwise, our mid is smaller than target and our
+                # end is greater than target so search the right side
+                else:
+                    start = mid + 1
 
-        return min_num
+        return False
 
-# Time Complexity: O(logn)
+# Time Complexity: O(log n)
 # Space Complexity: O(1)
-# Solution: https://www.youtube.com/watch?v=nIVW4P8b1VA
+# Solution: https://www.youtube.com/watch?v=U8XENwh8Oy8
