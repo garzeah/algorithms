@@ -15,27 +15,25 @@ class Solution:
             if nums[mid] == target:
                 return True
 
-            # If in left sorted portion, search right sorted portion
+            # If in left sorted portion...
             elif nums[mid] >= nums[start]:
-                # If mid is smaller than target or start is greater
-                # than target, we want to search the right side
-                if nums[mid] < target or nums[start] > target:
-                    start = mid + 1
-                # Otherwise, our mid is greater than target and our
-                # start is less than target so search the left side
-                else:
+                # If target is within the range of the left sorted portion, search it
+                if target <= nums[mid] and target >= nums[start]:
                     end = mid - 1
+                # Else target is not within range of the left
+                # sorted portion search to the right of it
+                else:
+                    start = mid + 1
 
-            # If in right sorted portion, search left sorted portion
+            # If in right sorted portion...
             else:
-                # If mid is bigger than target or end is smaller
-                # than target, we want to search the left side
-                if nums[mid] > target or nums[end] < target:
-                    end = mid - 1
-                # Otherwise, our mid is smaller than target and our
-                # end is greater than target so search the right side
-                else:
+                # If target is within the range of the right sorted portion, search it
+                if target >= nums[mid] and target <= nums[end]:
                     start = mid + 1
+                # Else target is not within range of the right
+                # sorted portion so search to the left of it
+                else:
+                    end = mid - 1
 
         return False
 
