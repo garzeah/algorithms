@@ -8,14 +8,14 @@ class Node:
 
 class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
+        if node is None:
+            return
+
         # Using obj. to keeping track of whether
         # a node has been cloned or not
         return self.dfs(node, {})
 
     def dfs(self, curr_node, old_to_new):
-        if curr_node is None:
-            return
-
         # If it already has been cloned, return new node
         if curr_node in old_to_new:
             return old_to_new[curr_node]
