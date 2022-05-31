@@ -18,7 +18,7 @@ class Solution:
             # If in left sorted portion...
             elif nums[mid] >= nums[start]:
                 # If target is within the range of the left sorted portion, search it
-                if target <= nums[mid] and target >= nums[start]:
+                if target >= nums[start] and target <= nums[mid]:
                     end = mid - 1
                 # Else target is not within range of the left
                 # sorted portion search to the right of it
