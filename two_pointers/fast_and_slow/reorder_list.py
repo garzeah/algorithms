@@ -11,18 +11,16 @@ class Solution:
 
         # Rearrange to produce the LinkedList in the required order
         while left and right:
-            # left will point to the last node
             temp_next = left.next
-            left.next = right
-            left = temp_next
+            left.next = right # Assign new value
+            left = temp_next # Slide pointer up
 
             temp_next = right.next
-            right.next = left
-            right = temp_next
+            right.next = left # Assign new value
+            right = temp_next # Slide pointer up
 
-        # If linked list length is odd -> it's already none
-        # If linked list length is even -> we need to set
-        # last node to none or we have a cycle
+        # In the event our linked list is even in length, left
+        # will still be pointing to a node so we need to clear it
         if left:
             left.next = None
 
@@ -40,4 +38,5 @@ class Solution:
         return prev
 
 # Time Complexity: O(n)
-# Space Complexity(1)
+# Space Complexity: (1)
+# Solution: https://www.youtube.com/watch?v=S5bfdUTrKLM
