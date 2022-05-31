@@ -12,27 +12,28 @@ class Solution:
 
         visited = set()
 
-        # Checking for valid tree and if the graph is connected
-        return self.dfs(adj, visited, 0, -1) and n == len(visited)
+        # A valid tree means that...
+        #   - And there are no loops
+        #   - All nodes are connected
+        return self.dfs(adj, visited, -1, 0) and n == len(visited)
 
-    def dfs(self, adj, visited, curr_node, prev):
+    def dfs(self, adj, visited, prev, curr):
         # If vertex is in visited, then we have a cycle
-        if curr_node in visited:
+        if curr in visited:
             return False
 
-        visited.add(curr_node)
+        visited.add(curr)
 
         # Checking the neighbors of our vertex
-        for nei in adj[curr_node]:
+        for nei in adj[curr]:
             # If our neighbor is equal to the previous vertex then we want to
             # continue since it is a false positive because it is marked as
             # visited already so we want to check the next neighbor
             if nei == prev:
                 continue
 
-            # Checking if have visited the remaining nodes, if
-            # we have then we no lone have a valid tree anymore
-            if self.dfs(adj, visited, nei, curr_node) is False:
+            # Checking if we have a cycle
+            if self.dfs(adj, visited, curr, nei) is False:
                 return False
 
         return True
