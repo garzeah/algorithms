@@ -7,6 +7,9 @@ class Solution:
 
         # Please note that dp[] has one extra element to handle zero house
         for i in range(1, n):
+            # We will take the max of stealing from current house and
+            # skipping one to steal the next or skipping current
+            # house and stealing from the adjacent one
             dp[i + 1] = max(nums[i] + dp[i - 1], dp[i])
 
         return dp[n]
