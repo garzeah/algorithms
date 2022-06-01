@@ -4,7 +4,10 @@ class Node:
         self.prev = self.next = None
 
 class LRUCache:
-
+    # In order to implement an LRU cache efficiently we want...
+    # - Fast lookup (hash map)
+    # - Be able to easily remove a value and rearrange the
+    # ordering (doubly linked list)
     def __init__(self, capacity: int):
         self.cap = capacity
         self.cache = {} # Map key to nodes
@@ -28,7 +31,7 @@ class LRUCache:
 
     def get(self, key: int) -> int:
         if key in self.cache:
-            # Updating the right (MRU)
+            # Updating the most recently used (self.right)
             self.remove(self.cache[key])
             self.insert(self.cache[key])
             return self.cache[key].val
