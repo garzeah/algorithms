@@ -26,9 +26,9 @@ class Solution:
                         c in range(COLS) and
                         grid[r][c] == 1 # Fresh
                     ):
+                        fresh -= 1 # Decrement fresh
                         grid[r][c] = 2 # Make rotten
                         queue.append([r, c]) # Check adj. positions
-                        fresh -= 1 # Reduce count of fresh
             time += 1
 
         # If there is still a remaining fresh orange, return -1
