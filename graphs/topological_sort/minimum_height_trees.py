@@ -32,25 +32,24 @@ class Solution:
             if in_degree[key] == 1:
                 leaves.append(key)
 
-        # d. Remove leaves level by level and subtract each leave's children's
-        # in-degrees. Repeat this until we are left with 1 or 2 nodes, which
-        # will be our answer. Any node that has already been a leaf cannot
-        # be the root of a minimum height tree, because its adjacent
-        # non-leaf node will always be a better candidate.
-        total_nodes = n
-        while total_nodes > 2:
-            total_nodes -= len(leaves)
+        # d. Want to remove leaves level by level and once we're
+        # at the last level, we'll see which nodes are remaining
+        # giving us the minimum height tree(s)
+        layer = []
+        while leaves:
+            layer.clear()
 
-            for i in range(len(leaves)):
-                vertex = leaves.popleft()
+            for _ in range(len(leaves)):
+                leaf = leaves.popleft()
+                layer.append(leaf)
 
-                # Get the node's children to decrement their in-degrees
-                for child in adj[vertex]:
-                    in_degree[child] -= 1
-                    if in_degree[child] == 1:
-                        leaves.append(child)
+                # Finding all leaves so we can repeat
+                for nei in adj[leaf]:
+                    in_degree[nei] -= 1
+                    if in_degree[nei] == 1:
+                        leaves.append(nei)
 
-        return list(leaves)
+        return layer
 
 # Time Complexity: In step ‘d’, each node can become a source only once and
 # each edge will be accessed and removed once. Therefore, the time
@@ -60,4 +59,4 @@ class Solution:
 # Space Complexity: The space complexity will be O(V+E), since we are
 # storing all of the edges for each node in an adjacency list.
 
-# Explanation: https://www.youtube.com/watch?v=ZfzVig8UqBQ
+# Explanation: https://leetcode.com/problems/minimum-height-trees/discuss/952374/Python-3-approaches-Detailed-Explanation-and-Visuals
