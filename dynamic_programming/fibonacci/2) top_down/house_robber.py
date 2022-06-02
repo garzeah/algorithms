@@ -17,3 +17,7 @@ class Solution:
             dp[start] = max(steal_current, skip_current)
 
         return dp[start]
+
+# Time Complexity: O(2^n)
+# Space Compelxity: O(n) which is used to store the memoized calls
+# Solution: https://www.youtube.com/watch?v=73r3KWiEvyk
