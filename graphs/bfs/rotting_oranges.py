@@ -16,7 +16,7 @@ class Solution:
         directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
         while queue and fresh > 0:
             # Want to search all starting rotten tomatoes simultaneously
-            for i in range(len(queue)):
+            for _ in range(len(queue)):
                 row, col = queue.popleft()
                 for x, y in directions:
                     r, c = row + x, col + y

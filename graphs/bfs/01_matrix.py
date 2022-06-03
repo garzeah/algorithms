@@ -9,9 +9,10 @@ class Solution:
                 # since we will use those for searching
                 if mat[row][col] == 0:
                     queue.append((row, col))
-                # Set to "T" so when we find it when doing
-                # BFS we can add the previous position
-                # with 1 iteratively
+                # Set to "T" so when we find it when doing BFS we can add
+                # the previous position with 1 iteratively. Otherwise, if
+                # we did nothing and searched for 1 instead all the
+                # adjacent 0's would add one to it
                 else:
                     mat[row][col] = "T"
 

@@ -52,18 +52,18 @@ class Solution:
 
         # Performing BFS on our queue to get k distance from target
         while queue:
-            for _ in range(len(queue)):
-                curr, distance = queue.popleft()
-                if curr in visited:
-                    continue
+            curr, distance = queue.popleft()
 
-                visited.add(curr)
+            if curr in visited:
+                continue
 
-                for nei in adj[curr]:
-                    queue.append((nei, distance + 1))
+            visited.add(curr)
 
-                if distance == k:
-                    output.append(curr.val)
+            for nei in adj[curr]:
+                queue.append((nei, distance + 1))
+
+            if distance == k:
+                output.append(curr.val)
 
         return output
 
