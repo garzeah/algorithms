@@ -1,18 +1,18 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
         dp = [0 for _ in range(len(nums))]
-        return self.rob_recursive(dp, nums, 0)
+        return self.helper(dp, nums, 0)
 
-    def rob_recursive(self, dp, nums, start):
+    def helper(self, dp, nums, start):
         if start >= len(nums):
             return 0
 
         if dp[start] == 0:
             # Steal from current house and skip one to steal next
-            steal_current = nums[start] + self.rob_recursive(dp, nums, start + 2)
+            steal_current = nums[start] + self.helper(dp, nums, start + 2)
 
             # Skip current house to steal from the adjacent house
-            skip_current = self.rob_recursive(dp, nums, start + 1)
+            skip_current = self.helper(dp, nums, start + 1)
 
             dp[start] = max(steal_current, skip_current)
 
