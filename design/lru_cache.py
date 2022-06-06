@@ -18,17 +18,16 @@ class LRUCache:
         self.left, self.right = Node(0, 0), Node(0, 0)
         self.left.next, self.right.prev = self.right, self.left
 
-    # Remove node from doubly linked list
+    # Removing node from doubly linked list
     def remove(self, node):
-        prev, nxt = node.prev, node.next
-        prev.next, nxt.prev = nxt, prev
+        prev, nxt = node.prev, node.next # Getting the back and front
+        prev.next, nxt.prev = nxt, prev # Reconnecting without the node
 
-    # Insert node before our right pointer (recently used) which
-    # will be in the middle of both left and right pointers
+    # Insert node before our right pointer (recently used)
     def insert(self, node):
-        prev, nxt = self.right.prev, self.right
-        prev.next = nxt.prev = node
-        node.next, node.prev = nxt, prev
+        prev, nxt = self.right.prev, self.right # Getting previous and current
+        prev.next = nxt.prev = node # Connecting prev and current to inserted node
+        node.next, node.prev = nxt, prev # Connecting inserted node to prev and current
 
     def get(self, key: int) -> int:
         if key in self.cache:
@@ -52,7 +51,7 @@ class LRUCache:
         # If our cache exceeds the max capacity...
         if len(self.cache) > self.cap:
             # Remove the LRU from our cache and update left pointer
-            lru = self.left.next
+            lru = self.left.next # Because of our dummy nodes
             self.remove(lru)
             del self.cache[lru.key]
 
