@@ -6,9 +6,9 @@ class Solution:
         # we can use the previous sub-problems to
         # arrive at the solution
         for _ in range(2, n + 1):
-            temp = one_step
-            one_step = one_step + two_step
-            two_step = temp
+            temp = one_step + two_step
+            two_step = one_step
+            one_step = temp
 
         return one_step
 
