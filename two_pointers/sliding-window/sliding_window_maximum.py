@@ -1,30 +1,36 @@
+class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        deque = collections.deque()
+        queue = deque() # Indices
         output = []
+        l = r = 0
 
-        for i, num in enumerate(nums):
-            # We want the largest number in the front
-            # so we will pop to maintain this order
-            while deque and num >= nums[deque[-1]]:
-                deque.pop()
+        while r < len(nums):
+            # While smaller values exist in our queue,
+            # we want to pop them out since we have
+            # access to a higher value already
+            while queue and nums[queue[-1]] < nums[r]:
+                queue.pop()
 
-            # Adding the indexes to our deque
-            deque.append(i)
+            queue.append(r)
 
-            # If our deque is equal to the value outside the window
-            if deque[0] == i - k:
-                deque.popleft()
+            # Remove left-most index from window if out of bounds
+            if l > queue[0]:
+                queue.popleft()
 
-            # Once we hit the size of the window we want to
-            # append the results to our output array
-            if i >= k - 1:
-                output.append(nums[deque[0]])
+            # When our window reaches the size of k, we
+            # can start appending the results of the
+            # max of each subarray
+            if (r + 1) >= k:
+                output.append(nums[queue[0]])
+                l += 1
+
+            r += 1
 
         return output
 
-# Time Complexity: O(n) because for every iteration we check the deque
-# a few times but not completely to where it can be considered
-# O(n^2)
+# Time Complexity: O(n) because we iterate through the array once.
 
-# Space Complexity: O(n) bc we have 2 arrays that we iterate through
-# and keep track of
+# Space Complexity: O(n) because we store the values of our array
+# in our queue.
+
+# Solution: https://www.youtube.com/watch?v=DfljaUwZsOk
