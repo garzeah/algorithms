@@ -7,11 +7,10 @@ class Solution:
         left_max, right_max = height[l], height[r]
         output = 0
 
-        # We want to shift the smaller value first whether that
-        # be left_max or right_max. We want to get the minimum
-        # of left and right for its current positions then we
-        # can use that to get the height which is
-        # min(l, r) - height[l or r]
+        # We want to shift the smaller max value first. Left
+        # and right pointers do not depend on each other bc
+        # we want the minimum of left and right and as long
+        # as left is smaller we will not need the other max
         while l < r:
             if left_max <= right_max:
                 l += 1

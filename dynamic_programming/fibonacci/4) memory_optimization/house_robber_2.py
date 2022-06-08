@@ -7,15 +7,15 @@ class Solution:
             return max(nums[0], nums[1])
 
         return max(
-            self.rob_recursive(nums[1:]),
-            self.rob_recursive(nums[:-1])
+            self.helper(nums[1:]),
+            self.helper(nums[:-1])
         )
 
     # Since it's circular and the first and last houses
     # are considered adjacent, we can just take the max
     # of everything but the first and everything but
     # the last and return that
-    def rob_recursive(self, nums):
+    def helper(self, nums):
         steal_current = nums[0]
         skip_current = max(nums[0], nums[1])
 
