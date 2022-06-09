@@ -9,7 +9,7 @@ class Solution:
 
         # We are trying to find a subset of given numbers
         # that has a total sum of 's/2'.
-        s = int(s / 2)
+        s = s // 2
         n = len(nums)
         dp = [[False for x in range(s+1)] for y in range(n)]
 

@@ -13,16 +13,16 @@ class Solution:
             self.helper(nums[:-1], 0)
         )
 
-    def helper(self, nums, start):
+    def helper(self, nums, idx):
         # Have no more houses to rob from
-        if start >= len(nums):
+        if idx >= len(nums):
             return 0
 
         # Steal from current house and skip one to steal next
-        steal_current = nums[start] + self.helper(nums, start + 2)
+        steal_current = nums[idx] + self.helper(nums, idx + 2)
 
         # Skip current house to steal from the adjacent house
-        skip_current = self.helper(nums, start + 1)
+        skip_current = self.helper(nums, idx + 1)
 
         return max(steal_current, skip_current)
 

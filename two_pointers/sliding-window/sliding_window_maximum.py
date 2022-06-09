@@ -2,7 +2,7 @@ class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         queue = deque() # Indices
         output = []
-        l = r = 0
+        l, r = 0, 0
 
         while r < len(nums):
             # While smaller values exist in our queue,
