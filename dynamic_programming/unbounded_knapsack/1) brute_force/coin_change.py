@@ -3,7 +3,6 @@ class Solution:
         result = self.helper(coins, amount, 0)
         return -1 if result == float('inf') else result
 
-
     def helper(self, coins, amount, start):
         # Base case
         if amount == 0:
