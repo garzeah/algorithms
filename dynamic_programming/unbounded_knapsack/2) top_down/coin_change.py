@@ -1,6 +1,6 @@
 class Solution:
     def coinChange(self, coins, amount):
-        dp = [[-1 for _ in range(amount+1)] for _ in range(len(coins))]
+        dp = [[-1 for _ in range(amount + 1)] for _ in range(len(coins))]
         result = self.helper(dp, coins, amount, 0)
         return -1 if result == float('inf') else result
 
@@ -9,8 +9,7 @@ class Solution:
         if amount == 0:
             return 0
 
-        n = len(coins)
-        if n == 0 or idx >= n:
+        if len(coins) == 0 or idx >= len(coins):
             return float('inf')
 
         # check if we have not already processed a similar sub-problem
