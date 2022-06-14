@@ -5,9 +5,13 @@ class Solution:
         l, r = 0, 0
 
         while r < len(nums):
-            # While smaller values exist in our queue,
-            # we want to pop them out since we have
-            # access to a higher value already
+            # While smaller values exist in our queue, we want to
+            # pop them out since we have access to a higher value
+            # already. Additionally, we want the largest value to
+            # be at the left. This will end up as a monotonically
+            # decreasing queue. If we find a higher value, pop
+            # everything since we don't have to do repeating
+            # work of finding max in each subarray
             while queue and nums[queue[-1]] < nums[r]:
                 queue.pop()
 
