@@ -1,5 +1,7 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
+        # We can use this to keep track of alternative negative
+        # values in the event we get an array with negative numbers
         prev_min = prev_max = global_max = nums[0]
 
         # Because of an edge case where when we have an array of negative numbers
