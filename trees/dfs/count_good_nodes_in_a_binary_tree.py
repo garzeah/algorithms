@@ -15,7 +15,8 @@ class Solution:
         # Only a good node if the current value is
         # greater than or equal to the current max
         # as we traverse along the path
-        res = 1 if curr.val >= max_val else 0
+        if curr.val >= max_val:
+            res = 1
 
         left = self.dfs(curr.left, max(curr.val, max_val))
         right = self.dfs(curr.right, max(curr.val, max_val))
