@@ -60,3 +60,5 @@ class Twitter:
 # an array it would be a similar time comeplexity O(10*k). However, if we were
 # able to choose how many most recent tweets we want then using a heap would
 # be better in terms of time complexity.
+
+# Solution: https://www.youtube.com/watch?v=pNichitDD2E
