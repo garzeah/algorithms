@@ -6,30 +6,32 @@ class Solution:
         if target % 2 == 1:
             return False
 
-        # initialize the 'dp' array, -1 for default, 1 for true and 0 for false
-        target //= 2
+        target //= 2 # getting equal subset sum
+        # initialize the 'dp' array, -1 for default
         dp = [[-1 for x in range(target + 1)] for y in range(len(nums))]
-        return True if self.helper(dp, nums, target, 0) == 1 else False
+        return self.helper(nums, dp, target, 0)
 
-    def helper(self, dp, nums, target, idx):
+    def helper(self, nums, dp, target, i):
         # base check
         if target == 0:
-            return 1
+            return True
 
-        n = len(nums)
-        if n == 0 or idx >= n:
-            return 0
+        if target < 0 or i >= len(nums):
+            return False
 
         # if we have not already processed a similar problem
-        if dp[idx][target] == -1:
-            # recursive call after choosing the number at the idx
-            # if the number at idx exceeds the target, we shouldn't process this
-            if nums[idx] <= target:
-                if self.helper(dp, nums, target - nums[idx], idx + 1) == 1:
-                    dp[idx][target] = 1
-                    return 1
+        if dp[i][target] == -1:
+            # recursive call after choosing the number at the i
+            # if the number at i exceeds the target, we shouldn't process this
+            if nums[i] <= target:
+                if self.helper(nums, dp, target - nums[i], i + 1):
+                    dp[i][target] = True
+                    return True
 
-            # recursive call after excluding the number at the idx
-            dp[idx][target] = self.helper(dp, nums, target, idx + 1)
+            # recursive call after excluding the number at the i
+            dp[i][target] = self.helper(nums, dp, target, i + 1)
 
-        return dp[idx][target]
+        return dp[i][target]
+
+# The above algorithm has time and space complexity of O(N*S), where ‘N’
+# represents total numbers and ‘S’ is the total sum of all the numbers.

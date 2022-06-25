@@ -8,19 +8,22 @@ class Solution:
         return self.helper(nums, target / 2, 0)
 
 
-    def helper(self, nums, target, idx):
+    def helper(self, nums, target, i):
         # Base case
         if target == 0:
             return True
 
-        if len(nums) == 0 or idx >= len(nums):
+        if target < 0 or i >= len(nums):
             return False
 
-        # Recursive call after choosing the number at the `idx` if the
-        # number at `idx` exceeds the target, we shouldn't process this
-        if nums[idx] <= target:
-            if self.helper(nums, target - nums[idx], idx + 1):
+        # Decision to see if any of the numbers will equal our target
+        if nums[i] <= target:
+            if self.helper(nums, target - nums[i], i + 1):
                 return True
 
-        # Recursive call after excluding the number at the 'idx'
-        return self.helper(nums, target, idx + 1)
+        # Decision to see if any of the values is equal to our target
+        return self.helper(nums, target, i + 1)
+
+# The time complexity of the above algorithm is exponential O(2^n), where ‘n’ 
+# represents the total number. The space complexity is O(n), this memory
+# which will be used to store the recursion stack.
