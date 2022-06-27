@@ -56,9 +56,9 @@ class Twitter:
 # obj.unfollow(followerId,followeeId)
 
 # Time Complexity:
-# - getNewsFeed(self, userId): O(k) since we are using heapify. If we were to use
-# an array it would be a similar time comeplexity O(10*k). However, if we were
-# able to choose how many most recent tweets we want then using a heap would
-# be better in terms of time complexity.
+# - getNewsFeed(self, userId): O(n) for the amount of users inside the follow_map.
+# O(10*logk) for performing the heap operations leaving us with O(n * log(k))
+# where n is the amount of users in the follow_map[userId] and k for getting
+# the top 10 most recent posts.
 
 # Solution: https://www.youtube.com/watch?v=pNichitDD2E
