@@ -5,7 +5,7 @@ class Solution:
         if target % 2 == 1:
             return False
 
-        return self.helper(nums, target / 2, 0)
+        return self.helper(nums, target // 2, 0)
 
 
     def helper(self, nums, target, i):
@@ -24,6 +24,6 @@ class Solution:
         # Decision to see if any of the values is equal to our target
         return self.helper(nums, target, i + 1)
 
-# The time complexity of the above algorithm is exponential O(2^n), where ‘n’ 
+# The time complexity of the above algorithm is exponential O(2^n), where ‘n’
 # represents the total number. The space complexity is O(n), this memory
 # which will be used to store the recursion stack.

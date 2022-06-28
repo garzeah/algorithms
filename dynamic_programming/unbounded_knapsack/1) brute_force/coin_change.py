@@ -1,7 +1,7 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        output = self.helper(coins, amount, 0)
-        return -1 if output == float('inf') else output
+        res = self.helper(coins, amount, 0)
+        return -1 if res == float('inf') else res
 
     def helper(self, coins, amount, i):
         # Base case

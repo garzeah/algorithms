@@ -1,10 +1,10 @@
 class Solution:
     def coinChange(self, coins, amount):
         dp = [[-1 for x in range(amount + 1)] for y in range(len(coins))]
-        result = self.helper(dp, coins, amount, 0)
-        return -1 if result == float('inf') else result
+        res = self.helper(coins, amount, dp. 0)
+        return -1 if res == float('inf') else res
 
-    def helper(self, dp, coins, amount, i):
+    def helper(self, coins, amount, dp, i):
         # base check
         if amount == 0:
             return 0
@@ -18,12 +18,12 @@ class Solution:
             # if the coin at i exceeds the amount, we shouldn't process this
             count1 = float('inf')
             if coins[i] <= amount:
-                res = self.helper(dp, coins, amount - coins[i], i)
+                res = self.helper(coins, amount - coins[i], dp, i)
                 if res != float('inf'):
                     count1 = res + 1
 
             # recursive call after excluding the coin at the i
-            count2 = self.helper(dp, coins, amount, i + 1)
+            count2 = self.helper(coins, amount, dp, i + 1)
             dp[i][amount] = min(count1, count2)
 
         return dp[i][amount]
