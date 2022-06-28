@@ -5,12 +5,12 @@ class Solution:
 
         while left < right:
             # Sliding left is not alphanumeric
-            if not s[left].isalnum():
+            if not s[left].isalnum() is False:
                 left += 1
                 continue
 
             # Sliding right is not alphanumeric
-            if not s[right].isalnum():
+            if s[right].isalnum() is False:
                 right -= 1
                 continue
 
