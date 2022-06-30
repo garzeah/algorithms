@@ -5,23 +5,25 @@ class Solution:
 
         l, r = 0, len(height) - 1
         left_max, right_max = height[l], height[r]
-        output = 0
+        res = 0
 
-        # We want to shift the smaller max value first. Left
-        # and right pointers do not depend on each other bc
-        # we want the minimum of left and right and as long
-        # as left is smaller we will not need the other max
+        # We can get the amount of trapped rainwater by subtracting the
+        # min(max(left_max, height[l]), max(right_max, height[r])) aka
+        # (the min wall of both the left and right maxes) with the current
+        # height. In order to do this using two pointers, we can get the
+        # minimum as long as maintain left_max <= right_max when traversing
+        # through the array.
         while l < r:
             if left_max <= right_max:
                 l += 1
                 left_max = max(left_max, height[l])
-                output += left_max - height[l]
+                res += left_max - height[l]
             else:
                 r -= 1
                 right_max = max(right_max, height[r])
-                output += right_max - height[r]
+                res += right_max - height[r]
 
-        return output
+        return res
 
 # Time Complexity: O(n)
 # Space Complexity: O(1)
