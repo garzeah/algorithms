@@ -1,7 +1,7 @@
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         nums.sort()
-        smallest_difference = float('inf')
+        min_diff = float('inf')
 
         for i in range(len(nums)):
             left, right = i + 1, len(nums) - 1
@@ -15,9 +15,9 @@ class Solution:
 
                 # The second part of the following 'if' is to handle the
                 # smallest sum when we have more than one solution
-                if abs(target_diff) < abs(smallest_difference):
+                if abs(target_diff) < abs(min_diff):
                     # Save the new closest target difference
-                    smallest_difference = target_diff
+                    min_diff = target_diff
 
                 if target_diff > 0:
                     # We need a triplet with a bigger sum that'll bring
@@ -29,7 +29,7 @@ class Solution:
                     right -= 1
 
         # Return the closest number to target
-        return target - smallest_difference
+        return target - min_diff
 
 # Time Complexity: Sorting the array will take O(N* logN).
 # Overall, the function will take O(N * logN + N^2)

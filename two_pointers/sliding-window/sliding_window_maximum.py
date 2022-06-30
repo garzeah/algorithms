@@ -1,36 +1,31 @@
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        queue = deque() # Indices
-        output = []
-        l, r = 0, 0
+        queue = deque() # Store indices here
+        left, res = 0, []
 
-        while r < len(nums):
-            # While smaller values exist in our queue, we want to
-            # pop them out since we have access to a higher value
-            # already. Additionally, we want the largest value to
-            # be at the left. This will end up as a monotonically
-            # decreasing queue. If we find a higher value, pop
-            # everything since we don't have to do repeating
-            # work of finding max in each subarray
-            while queue and nums[queue[-1]] < nums[r]:
+        # We can use a monotonic queue where it is in decreasing
+        # order. We want to maintain this order so we can get
+        # the largest number per window. Since the largest
+        # value is in the front, we'll only pop when it is
+        # out of bounds
+        for right, num in enumerate(nums):
+            while queue and num > nums[queue[-1]]:
                 queue.pop()
 
-            queue.append(r)
+            queue.append(right)
 
             # Remove left-most index from window if out of bounds
-            if l > queue[0]:
+            if left > queue[0]:
                 queue.popleft()
 
             # When our window reaches the size of k, we
             # can start appending the results of the
             # max of each subarray
-            if (r + 1) >= k:
-                output.append(nums[queue[0]])
-                l += 1
+            if right >= k - 1:
+                res.append(nums[queue[0]])
+                left += 1
 
-            r += 1
-
-        return output
+        return res
 
 # Time Complexity: O(n) because we iterate through the array once.
 
