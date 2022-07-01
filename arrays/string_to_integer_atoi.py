@@ -16,10 +16,8 @@ class Solution:
         elif i < len(s) and s[i] == '+':
             i += 1
 
-        # Check if the number is between 0-9
-        checker = set('0123456789') # Can use a set for O(1) lookup
-
-        while i < len(s) and s[i] in checker:
+        # Checking if string contains a number
+        while i < len(s) and s[i].isdigit():
             # Building out the result and casting to an int
             res = res * 10 + int(s[i])
             i += 1
