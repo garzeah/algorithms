@@ -1,21 +1,17 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        tuples = zip(*strs) # Returns a tuple pair of letters of all words
-        res = ""
+        prefix = strs[0]
 
-        for tup in tuples:
-            if len(set(tup)) > 1: # Letters do not match
-                break
-            else: # Otherwise they do and add to our result
-                res += tup[0]
+        for word in strs:
+            # Whenever we don't have a match, we are going to
+            # remove a letter from the end until we get the
+            # longest common prefix
+            while word.startswith(prefix) is False:
+                prefix = prefix[:-1]
 
-        return res
+        return prefix
 
-# Time Complexity: O(n * m) where n is the amount of words in the array
-# and m is the smallest word length we have in our array.
+# Time Complexity: O(n*m) where n is the amount of words and m
+# is the max length of all words
 
-# Space Complexity: O(n * m) where n is the amount of words in the array
-# and m is the smallest word length we have in our array.
-
-# Solution: https://leetcode.com/problems/longest-common-prefix/discuss/354496/Python3-list(zip(*str))
-
+# Space Complexity: O(m) where m is the max length of all words
