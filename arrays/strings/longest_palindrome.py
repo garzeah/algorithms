@@ -1,22 +1,29 @@
 class Solution:
     def longestPalindrome(self, s: str) -> int:
-        char_set = set()
+        freq = Counter(s)
+        has_odd = False
+        res = 0
 
-        # For every character, we want to collect the remaining odds only
-        for char in s:
-            if char not in char_set:
-                char_set.add(char)
+        for key in freq:
+            # If even, add all the frequencies
+            if freq[key] % 2 == 0:
+                res += freq[key]
+
+            # If odd, want to add every even to
+            # make the longest palindrome
             else:
-                char_set.remove(char)
+                res += freq[key] - 1
+                odd = True
 
-        # If we have an odd remaining, we only can use 1
-        # to build the longest palindrome
-        if len(char_set) != 0:
-            return len(s) - len(char_set) + 1
-        # The whole string is a palindrome
-        else:
-            return len(s)
+        # If our freq contains an odd, we can use
+        # up one of the remaining odds to make a
+        # valid palindrome
+        if has_odd:
+            res += 1
+
+        return res
 
 # Time Complexity: O(n)
-# Space Complexity: O(26) since we can only have unique characters which is essentially O(1)
-# Solution: https://leetcode.com/problems/longest-palindrome/discuss/813721/Python-3-solution-using-Set()
+
+# Space Complexity: O(26) since we are only storing the
+# values of alphabetical characters
