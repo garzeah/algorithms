@@ -1,20 +1,21 @@
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
-        intervals.sort() # Python sorts by index order
-        prev_end = intervals[0][1] # Keep track of first end value
-        output = 0
+        intervals.sort(key = lambda x:x[0])
+        prev_end = intervals[0][1]
+        res = 0
 
+        # As we iterate through each interval, we want to
+        # check for an overlap and when we have one, we
+        # want to keep the smallest end in order to
+        # not make it overlap
         for curr_start, curr_end in intervals[1:]:
-            if curr_start >= prev_end: # Not overlapping
-                prev_end = curr_end # Checking next end
-            else: # Overlapping
-                output += 1
-                # We want to keep the value that ends first since
-                # if we keep the value that ends last, it will
-                # increase the likelihood of an overlap
+            if prev_end > curr_start: # Overlapping
+                res += 1
                 prev_end = min(prev_end, curr_end)
+            else: # Not overlapping
+                prev_end= curr_end
 
-        return output
+        return res
 
 # Time Complexity: O(nlogn)
 # Space Complexity: O(1)

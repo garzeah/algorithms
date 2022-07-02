@@ -13,11 +13,14 @@ class Solution:
         # to the first available room
         rooms, end = 0, 0
 
-        for i in range(len(intervals)):
-            # Checking for free rooms
-            if ends[end] > starts[i]:
+        # For each time a meeting begins, we want
+        # to check how many times a meeting will start
+        for start in starts:
+            # Meetings that have started but nothing has
+            # ended so we will need a room to accomodate
+            if start < ends[end]:
                 rooms += 1
-            # Not a free room and check the next end pointer
+            # Check the other ending times
             else:
                 end += 1
 
