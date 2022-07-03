@@ -6,10 +6,13 @@ class Solution:
         start, end = 0, len(matrix) * len(matrix[0]) - 1
 
         while start <= end:
-            mid = (start + end) // 2
+            mid = (start + end) // 2 # Finds middle-most value in the matrix
 
-            i = mid // len(matrix[0]) # Gives us row pos.
-            j = mid % len(matrix[0]) # Gives us col pos.
+            # We can find the row position by doing mid // column length
+            i = mid // len(matrix[0])
+
+            # We can find the column position by doing mid % column length
+            j = mid % len(matrix[0])
 
             if matrix[i][j] == target:
                 return True
