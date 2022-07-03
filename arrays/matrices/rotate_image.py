@@ -8,7 +8,8 @@ class Solution:
         left, right = 0, len(matrix[0]) - 1
 
         while left < right:
-            # Iterating through the entire row except last element
+            # As we do a rotation, we will rotate the
+            # values to where it should be (90 degrees)
             for i in range(right - left):
                 top, bottom = left, right
 
@@ -30,8 +31,6 @@ class Solution:
             # Update our pointers
             left += 1
             right -= 1
-
-        return matrix
 
 # Time Complexity: O(n^2) since we are looking at each cell only once.
 

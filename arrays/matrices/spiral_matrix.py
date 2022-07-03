@@ -38,5 +38,5 @@ class Solution:
 
 
 # Time Complexity: O(n*m)
-# Space Complexity: O(n)
+# Space Complexity: O(n*m)
 # Solution: https://www.youtube.com/watch?v=BJnMZNwUk1M
