@@ -3,12 +3,13 @@ class Solution:
         start, end = 0, len(nums) - 1
 
         while start <= end:
-            # Shifting to remove duplicate elements
+            # Want to handle duplicate numbers before we calculate
+            # the mid since we don't want to account for any dupes
+            # when we are performing binary search
             while start < end and nums[start] == nums[start + 1]:
                 start += 1
             while start < end and nums[end] == nums[end - 1]:
                 end -= 1
-
 
             mid = (start + end) // 2
 

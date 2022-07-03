@@ -9,9 +9,9 @@ class Solution:
             while start < end and nums[end] == nums[end - 1]:
                 end -= 1
 
-            # If we get to a subarray that is already sorted then
-            # we can update our result to the min of itself
-            # and break out of the loop
+            # In the event we do not have a rotated sorted array,
+            # then we want to have this check in place to get
+            # the minimum
             if nums[start] < nums[end]:
                 min_num = min(min_num, nums[start])
                 break

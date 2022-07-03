@@ -1,23 +1,27 @@
 class Solution:
     def findMedianSortedArrays(self, A: List[int], B: List[int]) -> float:
-        # Want A to contain the smaller array
+        # Want A to contain the smaller array. We can improve the TC
+        # if we build off the partitions using the smaller array
         if len(A) > len(B):
             A, B = B, A
 
         total = len(A) + len(B)
-        half = total // 2
+        half = total // 2 # Used to compute the left partition of the bigger array
         start, end = 0, len(A) - 1
 
         while True:
-            i = (start + end) // 2 # A
-            j = half - i - 2 # B, subtracting 2 to fix indexing issues
+            # Using the midpoints as the starting point to find the median
+            i = (start + end) // 2
+            j = half - i - 2
 
+            # Building out the bounds of the partition
             A_left = A[i] if i >= 0 else float('-inf')
             B_left = B[j] if j >= 0 else float('-inf')
             A_right = A[i + 1] if (i + 1) < len(A) else float('inf')
             B_right = B[j + 1] if (j + 1) < len(B) else float('inf')
 
-            # Left partition of sorted numbers is correct
+            # Want both left partitions to be <= every value in the right
+            # partitions so we can find the medians using the partitions
             if A_left <= B_right and B_left <= A_right:
                 # Since it is even, we want to find the max and min of
                 # both left and right partions to get the middlest values
