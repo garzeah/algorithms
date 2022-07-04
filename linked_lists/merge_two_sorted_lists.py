@@ -1,8 +1,7 @@
 class Solution:
     def mergeTwoLists(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
         # Referencing the same address in memory
-        curr = ListNode(0)
-        result = curr
+        dummy = curr = ListNode(0)
 
         while l1 and l2:
             if l1.val < l2.val:
@@ -19,7 +18,7 @@ class Solution:
         curr.next = l1 or l2
 
         # Returning the node after ListNode(0)
-        return result.next
+        return dummy.next
 
 # Time Complexity: O(n)
 # Space Complexity: O(n)

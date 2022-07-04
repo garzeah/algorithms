@@ -1,27 +1,21 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        # Creating a close to open map to see if our char is in there
+        stack = []
         close_to_open = {
             ')': '(',
             ']': '[',
             '}': '{'
         }
-        stack = []
 
         for char in s:
-            if char in close_to_open:
-                # Want to check if we have a stack, and if the last value
-                # of the list contains the matching bracket. We did a
-                # mapping of close to open bc we'll have left opening
-                # parentheses in our stack to check for
-                if stack and stack[-1] == close_to_open[char]:
-                    stack.pop()
-                else:
-                    return False
-            # Adding the left open characters in
+            # If we have a stack, the prior value in the stack matches the
+            # parentheses type and it is a closing parentheses, then we pop
+            if stack and stack[-1] == close_to_open[char] and char in close_to_open:
+                stack.pop()
             else:
                 stack.append(char)
 
+        # Assuming we have valid parentheses, the length would equal 0
         return len(stack) == 0
 
 # Time Complexity: O(n)

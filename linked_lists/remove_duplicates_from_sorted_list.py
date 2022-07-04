@@ -3,15 +3,11 @@ class Solution:
         prev, curr = None, head
 
         while curr:
-            if prev and curr.val == prev.val:
-                # If Node to remove is at the end or in the middle
-                if prev: # Will "delete" the node
+            if prev and prev.val == curr.val:
+                if prev:
                     prev.next = curr.next
-                else: # If Node to remove is at the start
-                    # Will "delete" the node by setting it to the next value
-                    head = curr.next
-                curr = curr.next
-            else:  # Nothing needs to be removed, keep iterating
+                curr = curr.next # Move up pointer in the event of other pointers
+            else: # Nothing needs to be removed, keep iterating
                 prev, curr = curr, curr.next
 
         return head
