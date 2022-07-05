@@ -13,8 +13,7 @@ class Solution:
 
         curr = head
         while curr: # 1st pass we will build out our hash map
-            copy = Node(curr.val)
-            old_to_copy[curr] = copy
+            old_to_copy[curr] = Node(curr.val)
             curr = curr.next
 
         curr = head
