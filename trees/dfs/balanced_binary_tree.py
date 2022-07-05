@@ -8,6 +8,7 @@ class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
         return self.dfs(root)[0]
 
+    # Want to check if each subtree is balanced
     def dfs(self, curr):
         # Want to return 2 values, whether it's balanced and the height
         if curr is None:
