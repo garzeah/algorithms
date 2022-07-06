@@ -13,13 +13,6 @@ class Solution:
         return self.buildTreeHelper(queue, inorder)
 
     def buildTreeHelper(self, preorder, inorder):
-        queue = deque()
-        for num in preorder:
-            queue.append(num)
-
-        return self.buildTreeHelper(queue, inorder)
-
-    def buildTreeHelper(self, preorder, inorder):
         if inorder:
             # Want to pop the first value of preorder and use that with inorder
             # to build a tree since all the values of the left and right of the

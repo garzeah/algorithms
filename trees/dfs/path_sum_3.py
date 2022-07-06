@@ -5,34 +5,36 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
-        return self.count_paths_recursive(root, targetSum, [])
+    def pathSum(self, root: Optional[TreeNode], target: int) -> int:
+        return self.dfs(root, target, [])
 
-
-    def count_paths_recursive(self, curr_node, targetSum, curr_path):
-        if curr_node is None:
+    def dfs(self, root, target, curr_path):
+        if root is None:
             return 0
 
         # Add the current node to the path
-        curr_path.append(curr_node.val)
-        path_count, path_sum = 0, 0
+        curr_path.append(root.val)
+        res, path_sum = 0, 0
 
-        # Find the sums of all sub-paths in the current path list
+        # As we added a new node to the current path, we should find
+        # the sums of all sub-paths ending at the current node. If
+        # the sum of any sub-path is equal to ‘target’ we will
+        # increment our path count. Also, if we iterate
+        # backwards then we can get the sub-paths.
         for i in range(len(curr_path) - 1, -1, -1):
             path_sum += curr_path[i]
-            # If the sum of any sub-path is equal to 'targetSum' we increment our path count.
-            if path_sum == targetSum:
-                path_count += 1
+            if path_sum == target:
+                res += 1
 
         # Traverse the left and right sub-trees
-        path_count += self.count_paths_recursive(curr_node.left, targetSum, curr_path)
-        path_count += self.count_paths_recursive(curr_node.right, targetSum, curr_path)
+        res += self.dfs(root.left, target, curr_path)
+        res += self.dfs(root.right, target, curr_path)
 
         # Remove the current node from the path to backtrack we need to remove
         # the current node while we are going up the recursive call stack
         del curr_path[-1]
 
-        return path_count
+        return res
 
 # Time Complexity: The time complexity of the above algorithm is O(N^2) in the worst case,
 # where ‘N’ is the total number of nodes in the tree. This is due to the fact that we
