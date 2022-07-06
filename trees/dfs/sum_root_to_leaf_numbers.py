@@ -8,20 +8,19 @@ class Solution:
     def sumNumbers(self, root: Optional[TreeNode]) -> int:
         return self.find_sums(root, 0)
 
-
-    def find_sums(self, curr_node, path_sum):
-        if curr_node is None:
+    def find_sums(self, root, path_sum):
+        if root is None:
             return 0
 
         # Calculate the path number of the current node
-        path_sum = 10 * path_sum + curr_node.val
+        path_sum = 10 * path_sum + root.val
 
         # If the current node is a leaf, return the current path sum
-        if curr_node.left is None and curr_node.right is None:
+        if root.left is None and root.right is None:
             return path_sum
 
         # Traverse the left and the right sub-tree
-        return self.find_sums(curr_node.left, path_sum) + self.find_sums(curr_node.right, path_sum)
+        return self.find_sums(root.left, path_sum) + self.find_sums(root.right, path_sum)
 
 # Time Complexity: The time complexity of the above algorithm is O(N),
 # where ‘N’ is the total number of nodes in the tree. This is due to
