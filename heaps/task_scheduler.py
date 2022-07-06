@@ -1,27 +1,29 @@
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
-    # Want numbers with the highest frequency at the top
-        freq_map, max_heap = Counter(tasks), []
+    # Want numbers with the highest freq at the top
+        freq_map, heap = Counter(tasks), []
 
-        for frequency in freq_map.values():
-            heappush(max_heap, -frequency)
+        for freq in freq_map.values():
+            heappush(heap, -freq)
 
-        # Queue will contain pairs of [-frequency, time until it can run again]
+        # Queue will contain pairs of [-freq, time until it can run again]
         queue, time = deque(), 0
 
         # Getting the minimum amount of idle time necessary
-        while max_heap or queue:
+        while heap or queue:
             time += 1
 
-            if max_heap:
-                frequency = 1 + heappop(max_heap)
-                # Adding the frequency and time it'll be available to our queue
-                if frequency:
-                    queue.append([frequency, time + n])
+            # If we have a value in our heap, we want to get the freq
+            # and if it is not 0 then we want to add it into our queue and
+            # use it to determine when we can use this task again
+            if heap:
+                freq = 1 + heappop(heap)
+                if freq:
+                    queue.append([freq, time + n])
 
             # We can run this task again
             if queue and queue[0][1] == time:
-                heappush(max_heap, queue.popleft()[0])
+                heappush(heap, queue.popleft()[0])
 
         return time
 
