@@ -1,32 +1,30 @@
 class Solution:
     def reorganizeString(self, s: str) -> str:
-        freq_map, max_heap, output = Counter(s), [], []
+        freq_map, heap, res = Counter(s), [], []
 
-        # Add all characters to the max heap
-        for char, frequency in freq_map.items():
-            heappush(max_heap, [-frequency, char])
+        for char, freq in freq_map.items():
+            heappush(heap, [-freq, char])
 
         prev_char, prev_freq = None, None
-        while max_heap:
-            frequency, char = heappop(max_heap)
+        while heap:
+            freq, char = heappop(heap)
 
-            # Since we only want a freq. that is > 0, we will only
-            # be able to append adj. characters since we can't
-            # add in the same consecutive character unless
-            # a different character comes before it
-            if prev_freq > 0:
-                heappush(max_heap, [prev_freq, prev_char])
+            # If the prev_char's frequency is not 0 then we are allowed
+            # to use the character again in reorganizing the string as
+            # long as there is a value in our heap
+            if prev_freq:
+                heappush(heap, [prev_freq, prev_char])
 
-            # Append the current character to the result string and decrement its count
-            output.append(char)
+            res.append(char)
             prev_char = char
-            prev_freq = frequency + 1  # Decrement the frequency
+            prev_freq = freq + 1
 
-        # If we were successful in appending all the characters to the result string, return it
-        return "".join(output) if len(output) == len(s) else ""
+        return "".join(res) if len(res) == len(s) else ""
 
 # Time Complexity: The time complexity of the above algorithm is O(N*logN)
 # where ‘N’ is the number of characters in the input string.
 
 # Space Complexity: The space complexity will be O(N), as in the worst case,
 # we need to store all the ‘N’ characters in the HashMap.
+
+# Solution: https://www.youtube.com/watch?v=2g_b1aYTHeg
