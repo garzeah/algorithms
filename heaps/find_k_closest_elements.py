@@ -8,8 +8,9 @@ class Solution:
             if len(max_heap) < k:
                 heappush(max_heap, [-curr_dist, num])
             else:
-                # If the smallest distance is bigger than the current
-                # distance, record new smallest distance
+                # If we have a smaller distance, then store it. We didn't add
+                # and else: break because a larger value could be closer
+                # so we want to search the rest of the numbers
                 if curr_dist < -max_heap[0][0]:
                     heappushpop(max_heap, [-curr_dist, num])
 

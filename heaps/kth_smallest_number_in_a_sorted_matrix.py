@@ -14,15 +14,16 @@ class Solution:
         k_count = 0
         while min_heap:
             curr_num, i, row = heappop(min_heap)
-            k_count += 1
 
             # We are at the kth element
-            if k_count == k:
+            if k_count == k - 1:
                 return curr_num
 
             # While can we still index a row
             if len(row) > i + 1:
                 heappush(min_heap, [row[i + 1], i + 1, row])
+
+            k_count += 1
 
         return None
 

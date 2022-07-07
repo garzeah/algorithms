@@ -1,6 +1,6 @@
 class Solution:
     def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
-        max_heap, output = [], []
+        max_heap = []
 
         for i in range(len(nums1)):
             for j in range(len(nums2)):
@@ -9,13 +9,15 @@ class Solution:
                 if len(max_heap) < k:
                     heappush(max_heap, [-curr_sum, i, j])
                 else:
-                    # If we find a smaller sum, pop and add it in
+                    # If we find a smaller sum then add it in
                     if curr_sum < -max_heap[0][0]:
                         heappushpop(max_heap, [-curr_sum, i, j])
-                    # No point in checking and move to next sum
+                    # No point in checking the rest since it is sorted,
+                    # we won't get a smaller sum
                     else:
                         break
 
+        res = []
         for (num, i, j) in max_heap:
             output.append([nums1[i], nums2[j]])
 
