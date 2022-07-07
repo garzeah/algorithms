@@ -25,12 +25,10 @@ class Solution:
             curr.next = node
             curr = curr.next
 
-            # We've exhausted a linked list
-            if node.next is None:
-                continue
-
-            # Check the next value in the node
-            heappush(min_heap, (node.next.val, i, node.next))
+            # While we have a node...
+            if node.next:
+                node = node.next
+                heappush(min_heap, (node.next.val, i, node.next))
 
         return dummy.next
 
