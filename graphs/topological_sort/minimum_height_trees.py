@@ -37,8 +37,9 @@ class Solution:
         # giving us the minimum height tree(s)
         layer = []
         while leaves:
-            layer.clear()
+            layer = [] # Clear the array for each level
 
+            # Multi-source since we want to clear by level
             for _ in range(len(leaves)):
                 leaf = leaves.popleft()
                 layer.append(leaf)
