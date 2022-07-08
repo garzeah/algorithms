@@ -27,7 +27,7 @@ class Solution:
                     # Put the child into it's parent's list
                     adj[parent].append(child)
                     in_degree[child] += 1  # Increment child's in_degree
-                    break  # Check the next letter
+                    break  # Break since we only want to find the first occurence of where they're different
 
                 # If the first min(len(w1), len(w2)) letters are the same,
                 # then w1 is smaller if and only if w1.length < w2 t.length.
