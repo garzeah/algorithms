@@ -13,9 +13,9 @@ class Solution:
             for x, y in directions:
                 r, c = row + x, col + y
                 if (
+                    (r, c) not in visited and
                     r in range(ROWS) and
                     c in range(COLS) and
-                    image[r][c] != newColor and
                     image[r][c] == old_color
                 ):
                     queue.append((r, c))
