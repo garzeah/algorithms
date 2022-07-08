@@ -32,7 +32,8 @@ class Solution:
             if nei == prev:
                 continue
 
-            # Checking if we have a cycle
+            # If we find a node that has already been visited, it
+            # has a cycle so we have to return False
             if self.dfs(adj, visited, curr, nei) is False:
                 return False
 
