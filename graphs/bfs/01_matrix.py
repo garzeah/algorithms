@@ -13,8 +13,8 @@ class Solution:
                 # the previous position with 1 iteratively. Otherwise, if
                 # we did nothing and searched for 1 instead all the
                 # adjacent 0's would add one to it
-                else:
-                    mat[row][col] = "T"
+                if mat[row][col] == 1:
+                    mat[row][col] = 'T'
 
         directions = [[1,0], [-1,0], [0,1], [0,-1]]
         while queue:
@@ -23,6 +23,8 @@ class Solution:
             for x, y in directions:
                 r, c = row + x, col + y
 
+                # We do not need visited because we are changing the value of "T"
+                # which will prevent us from adding repeating positions
                 if (
                     r in range(ROWS) and
                     c in range(COLS) and
