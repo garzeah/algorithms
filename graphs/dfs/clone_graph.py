@@ -15,18 +15,18 @@ class Solution:
         # a node has been cloned or not
         return self.dfs(node, {})
 
-    def dfs(self, curr_node, old_to_new):
+    def dfs(self, curr, old_to_new):
         # If it already has been cloned, return new node
-        if curr_node in old_to_new:
-            return old_to_new[curr_node]
+        if curr in old_to_new:
+            return old_to_new[curr]
 
         # Otherwise, create a clone of the node
-        clone = Node(curr_node.val)
-        old_to_new[curr_node] = clone
+        clone = Node(curr.val)
+        old_to_new[curr] = clone
 
         # Traversing through each node and adding the
         # neighbors it has in the original node
-        for nei in curr_node.neighbors:
+        for nei in curr.neighbors:
             clone.neighbors.append(self.dfs(nei, old_to_new))
 
         return clone

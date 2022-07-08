@@ -7,20 +7,20 @@ class Solution:
         old_to_new = {}
 
         while queue:
-            curr_node = queue.popleft()
+            curr = queue.popleft()
 
-            if curr_node in visited:
+            if curr in visited:
                 continue
 
-            visited.add(curr_node)
+            visited.add(curr)
 
-            # If curr_node hasn't been cloned yet then create one
-            if curr_node not in old_to_new:
-                old_to_new[curr_node] = Node(curr_node.val)
+            # If curr hasn't been cloned yet then create one
+            if curr not in old_to_new:
+                old_to_new[curr] = Node(curr.val)
 
             # Visiting corresponding neighbors
-            for nei in curr_node.neighbors:
-                clone = old_to_new[curr_node]
+            for nei in curr.neighbors:
+                clone = old_to_new[curr]
 
                 # If the neighbor hasn't been cloned yet, create one
                 if nei not in old_to_new:
