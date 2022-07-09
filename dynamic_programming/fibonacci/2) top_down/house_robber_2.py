@@ -21,12 +21,12 @@ class Solution:
 
         if dp[idx] == 0:
             # Steal from current house and skip one to steal next
-            steal_current = nums[idx] + self.helper(dp, nums, idx + 2)
+            rob_curr = nums[idx] + self.helper(dp, nums, idx + 2)
 
             # Skip current house to steal from the adjacent house
-            skip_current = self.helper(dp, nums, idx + 1)
+            rob_adj = self.helper(dp, nums, idx + 1)
 
-            dp[idx] = max(steal_current, skip_current)
+            dp[idx] = max(rob_curr, rob_adj)
 
         return dp[idx]
 

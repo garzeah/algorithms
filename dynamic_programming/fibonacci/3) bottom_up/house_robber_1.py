@@ -11,18 +11,18 @@ class Solution:
             return max(nums[0], nums[1])
 
         dp = [0 for _ in range(n + 1)]  # '+1' to handle the zero house
-        steal_current = nums[0]  # If there are no houses, the thief can't steal anything
-        skip_current = max(nums[0], nums[1])  # Only one house, so the thief have to steal from it
+        rob_curr = nums[0]  # If there are no houses, the thief can't steal anything
+        rob_adj = max(nums[0], nums[1])  # Only one house, so the thief have to steal from it
 
         # Please note that dp[] has one extra element to handle zero house
         for i in range(2, n):
             # We will take the max of stealing from current house and
             # skipping one to steal the next or skipping current
             # house and stealing from the adjacent one
-            temp = max(steal_current + nums[i], skip_current)
-            steal_current = skip_current
-            skip_current = temp
-            dp[i] = skip_current
+            temp = max(rob_curr + nums[i], rob_adj)
+            rob_curr = rob_adj
+            rob_adj = temp
+            dp[i] = rob_adj
 
         return dp[n - 1]
 

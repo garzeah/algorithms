@@ -19,12 +19,12 @@ class Solution:
             return 0
 
         # Steal from current house and skip one to steal next
-        steal_current = nums[idx] + self.helper(nums, idx + 2)
+        rob_curr = nums[idx] + self.helper(nums, idx + 2)
 
         # Skip current house to steal from the adjacent house
-        skip_current = self.helper(nums, idx + 1)
+        rob_adj = self.helper(nums, idx + 1)
 
-        return max(steal_current, skip_current)
+        return max(rob_curr, rob_adj)
 
 # Time Complexity: O(2^n^2)
 # Space Compelxity: O(2^n^2) which is used to store the recursion stack
