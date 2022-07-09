@@ -2,18 +2,18 @@ class Solution:
     def rob(self, nums: List[int]) -> int:
         return self.helper(nums, 0)
 
-    def helper(self, nums, idx):
+    def helper(self, nums, i):
         # Have no more houses to rob from
-        if idx >= len(nums):
+        if i >= len(nums):
             return 0
 
         # Steal from current house and skip one to steal next
-        steal_current = nums[idx] + self.helper(nums, idx + 2)
+        rob_curr = nums[i] + self.helper(nums, i + 2)
 
         # Skip current house to steal from the adjacent house
-        skip_current = self.helper(nums, idx + 1)
+        rob_adj = self.helper(nums, i + 1)
 
-        return max(steal_current, skip_current)
+        return max(rob_curr, skip_current)
 
 # Time Complexity: O(2^n)
 # Space Compelxity: O(2^n) which is used to store the recursion stack
