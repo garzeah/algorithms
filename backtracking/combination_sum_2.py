@@ -1,12 +1,12 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        output = []
-        return self.backtrack(sorted(candidates), target, 0, [], output)
+        curr_path, res = [], []
+        return self.backtrack(sorted(candidates), target, 0, [], res)
 
-    def backtrack(self, candidates, target, start, curr_path, output):
+    def backtrack(self, candidates, target, start, curr_path, res):
         # Found a match
         if target == 0:
-            output.append(list(curr_path))
+            res.append(list(curr_path))
             return
 
         # Invalid match
@@ -19,10 +19,10 @@ class Solution:
                 continue
 
             curr_path.append(candidates[i])
-            self.backtrack(candidates, target - candidates[i], i + 1, curr_path, output)
+            self.backtrack(candidates, target - candidates[i], i + 1, curr_path, res)
             curr_path.pop()
 
-        return output
+        return res
 
 # Time Complexity: O(N*2^t) where t is the target value since at most our
 # decision tree can reach a height of t with the levels either growing
