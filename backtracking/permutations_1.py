@@ -1,11 +1,11 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        output = []
-        return self.backtrack(nums, [], output)
+        curr_path, res = [], []
+        return self.backtrack(nums, curr_path, res)
 
-    def backtrack(self, nums, curr_path, output):
+    def backtrack(self, nums, curr_path, res):
         if len(curr_path) == len(nums):
-            output.append(list(curr_path))
+            res.append(list(curr_path))
             return
 
         for i in range(len(nums)):
@@ -15,10 +15,10 @@ class Solution:
 
             # Otherwise, if it is not in our current permutation, add it
             curr_path.append(nums[i])
-            self.backtrack(nums, curr_path, output)
+            self.backtrack(nums, curr_path, res)
             curr_path.pop()
 
-        return output
+        return res
 
 # Time Complexity: We know that there are a total of N! permutations of a set with
 # ‘N’ numbers. We are also interating through nums for each path which is O(N),
