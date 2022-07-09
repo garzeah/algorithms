@@ -24,7 +24,7 @@ class Solution:
             curr_path.add((row, col))
 
             # Checking adjacent positions for our word
-            output = (
+            res = (
                 backtrack(row + 1, col, i + 1) or # Bottom
                 backtrack(row - 1, col, i + 1) or # Top
                 backtrack(row, col + 1, i + 1) or # Right
@@ -33,7 +33,7 @@ class Solution:
 
             curr_path.remove((row, col))
 
-            return output
+            return res
 
         for row in range(ROWS):
             for col in range(COLS):

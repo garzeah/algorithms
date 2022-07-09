@@ -10,27 +10,28 @@ class Solution:
             "8": "tuv",
             "9": "wxyz"
         }
-        output = []
-        return self.backtrack(digits, digit_to_char, 0, [], output)
+        res = []
+        return self.backtrack(digits, digit_to_char, 0, [], res)
 
-    def backtrack(self, digits, digit_to_char, start, curr_path, output):
+    def backtrack(self, digits, digit_to_char, start, curr_path, res):
         if len(curr_path) == len(digits):
-            output.append("".join(curr_path))
+            res.append("".join(curr_path))
             return
 
-        for char in digit_to_char[digits[start]]:
+        letters = num_to_char[digits[start]]
+        for char in letters:
             curr_path.append(char)
-            self.backtrack(digits, digit_to_char, start + 1, curr_path, output)
+            self.backtrack(digits, digit_to_char, start + 1, curr_path, res)
             curr_path.pop()
 
-        return output
+        return res
 
 # Time Complexity: O(N * 4^N) because worst case, we'll have to perform
 # backtracking on a number that contains 4 characters which will
-# exponentially increase our output.
+# exponentially increase our res.
 
 # Space Complexity: O(N * 4^N) because worst case, we'll have to perform
 # backtracking on a number that contains 4 characters which will
-# exponentially increase our output.
+# exponentially increase our res.
 
 # Solution: https://www.youtube.com/watch?v=0snEunUacZY

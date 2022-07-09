@@ -1,12 +1,12 @@
 class Solution:
     def partition(self, s: str) -> List[List[str]]:
-        output = []
-        return self.backtrack(s, output, [], 0)
+        curr_path, res = []
+        return self.backtrack(s, res, curr_path, 0)
 
-    def backtrack(self, s, output, curr_path, start):
+    def backtrack(self, s, start, curr_path, res):
         # When we reach the last index append the results
         if start >= len(s):
-            output.append(list(curr_path))
+            res.append(list(curr_path))
             return
 
         # For each substring, we want to check if it is a
@@ -18,10 +18,10 @@ class Solution:
                 # We pass in end + 1 instead of start + 1 because
                 # we are partitioning the word and want to grab
                 # each sequence of it
-                self.backtrack(s, output, curr_path, end + 1)
+                self.backtrack(s, end + 1, curr_path, res)
                 curr_path.pop()
 
-        return output
+        return res
 
     def is_palindrome(self, s):
         start, end = 0, len(s) - 1
