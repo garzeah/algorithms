@@ -1,25 +1,18 @@
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
-        digits = list(reversed(digits))
-        i = 0
+        for i in range(len(digits) - 1, -1, -1):
+            digits[i] += 1 # Adding 1 to the end
 
-        while True:
-            if i < len(digits):
-                if digits[i] == 9: # Set it to 0
-                    digits[i] = 0
-                else: # Add one to it normally
-                    digits[i] += 1
-                    break
-            # When i reaches out of bounds,
-            # we have to carry the 1 over
+            # After adding 1, if it equals 10 then set to 0 bc of carry over
+            if digits[i] == 10:
+                digits[i] = 0
+
+            # Otherwise, we don't have to carry and can return the array
             else:
-                digits.append(1)
-                break
+                return digits
 
-            i += 1
-
-        return list(reversed(digits))
+        return [1] + digits # Accounting for carry
 
 # Time Complexity: O(n)
 # Space Complexity: O(1)
-# Solution: https://www.youtube.com/watch?v=5iDkr6ebPuY
+# Solution: https://leetcode.com/problems/plus-one/discuss/24091/Easy-Python-solution-O(n)/606428
