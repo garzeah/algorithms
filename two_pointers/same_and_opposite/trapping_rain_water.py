@@ -3,25 +3,26 @@ class Solution:
         if height is None:
             return 0
 
-        l, r = 0, len(height) - 1
-        left_max, right_max = height[l], height[r]
-        res = 0
+        res, l, r = 0, 0, len(height) - 1
+        l_max, r_max = height[l], height[r]
 
-        # We can get the amount of trapped rainwater by subtracting the
-        # min(max(left_max, height[l]), max(right_max, height[r])) aka
-        # (the min wall of both the left and right maxes) with the current
-        # height. In order to do this using two pointers, we can get the
-        # minimum as long as maintain left_max <= right_max when traversing
-        # through the array.
+        # In order to find how much water we can trap at height[i],
+        # we need to know the max left and right height of every
+        # single position then take the min(left[i], right[i])
+        # and subtract it with height[i].
+
+        # However, we can optimize this by using pointers by keeping
+        # track of l_max and r_max. As long as l_max <= r_max we are
+        # getting the min(l_max, r_max).
         while l < r:
-            if left_max <= right_max:
+            if l_max <= r_max:
                 l += 1
-                left_max = max(left_max, height[l])
-                res += left_max - height[l]
+                l_max = max(l_max, height[l])
+                res += l_max - height[l] # Counting after sliding bc we cant trap water at edges
             else:
                 r -= 1
-                right_max = max(right_max, height[r])
-                res += right_max - height[r]
+                r_max = max(r_max, height[r])
+                res += r_max - height[r] # Counting after sliding bc we cant trap water at edges
 
         return res
 
