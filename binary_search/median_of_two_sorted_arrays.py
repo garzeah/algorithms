@@ -15,10 +15,10 @@ class Solution:
             j = half - i - 2
 
             # Building out the bounds of the partition
-            A_left = A[i] if i >= 0 else float('-inf')
-            B_left = B[j] if j >= 0 else float('-inf')
-            A_right = A[i + 1] if (i + 1) < len(A) else float('inf')
-            B_right = B[j + 1] if (j + 1) < len(B) else float('inf')
+            A_left = A[i] if i >= 0 else float('-inf') # Beginning of partition
+            B_left = B[j] if j >= 0 else float('-inf') # Beginning of partition
+            A_right = A[i + 1] if (i + 1) < len(A) else float('inf') # End of partition
+            B_right = B[j + 1] if (j + 1) < len(B) else float('inf') # End of partition
 
             # Want both left partitions to be <= every value in the right
             # partitions so we can find the medians using the partitions
