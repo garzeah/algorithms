@@ -10,15 +10,15 @@ class Solution:
             "8": "tuv",
             "9": "wxyz"
         }
-        res = []
-        return self.backtrack(digits, digit_to_char, 0, [], res)
+        curr_path, res = [], []
+        return self.backtrack(digits, digit_to_char, 0, curr_path, res)
 
     def backtrack(self, digits, digit_to_char, start, curr_path, res):
         if len(curr_path) == len(digits):
             res.append("".join(curr_path))
             return
 
-        letters = num_to_char[digits[start]]
+        letters = digit_to_char[digits[start]]
         for char in letters:
             curr_path.append(char)
             self.backtrack(digits, digit_to_char, start + 1, curr_path, res)
