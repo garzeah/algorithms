@@ -19,9 +19,9 @@ class Solution:
 
         res = []
         for (num, i, j) in max_heap:
-            output.append([nums1[i], nums2[j]])
+            res.append([nums1[i], nums2[j]])
 
-        return output
+        return res
 
 # Time Complexity: Since, at most, we’ll be going through all the elements of both
 # arrays and we will add/remove one element in the heap in each step, the time
