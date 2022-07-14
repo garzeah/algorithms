@@ -16,9 +16,9 @@ class Solution:
 
         left, right = self.dfs(curr.left), self.dfs(curr.right)
         # Checking if each subtree is balanced
-        balanced = left[0] and right[0] and abs(left[1] - right[1]) <= 1
+        is_balanced = left[0] and right[0] and abs(left[1] - right[1]) <= 1
 
-        return [balanced, 1 + max(left[1], right[1])]
+        return [is_balanced, 1 + max(left[1], right[1])]
 
 # Time Complexity: O(n)
 # Space Complexity: O(n)

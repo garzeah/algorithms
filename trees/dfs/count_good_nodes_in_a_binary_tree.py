@@ -8,19 +8,19 @@ class Solution:
     def goodNodes(self, root: TreeNode) -> int:
         return self.dfs(root, root.val)
 
-    def dfs(self, curr, max_val):
-        if curr is None:
+    def dfs(self, root, max_val):
+        if root is None:
             return 0
 
         # Only a good node if the current value is
         # greater than or equal to the current max
         # as we traverse along the path
         res = 0
-        if curr.val >= max_val:
+        if root.val >= max_val:
             res += 1
 
-        left = self.dfs(curr.left, max(curr.val, max_val))
-        right = self.dfs(curr.right, max(curr.val, max_val))
+        left = self.dfs(root.left, max(root.val, max_val))
+        right = self.dfs(root.right, max(root.val, max_val))
 
         return res + left + right
 
