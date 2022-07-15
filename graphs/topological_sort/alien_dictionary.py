@@ -14,10 +14,10 @@ class Solution:
         for i in range(len(words) - 1):
             # Find ordering of characters from adjacent words
             w1, w2 = words[i], words[i + 1]
-            index = 0
-            for char in range(min(len(w1), len(w2))):
+            min_length = min(len(w1), len(w2))
+
+            for char in range(min_length):
                 parent, child = w1[char], w2[char]
-                index += 1
 
                 # Since it is lexicographically sorted in the alien's dictionary, we
                 # want to find out where the characters differ so we can use that
@@ -29,12 +29,10 @@ class Solution:
                     in_degree[child] += 1  # Increment child's in_degree
                     break  # Break since we only want to find the first occurence of where they're different
 
-                # If the first min(len(w1), len(w2)) letters are the same,
-                # then w1 is smaller if and only if w1.length < w2 t.length.
-                # is a rule we need to be aware of. In the event the first
-                # word is larger than the second word, we need to handle
-                # this edge case by using index to keep track of the min_length
-                if index == min(len(w1), len(w2)) and len(w1) > len(w2):
+                # An edge case we need to consider is that if the prefix of
+                # the words are the exact same but the 1st word is larger
+                # than the 2nd word then we have an invalid ordering
+                if len(w1) > len(w2) and w1[:min_length] == w2[:min_length]:
                     return ""
 
         # c. Find all sources i.e., all vertices with 0 in-degrees
