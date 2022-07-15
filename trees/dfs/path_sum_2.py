@@ -6,10 +6,8 @@
 #         self.right = right
 class Solution:
     def pathSum(self, root: Optional[TreeNode], target: int) -> List[List[int]]:
-        res = []
-        self.dfs(root, target, [], res)
-        return res
-
+        curr_path, res = [], []
+        return self.dfs(root, target, curr_path, res)
 
     def dfs(self, root, target, curr_path, res):
         if root is None:
@@ -30,6 +28,7 @@ class Solution:
         # Remove the current node from the path to backtrack, we need to remove the current node
         # while we are going up the recursive call stack.
         del curr_path[-1]
+        return res
 
 # Time Complexity: The time complexity of the above algorithm is O(N^2), where ‘N’ is the
 # total number of nodes in the tree. This is due to the fact that we traverse each node
