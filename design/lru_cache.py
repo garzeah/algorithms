@@ -25,9 +25,9 @@ class LRUCache:
 
     # Insert node before our right pointer (recently used)
     def insert(self, node):
-        prev, nxt = self.right.prev, self.right # Getting previous and current
-        prev.next = nxt.prev = node # Connecting prev and current to inserted node
-        node.next, node.prev = nxt, prev # Connecting inserted node to prev and current
+        prev, curr = self.right.prev, self.right # Getting previous and current
+        prev.next = curr.prev = node # Connecting prev and current to inserted node
+        node.prev, node.next = prev, curr # Connecting inserted node to prev and current
 
     def get(self, key: int) -> int:
         if key in self.cache:
