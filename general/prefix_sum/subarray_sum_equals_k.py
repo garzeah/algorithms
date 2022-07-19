@@ -1,14 +1,16 @@
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         curr_sum, res = 0, 0
-        prefix_sums = { 0: 1 } # Base case of 0?
+        # Adding a base case of 0 in the event curr_sum - k = 0
+        prefix_sums = { 0: 1 } # Prefix sum : amount of ways to get to our prefix sum
 
         # The main idea behind this is whenever curr_sum has increased by
         # a value of k, then we've found a subarray that is equal to k
         for num in nums:
-            curr_sum += num # Building up the current prefix sum
-            curr_diff = curr_sum - k # Getting the current difference
-            res += prefix_sums.get(curr_diff, 0) # Checking if there is an increase by k
+            curr_sum += num
+            # If a difference exists then curr_sum has increased by
+            # a value of k, so we can add that to our result
+            res += prefix_sums.get(curr_sum - k, 0)
             prefix_sums[curr_sum] = prefix_sums.get(curr_sum, 0) + 1 #
 
         return res
