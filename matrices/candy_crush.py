@@ -63,7 +63,9 @@ class Solution:
 
         return board if is_all_crushed else self.candyCrush(board)
 
-# Time Complexity: O(m * n) since we have to iterate through the whole board a couple times
+# Time Complexity: O(m * n)^2 since we have to scan the board 3 times everytime
+# we crush at least 3 candies. If we end up crushing the whole board then
+# we would run into that time complexity.
 
 # Space Complexity: O(1)
 
