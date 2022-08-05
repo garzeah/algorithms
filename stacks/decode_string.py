@@ -11,18 +11,16 @@ class Solution:
             if s[i] != ']':
                 stack.append(s[i])
             else:
-                # Want to keep popping until we get an opening bracket
-                # and adding the characters to our substr
+                # Want to get all the substrs contained in a bracket
                 substr = ""
                 while stack[-1] != "[":
                     substr = stack.pop() + substr
                 stack.pop() # Popping opening bracket
 
-                # Want to keep popping until we get all the numbers
-                # to determine what to multiply the substr with
+                # Want to get the number to multiply with
                 k = ""
                 while stack and stack[-1].isdigit():
-                    k = stack.pop() + k
+                    k = stack.pop() + k # May be more than 1 digit
 
                 stack.append(int(k) * substr) # Multiplying the string and adding it back
 

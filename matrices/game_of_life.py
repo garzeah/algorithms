@@ -3,7 +3,7 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
-        # Keeping a map of the origin and new values because when changing
+        # Keeping a map of the original and new values because when changing
         # the state, we want to depend on the original values rather than new
         # Original | New | State
         #    0     |  0  |   0   # Nothing changes

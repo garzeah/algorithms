@@ -7,22 +7,17 @@ class Solution:
         valid_triplet = 0
 
         for i in range(len(nums) - 1, -1, -1):
-
-            third_edge = nums[i] # Want 3rd edge to be the current largest
-            index_of_first_edge, index_of_second_edge = 0, i - 1
+            first, second, third = 0, i - 1, i
 
             # Make triplets using basic triangle property a + b > c
-            while index_of_first_edge < index_of_second_edge:
-                first_edge = nums[index_of_first_edge]
-                second_edge = nums[index_of_second_edge]
-
-                if first_edge + second_edge > third_edge:
-                    valid_triplet += (index_of_second_edge - index_of_first_edge)
+            while first < second:
+                if nums[first] + nums[second] > nums[third]:
+                    valid_triplet += (second - first)
                     # Second edge large enough make it smaller and try next run
-                    index_of_second_edge -= 1
+                    second -= 1
                 else:
                     # First edge is too small make it larger and try next run
-                    index_of_first_edge += 1
+                    first += 1
 
         return valid_triplet
 

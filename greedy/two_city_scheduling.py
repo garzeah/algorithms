@@ -12,7 +12,9 @@ class Solution:
         # in calculating minimum costs
         diffs = []
         for a, b in costs:
-            # Tells us how much we would save going to city a than b
+            # Tells us how much we would save going to city b than a
+            # If it is negative, we would save that amount
+            # If it is positive, we would lose that amount
             diffs.append([b - a, a, b])
 
         diffs.sort()

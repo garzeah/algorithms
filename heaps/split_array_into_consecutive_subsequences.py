@@ -31,14 +31,12 @@ class Solution:
 
         # We want to add a check in for numbers that have a valid subsequence but aren't the
         # correct length. So for every remaining array, check the length of its subsequence
-        min_num = float('inf')
         for i in range(len(len_heap)):
-            min_num = min(min_num, len_heap[i][1])
-            if min_num < 3:
+            if len_heap[i][1] < 3:
                 return False
 
         return True
 
 # Time Complexity: O(nlogn)
-# Space Complexity: O(nlogn)
+# Space Complexity: O(n)
 # Solution: https://leetcode.com/problems/split-array-into-consecutive-subsequences/discuss/1850131/Python-code-with-Heap

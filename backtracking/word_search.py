@@ -8,7 +8,7 @@ class Solution:
             # has to be on top because we want to check
             # if we have a matching word first before
             # it is out of bounds.
-            if i == len(word):
+            if i >= len(word):
                 return True
 
             # Base case for when we don't find the word

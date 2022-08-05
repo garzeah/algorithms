@@ -44,7 +44,9 @@ class Solution(object):
                 continue
 
             # Check if person did transaction within 60 minutes in a different city
-            for invalid_time in range(time-60, time+61):
+            start_time = max(0, int(time) - 60)
+            end_time = max(0, int(time) + 61)
+            for invalid_time in range(start_time, end_time):
                 if invalid_time not in transaction_time:
                     continue
 
@@ -53,11 +55,11 @@ class Solution(object):
                     continue
 
                 # Getting cities associated with this person's transaction
-                trans_by_name_at_time = transaction_time[invalid_time][name]
+                cities = transaction_time[invalid_time][name]
 
                 # Checking if transactions were done in a different city within
                 # a 1 hour timeframe or checking if there are duplicate transactions
-                if city not in trans_by_name_at_time or len(trans_by_name_at_time) > 1:
+                if city not in cities or len(cities) > 1:
                     invalid.append(transaction)
                     break
 

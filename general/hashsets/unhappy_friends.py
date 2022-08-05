@@ -8,36 +8,46 @@ class Solution:
         # they prefer, check if they are in the preferee's list
         # of people they prefer
 
-        preferred = {} # person : set{ everyone they prefer over current partner }
+        prefs = {} # person : set{ everyone they prefer over current partner }
 
-        # Want to store everyone they prefer over their current partner
-        for (x, y) in pairs:
-            preferred[x] = set()
-            preferred[y] = set()
+        # Want to get a set of people that x and u prefer
+        # over their current partner
+        for (x, u) in pairs:
+            prefs[x] = set()
+            prefs[u] = set()
 
+            # Want to find who x prefers over current partner
             for person in preferences[x]:
-                if person == y:
+                # Break since we only want to get the people
+                # they prefer over their current partner
+                if person == u:
                     break
 
-                preferred[x].add(person)
+                prefs[x].add(person)
 
-            for person in preferences[y]:
+            # Want to find who u prefers over current partner
+            for person in preferences[u]:
+                # Break since we only want to get the people
+                # they prefer over their current partner
                 if person == x:
                     break
 
-                preferred[y].add(person)
+                prefs[u].add(person)
 
-        # For every person that prefers someone else and for every preferee in that
-        # person's list of people they prefer, if that person is in that preferee's
-        # list of people they prefer, then we have an unhappy friend
+        # For every person who prefers someone else over their current partner
+        # and for every preferee (a person that someone prefers over their
+        # current partner), we want to check if that is in that preferee's
+        # list of ppl they prefer over their current partner since that
+        # preferee is already in that person's list of ppl they prefer
         res = 0
-        for person in preferred:
-            for preferee in preferred[person]:
-                if person in preferred[preferee]:
+        for person in prefs:
+            for preferee in prefs[person]:
+                if person in prefs[preferee]:
                     res += 1
                     break
 
         return res
+
 
 # Time Complexity: O(n^2)
 # Space Complexity: O(n)

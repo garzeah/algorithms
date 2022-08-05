@@ -17,23 +17,22 @@ class Solution:
         queue.append(root)
 
         while queue:
-            prev_node = None
-            level_size = len(queue)
+            prev = None
 
             # Connect all nodes of this level
-            for _ in range(level_size):
-                curr_node = queue.popleft()
+            for _ in range(len(queue)):
+                curr = queue.popleft()
 
-                if prev_node:
-                    prev_node.next = curr_node
+                if prev:
+                    prev.next = curr
 
-                prev_node = curr_node
+                prev = curr
 
                 # Insert the children of current node in the queue
-                if curr_node.left:
-                    queue.append(curr_node.left)
-                if curr_node.right:
-                    queue.append(curr_node.right)
+                if curr.left:
+                    queue.append(curr.left)
+                if curr.right:
+                    queue.append(curr.right)
 
         return root
 

@@ -1,8 +1,8 @@
 class Solution:
     def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
-        curr_path, res = [], []
+        curr_path, res = [0], []
         end_of_path = len(graph) - 1
-        return self.dfs(graph, 0, end_of_path, [0], res)
+        return self.dfs(graph, 0, end_of_path, curr_path, res)
 
     # Since it is acyclic, we do not have to worry about keeping track
     # of previous nodes. We will use end_of_path to keep track when
