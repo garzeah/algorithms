@@ -18,7 +18,7 @@ class Solution:
         for start in starts:
             # Meetings that have started but nothing has
             # ended so we will need a room to accomodate
-            if start < ends[end]:
+            if start < ends[end]: # Overlapping
                 rooms += 1
             # Check the other ending times
             else:

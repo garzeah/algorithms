@@ -27,7 +27,7 @@ class Solution:
                         grid[r][c] == 1
                     ):
                         queue.append((r, c))
-                    visited.add((r, c))
+                        visited.add((r, c))
                         shape.append((r - rootRow, c - rootCol))
 
             shapes.add(tuple(shape)) # Turning into a tuple for O(1) lookup
