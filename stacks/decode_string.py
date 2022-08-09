@@ -7,9 +7,9 @@ class Solution:
         # then the outer brackets
         stack = []
 
-        for i in range(len(s)):
-            if s[i] != ']':
-                stack.append(s[i])
+        for char in s:
+            if char != ']':
+                stack.append(char)
             else:
                 # Want to get all the substrs contained in a bracket
                 substr = ""
