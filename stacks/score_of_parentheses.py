@@ -1,19 +1,19 @@
 class Solution:
     def scoreOfParentheses(self, s: str) -> int:
         stack = []
-        score = 0 # multiplier for nested parentheses
+        mult = 0 # multiplier for nested parentheses
 
-        # Everytime we encounter '(', we will append a score of 0.
+        # Everytime we encounter '(', we will append a mult of 0.
         # Then when we encounter ')', we will add the current
-        # score with our multiplier max(1, score * 2)
+        # mult with our multiplier max(1, mult * 2)
         for char in s:
             if char == '(':
-                stack.append(score)
-                score = 0
+                stack.append(mult) # Cumulation of each level
+                mult = 0 # Reset the multiplier
             elif char == ')':
-                score = stack.pop() + max(1, score * 2) # multiplier
+                mult = stack.pop() + max(1, mult * 2) # multiplier
 
-        return score
+        return mult
 
 # Time Complexity: O(n)
 # Space Complexity: O(1)
