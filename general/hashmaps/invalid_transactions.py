@@ -20,50 +20,55 @@ class Solution(object):
         - For each transaction, go through invalid times (+-60), check if a transaction by the same person happened
             in a different city - and add it to the invalid transactions if so.
         """
-        invalid = []
 
-        # Record all transactions done at a particular time
-        # including the person and the location.
-        transaction_time = defaultdict(dict)
+        # Record all the transactions done at a particular
+        # time, by a particular person and which cities at
+        # which these transactions have occurred at
+        times = defaultdict(dict) # { time: { name: { set of cities } } }
+
         for transaction in transactions:
             name, str_time, amount, city = transaction.split(",")
             time = int(str_time)
 
-            if name not in transaction_time[time]:
-                transaction_time[time][name] = [city]
+            # If a person's name doesn't exist, then we have to record
+            # their name and where their transaction happened
+            if name not in times[time]:
+                times[time][name] = {city}
+            # The name exists at this time so add their new city
             else:
-                transaction_time[time][name].append(city)
+                times[time][name].add(city)
 
+        res = []
         for transaction in transactions:
             name, str_time, amount, city = transaction.split(",")
             time = int(str_time)
 
             # Check amount
             if int(amount) > 1000:
-                invalid.append(transaction)
+                res.append(transaction)
                 continue
 
             # Check if person did transaction within 60 minutes in a different city
-            start_time = max(0, int(time) - 60)
-            end_time = max(0, int(time) + 61)
-            for invalid_time in range(start_time, end_time):
-                if invalid_time not in transaction_time:
+            start, end = max(0, time - 60), max(0, time + 61)
+            for time in range(start, end):
+                # There is no transaction occurring at this time
+                if time not in times:
                     continue
 
-                # Invalid time does not belong to this person's transaction
-                if name not in transaction_time[invalid_time]:
+                # This person is not associated with this transaction
+                if name not in times[time]:
                     continue
 
                 # Getting cities associated with this person's transaction
-                cities = transaction_time[invalid_time][name]
+                cities = times[time][name]
 
-                # Checking if transactions were done in a different city within
-                # a 1 hour timeframe or checking if there are duplicate transactions
+                # Checking if transactions were done in a different
+                # city within a 1 hour timeframe
                 if city not in cities or len(cities) > 1:
-                    invalid.append(transaction)
+                    res.append(transaction)
                     break
 
-        return invalid
+        return res
 
 # Time Complexity: O(n) would be our worst case scenario since we only iterate
 # through a transaction at most only 1 time. If we were to do brute force, we

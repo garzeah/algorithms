@@ -17,11 +17,13 @@ class Solution:
             return False
 
         # Decision to see if any of the numbers will equal our target
+        # when we decrement target with the current number
         if nums[i] <= target:
             if self.helper(nums, target - nums[i], i + 1):
                 return True
 
         # Decision to see if any of the values is equal to our target
+        # without changing the target
         return self.helper(nums, target, i + 1)
 
 # The time complexity of the above algorithm is exponential O(2^n), where ‘n’
