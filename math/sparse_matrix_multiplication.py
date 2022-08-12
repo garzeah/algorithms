@@ -1,7 +1,7 @@
 class Solution:
     def multiply(self, A: List[List[int]], B: List[List[int]]) -> List[List[int]]:
-        ROWS_A, COLS_A = len(A), len(A[0])
-        ROWS_B, COLS_B = len(B), len(B[0])
+        ROWS_A = len(A)
+        COLS_A, COLS_B = len(A[0]), len(B[0])
 
         # The size of the matrix will COLS_B * ROWS_A
         res = [[0 for x in range(COLS_B)] for y in range(ROWS_A)]
