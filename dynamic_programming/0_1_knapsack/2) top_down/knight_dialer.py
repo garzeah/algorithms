@@ -14,28 +14,29 @@ class Solution:
             0: (4, 6),
         }
 
-        return self.helper(n, neighbors, -1, {}) % (10 ** 9 + 7)
+        dp = [[-1 for x in range(n + 1)] for y in range(len(neighbors))]
+        return self.helper(n, neighbors, -1, dp) % (10 ** 9 + 7)
 
-    def helper(self, n, neighbors, start, cache):
-        if (n, start) in cache:
-            return cache[(n, start)]
-
+    def helper(self, target, neighbors, i, dp):
         # Run out of numbers to count
-        if n == 0:
+        if target == 0:
             return 1
 
         # Want to get the count of all the possible numbers
         # we can dial that is of size n
-        count = 0
-        for num in neighbors[start]:
-            count += self.helper(n - 1, neighbors, num, cache)
+        if dp[i][target] == -1:
+            count = 0
+            for num in neighbors[i]:
+                count += self.helper(target - 1, neighbors, num, dp)
 
-        # Cache values so we don't have to recompute
-        cache[(n, start)] = count
+            # Cache values so we don't have to recompute
+            dp[i][target] = count
 
-        return count
+        return dp[i][target]
 
 # Time Complexity: O(n) because since we cached everything, we
 # do not have to recompute the previous values
 
 # Space Complexity: O(n) because of the stack space in recursion
+
+# Solution: https://leetcode.com/problems/knight-dialer/discuss/1476546/Python-Simple-Recursion-%2B-Memoization

@@ -1,15 +1,15 @@
 class Solution:
     def coinChange(self, coins, amount):
         dp = [[-1 for x in range(amount + 1)] for y in range(len(coins))]
-        res = self.helper(coins, amount, dp. 0)
+        res = self.helper(coins, amount, dp, 0)
         return -1 if res == float('inf') else res
 
     def helper(self, coins, amount, dp, i):
-        # base check
+        # Base case, return 0 so we can begin counting
         if amount == 0:
             return 0
 
-        if len(coins) == 0 or i >= len(coins):
+        if i >= len(coins):
             return float('inf')
 
         # check if we have not already processed a similar sub-problem

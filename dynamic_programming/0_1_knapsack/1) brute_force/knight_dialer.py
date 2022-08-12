@@ -25,7 +25,7 @@ class Solution:
         # we can dial that is of size n
         count = 0
         for num in neighbors[start]:
-            count += self.helper(n - 1, neighbors, num)
+            count += self.helper(n - 1, neighbors, num) % (10 ** 9 + 7)
 
         return count
 
@@ -36,3 +36,5 @@ class Solution:
 # Space Complexity: Worst case scenario, I want to say possibly
 # O(3^n) as well because of each occurrence of recursion in
 # our stack.
+
+# Solution: https://leetcode.com/problems/knight-dialer/discuss/1476546/Python-Simple-Recursion-%2B-Memoization
