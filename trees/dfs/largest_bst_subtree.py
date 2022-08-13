@@ -21,24 +21,26 @@ class Solution:
             # to determine whether the subtree is a valid BST at our current root. We
             # will also use the left_min and right_max to calculate to calculate the
             # the values we need when comparing the root to left_max and right_min
-            return [True, float('inf'), float('-inf'), 0]
+            return [True, 0, float('inf'), float('-inf')]
 
-        left_is_bst, left_min, left_max, left_size = self.dfs(root.left)
-        right_is_bst, right_min, right_max, right_size = self.dfs(root.right)
+        left_is_bst, left_size, left_min, left_max = self.dfs(root.left)
+        right_is_bst, right_size, right_min, right_max = self.dfs(root.right)
 
         # If we have a binary search tree...
         if (left_is_bst and right_is_bst and root.val > left_max and root.val < right_min):
-            # When we hit our base case, we want to handle
-            # the infinite values and calc. max subtree
+            # Want to record the the root values when we have a valid BST
             left_min = root.val if left_min == float('inf') else left_min
             right_max = root.val if right_max == float('-inf') else right_max
+
+            # Calculate the max length
             local_res = left_size + right_size + 1
             self.res = max(self.res, local_res)
 
-            return [True, left_min, right_max, left_size + right_size + 1]
+            # Continue building off of it
+            return [True, left_size + right_size + 1, left_min, right_max]
         else:
-            # Return false, +- inf for comparison and size of 0 since it's not a BST
-            return [False, float('inf'), float('-inf'), 0]
+            # We don't have a valid BST so just return false
+            return [False, 0, float('inf'), float('-inf')]
 
 # Time Complexity: O(n)
 # Space Complexity: O(n)
