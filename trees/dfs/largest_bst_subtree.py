@@ -28,7 +28,7 @@ class Solution:
 
         # If we have a binary search tree...
         if (left_is_bst and right_is_bst and root.val > left_max and root.val < right_min):
-            # Want to record the the root values when we have a valid BST
+            # When we hit our base case, we want to record the root value
             left_min = root.val if left_min == float('inf') else left_min
             right_max = root.val if right_max == float('-inf') else right_max
 
@@ -37,7 +37,7 @@ class Solution:
             self.res = max(self.res, local_res)
 
             # Continue building off of it
-            return [True, left_size + right_size + 1, left_min, right_max]
+            return [True, local_res, left_min, right_max]
         else:
             # We don't have a valid BST so just return false
             return [False, 0, float('inf'), float('-inf')]

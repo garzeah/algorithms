@@ -1,32 +1,28 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-
-        wordSet = set(wordDict)
+        word_set = set(wordDict)
         memo = {}
 
         def helper(substr):
-            # Base case, if the substr has been
-            # memoized, return that value
             if substr in memo:
                 return memo[substr]
 
             res = []
             for i in range(len(substr)):
-                prefix = substr[:i + 1] # Get every char up to i + 1
+                prefix = substr[:i + 1]
 
-                # Want to check if prefix is in our word set
-                if prefix in wordSet:
-                    # If prefix is equal to our substr then we can append
-                    # the prefix for our particular substr
+                # Want to check if the prefix is in our word set
+                if prefix in word_set:
+                    # We found our word so add it to our result
                     if prefix == substr:
                         res.append(prefix)
-                    # Otherwise, we want to perform recursion on the remaining characters
-                    # and for the words we get back from our cache, we want to build
-                    # the valid phrases
+                    # If it doesn't equal our substring (e.g our input is catsanddog and
+                    # we have cat but not sanddog) then we want to loop through the rest
+                    # of the substring and for each phrase we get back, add to result
                     else:
-                        restOfWord = helper(substr[i+1:])
-                        for word in restOfWord:
-                            res.append(prefix + ' ' + word)
+                        rest_of_words = helper(substr[i+1:])
+                        for phrase in rest_of_words:
+                            res.append(prefix + ' ' + phrase)
 
             memo[substr] = res
             return res
