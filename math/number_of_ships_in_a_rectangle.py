@@ -14,7 +14,10 @@ class Solution:
     def countShips(self, sea: 'Sea', topRight: 'Point', bottomLeft: 'Point') -> int:
         def findShips(topRight, bottomLeft):
             # Base case of reaching singularity (1 single point)
-            if topRight.x == bottomLeft.x and topRight.y == bottomLeft.y:
+            if (
+                topRight.x == bottomLeft.x and
+                topRight.y == bottomLeft.y
+            ):
                 return int(sea.hasShips(topRight, bottomLeft))
 
             # Base case for when we are out of bounds or when there aren't any ships

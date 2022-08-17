@@ -5,20 +5,20 @@ class Solution:
         # ends to see if we can add a new value in
         freq, ends = Counter(nums), Counter()
 
-        for i in nums:
-            if freq[i] == 0: # No nums longer available to process
+        for num in nums:
+            if freq[num] == 0: # No nums longer available to process
                 continue
 
-            freq[i] -= 1
+            freq[num] -= 1
             # Checks if we can place a number in an existing subsequence
-            if ends[i - 1] > 0:
-                ends[i - 1] -= 1
-                ends[i] += 1
+            if ends[num - 1] > 0:
+                ends[num - 1] -= 1
+                ends[num] += 1
             # Builds a new subsequence of length 3
-            elif freq[i + 1] and freq[i + 2]:
-                freq[i + 1] -= 1
-                freq[i + 2] -= 1
-                ends[i + 2] += 1 # Indicates that we have a subsequence that ends w/ i + 2
+            elif freq[num + 1] and freq[num + 2]:
+                freq[num + 1] -= 1
+                freq[num + 2] -= 1
+                ends[num + 2] += 1 # Indicates that we have a subsequence that ends w/ i + 2
             # Otherwise, we can't place our number, so we return false
             else:
                 return False

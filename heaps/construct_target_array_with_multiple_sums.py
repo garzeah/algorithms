@@ -55,11 +55,11 @@ class Solution:
             if new > rest:
                 new = (new % rest) + rest
 
-            heappush(max_heap, -new)
-
             # Keep track of the new total
             total -= curr_max
             total += new
+
+            heappush(max_heap, -new)
 
         return True
 
