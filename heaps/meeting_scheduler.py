@@ -21,6 +21,7 @@ class Solution:
             # minimum's start time + the duration then we have the
             # earliest time slot that works for both of the people
             if end >= min_heap[0][0] + duration:
+                # Better to take the time ahead since it's overlapping
                 return [min_heap[0][0], min_heap[0][0] + duration]
 
         return []
