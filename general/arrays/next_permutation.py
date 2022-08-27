@@ -3,7 +3,7 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        # We want to find the point where the numbers stop decreasing
+        # Find the longest decreasing sequence of numbers and mark it
         i = j = len(nums) - 1
         while i > 0 and nums[i-1] >= nums[i]:
             i -= 1
@@ -13,16 +13,17 @@ class Solution:
             nums.reverse()
             return
 
-        # Find the last "ascending" position in the decreasing range
+        # Mark our pivot which is the value before the decreasing sequence
+        # and find the rightmost successor to our pivot in the sequence
         k = i - 1
         while nums[k] >= nums[j]:
             j -= 1
 
-        # When we find the last "ascending" then we want to swap
-        # and reverse the decreasing portion
+        # Swap with pivot
         nums[k], nums[j] = nums[j], nums[k]
 
-        l, r = k + 1, len(nums) - 1  # Reverse the decreasing portion
+        # Reverse the decreasing sequence
+        l, r = i, len(nums) - 1
         while l < r:
             nums[l], nums[r] = nums[r], nums[l]
             l +=1

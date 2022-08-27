@@ -1,12 +1,10 @@
 class Solution(object):
-
     def compress(self, chars):
-
-        length = len(chars)
+        n = len(chars)
 
         # make it a bit faster
-        if length < 2:
-            return length
+        if n < 2:
+            return n
 
         # The start position of the contiguous group of characters we are currently reading
         anchor = 0
@@ -23,19 +21,20 @@ class Solution(object):
 
             # check if we have reached the end or a different char
             # check if we are end or the next char != the current
-            if (i + 1) == length or char != chars[i + 1]:
-                # Moves up characters for sequences like aba, if we
-                # didn't do this we would get aab instead of aba
+            if (i + 1) == n or char != chars[i + 1]:
+                # Want to write the current character
+                # - accounts for ["a", "2", "b", "2"]
+                # - accounts for ["a", "b", "1", "2"]
                 chars[write] = char
                 write += 1
 
-                # Check if char has been repeated have been duplicated
-                # if the read pointer is ahead of the anchor pointer
+                # Only want to write when i is ahead of our anchor
+                # - accounts for ["a"]
                 if i > anchor:
                     # Check no. of times char has been repeated
                     repeated_times = i - anchor + 1
 
-                    # Write the number
+                    # Write the number, move it up incase of double digits
                     for num in str(repeated_times):
                         chars[write] = num
                         write += 1
