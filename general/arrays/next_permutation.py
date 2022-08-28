@@ -5,7 +5,7 @@ class Solution:
         """
         # Find the longest decreasing sequence of numbers and mark it
         i = j = len(nums) - 1
-        while i > 0 and nums[i-1] >= nums[i]:
+        while i > 0 and nums[i - 1] >= nums[i]:
             i -= 1
 
         # If all numbers are in decreasing order, there is no next perm.
@@ -16,7 +16,7 @@ class Solution:
         # Mark our pivot which is the value before the decreasing sequence
         # and find the rightmost successor to our pivot in the sequence
         k = i - 1
-        while nums[k] >= nums[j]:
+        while j >= 0 and nums[k] >= nums[j]:
             j -= 1
 
         # Swap with pivot

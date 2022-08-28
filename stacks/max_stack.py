@@ -28,9 +28,18 @@ class MaxStack:
         return self.stack[self.stack[-1][1]][0]
 
     # Time Complexity: O(n)
+    # Keeping the current max
+    # [
+    #   (1, 0), (2, 1), (4, 2), (3, 2)
+    # ]
+
+    # Updating a new max
+    # [
+    #   (7, 0), (8, 1), (4, 1), (3, 1)
+    # ]
     def popMax(self):
         max_idx = self.stack[-1][1]  # index where the max exists
-        res = self.stack[max_idx][0]  # max value to return
+        curr_max = self.stack[max_idx][0]  # max value to return
         prev_max = self.stack[self.stack[max_idx - 1][1]][0] if max_idx > 0 else float('-inf')
 
         # Scan the stack starting at 'index' to recompute the max values and shift all
@@ -47,7 +56,7 @@ class MaxStack:
                 self.stack[i] = (self.stack[i + 1][0], self.stack[i - 1][1])
 
         self.stack.pop()
-        return res
+        return curr_max
 
 # Space Complexity: O(n)
 # Solution: https://leetcode.com/problems/max-stack/discuss/391403/Python-O(1)-push-pop-top-and-peekMax-O(N)-popMax
