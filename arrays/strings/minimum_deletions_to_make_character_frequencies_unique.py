@@ -8,7 +8,7 @@ class Solution(object):
         unique = set() # Keep track of unique frequencies
         count = 0
 
-        for (char, freq) in freq.items():
+        for freq in freq.values():
             # While we have a frequency and it is in unique, we
             # either want to completely delete it or find a new
             # unique frequency and keep track of the count

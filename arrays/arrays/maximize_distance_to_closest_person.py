@@ -27,6 +27,8 @@ class Solution(object):
 
         # Recording the last set of zeros in the end
         suf_zeros = zeros
+
+        # Adding 1 to max zeros to account for the seat so we can get the middle
         return max(pre_zeros, suf_zeros, (max_zeros + 1) // 2)
 
 # Time Complexity: O(n)

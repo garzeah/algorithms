@@ -24,6 +24,6 @@ class Solution(object):
 
             write -= 1
 
-# Time Complexity: O(n)
+# Time Complexity: O(n + m)
 # Space Complexity: O(1)
 # Solution: https://leetcode.com/problems/merge-sorted-array/discuss/1176400/Best-Python-Solution-Faster-Than-99-One-Loop-No-Splicing-No-Special-Case-Loop

@@ -8,16 +8,18 @@ class Solution(object):
         # In the first loop, we fill NGE all possible.
         stack, res = [], [-1] * len(nums)
         for i, num in enumerate(nums):
-            while stack and nums[stack[-1]] < num:
-                res[stack.pop()] = num
-            stack.append(i)
+            while stack and num > stack[-1][0]:
+                _, idx = stack.pop()
+                res[idx] = num
+            stack.append((num, i))
 
         # In the second loop, there might be some elements left in the stack, so we
         # iterate again (without appending to stack) and get NGE. The elements that
         # are left in the stack even after second loop are max(nums).
         for num in nums:
-            while stack and nums[stack[-1]] < num:
-                res[stack.pop()] = num
+            while stack and num > stack[-1][0]:
+                _, idx = stack.pop()
+                res[idx] = num
 
         return res
 
