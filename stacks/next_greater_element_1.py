@@ -9,8 +9,7 @@ class Solution(object):
         res = [-1] * len(nums1)
 
         stack = []
-        for i in range(len(nums2)):
-            curr = nums2[i]
+        for curr in nums2:
 
             # Want to maintain a monotonic decreasing stack bc whenever
             # we encounter a value that breaks this then that means we

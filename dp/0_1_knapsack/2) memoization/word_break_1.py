@@ -1,9 +1,9 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-        wordDict, dp = set(wordDict), {}
-        return self.helper(s, wordDict, dp)
+        word_set, dp = set(wordDict), {}
+        return self.helper(s, word_set, dp)
 
-    def helper(self, s, wordDict, dp):
+    def helper(self, s, word_set, dp):
         # If the word is empty its in wordDict or we've
         # stripped  off every word and result is empty
         if len(s) == 0:
@@ -12,14 +12,14 @@ class Solution:
         if s in dp:
             return dp[s]
 
-        for word in wordDict:
+        for word in word_set:
             # Check if any words in dictionary are in the beginning of s
             prefix = s[0:len(word)]
 
             # If we found a match, recursive call with that part stripped off
-            if prefix == word and self.helper(s[len(word):], wordDict, dp):
+            if prefix == word and self.helper(s[len(word):], word_set, dp):
                 dp[prefix] = True
-                return True
+                return dp[prefix]
 
         dp[s] = False
         return dp[s]
