@@ -65,12 +65,12 @@ class NestedIterator(object):
             else:
                 x = nestedList[i]
 
-                # Means there are still some integers in the nested list
+                # Nested list still contains integers
                 if x.isInteger():
                     return True
 
-                # Otherwise, we have a list so we move up the pointer
-                # and append the list to our stack and starting pointer
+                # Checking if we have a nestedList, if we do then we want to
+                # add it into our stack and move up the pointer
                 s[-1][1] += 1
                 s.append([x.getList(), 0])
 

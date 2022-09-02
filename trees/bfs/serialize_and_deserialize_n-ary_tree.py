@@ -16,16 +16,17 @@ class Codec:
         if root is None:
             return root
 
-        result, queue = [], [root]
+        res, queue = [], [root]
 
+        # For each node, we want to append the value and unpack the children
         for node in queue:
             if node:
-                result.append(str(node.val))
+                res.append(str(node.val))
                 queue += None, *node.children # Can use the asterisk to unpack children
             else:
-                result.append("null")
+                res.append("null")
 
-        return ",".join(result)
+        return ",".join(res)
 
 
     def deserialize(self, data: str) -> 'Node':
@@ -40,6 +41,7 @@ class Codec:
         if len(data) == 0:
             return data
 
+        # Assigning pos. to 2 because we'll be starting at the 2nd node
         nodes, queue, pos = data.split(","), deque(), 2
         root = Node(int(nodes[0]), []) # Creating our first node and its children
         queue.append(root)
@@ -47,13 +49,13 @@ class Codec:
         while queue:
             node = queue.popleft()
 
-            # While we aren't at the end we don't have null nodes,
-            # we want to append the the node's corresponding children
+            # Since each group of children is separated by a null,
+            # we want to append the node's corresponding children
             while pos < len(nodes) and nodes[pos] != "null":
                 node.children.append(Node(int(nodes[pos]), []))
                 pos += 1
 
-            pos += 1
+            pos += 1 # Since children are separated by a null, move it up
             queue += node.children # Adding the next level of children
 
         return root
