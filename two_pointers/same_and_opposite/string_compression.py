@@ -21,7 +21,7 @@ class Solution(object):
 
             # check if we have reached the end or a different char
             # check if we are end or the next char != the current
-            if (i + 1) == n or chars[i] != chars[i + 1]:
+            if (i + 1) >= n or chars[i] != chars[i + 1]:
                 # Want to write the current character
                 # - accounts for ["a", "2", "b", "2"]
                 # - accounts for ["a", "b", "1", "2"]

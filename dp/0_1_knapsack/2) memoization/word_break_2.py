@@ -30,7 +30,7 @@ class Solution:
                         res.append(prefix + ' ' + phrase)
 
         dp[substr] = res
-        return res
+        return dp[substr]
 
 # Solution:
     # - https://www.youtube.com/watch?v=hRqJJF2j3To
