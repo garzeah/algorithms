@@ -13,21 +13,20 @@ class Codec:
         :type root: Node
         :rtype: str
         """
-        if root is None:
-            return root
-
-        res, queue = [], [root]
-
-        # For each node, we want to append the value and unpack the children
-        for node in queue:
-            if node:
-                res.append(str(node.val))
-                queue += None, *node.children # Can use the asterisk to unpack children
-            else:
-                res.append("null")
-
+        res = []
+        self.serialize_helper(root, res)
         return ",".join(res)
 
+    def serialize_helper(self, root, res):
+        if root is None:
+            return ""
+        else:
+            res.append(str(root.val)) # Get the value
+            res.append(str(len(root.children))) # Get the length of its children
+
+            # We want to serialize every child as well
+            for child in root.children:
+                self.serialize_helper(child, res)
 
     def deserialize(self, data: str) -> 'Node':
         """Decodes your encoded data to tree.
@@ -35,33 +34,32 @@ class Codec:
         :type data: str
         :rtype: Node
         """
-        if data is None:
-            return data
-
         if len(data) == 0:
-            return data
+            return None
+        # Append every value in res to our queue and return them into a tree
+        else:
+            res, queue = data.split(","), deque()
+            [queue.append(res[i]) for i in range(len(res))]
+            return self.deserialize_helper(queue)
 
-        # Assigning pos. to 2 because we'll be starting at the 2nd node
-        nodes, queue, pos = data.split(","), deque(), 2
-        root = Node(int(nodes[0]), []) # Creating our first node and its children
-        queue.append(root)
+    def deserialize_helper(self, queue):
+        if len(queue) > 0:
+            # Retrieving the value and the length of its children
+            val, total_children = queue.popleft(), int(queue.popleft())
+            root = Node(int(val), []) # Initializing our root
 
-        while queue:
-            node = queue.popleft()
+            # For every child a value has, we want to create a root
+            # for it and add its children to the base root
+            for i in range(total_children):
+                root.children.append(self.deserialize_helper(queue))
 
-            # Since each group of children is separated by a null,
-            # we want to append the node's corresponding children
-            while pos < len(nodes) and nodes[pos] != "null":
-                node.children.append(Node(int(nodes[pos]), []))
-                pos += 1
+            return root
+        else:
+            return None
 
-            pos += 1 # Since children are separated by a null, move it up
-            queue += node.children # Adding the next level of children
-
-        return root
 
 # Your Codec object will be instantiated and called as such:
 # codec = Codec()
 # codec.deserialize(codec.serialize(root))
 
-# Solution: https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/discuss/1976476/Short-Python-Iterative-BFS-Solution
+# Solution: https://leetcode.com/problems/serialize-and-deserialize-n-ary-tree/discuss/393501/easy-peasy-python-solution-preorder-travel-with-child-count

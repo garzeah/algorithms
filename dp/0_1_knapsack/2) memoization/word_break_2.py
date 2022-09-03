@@ -14,9 +14,8 @@ class Solution:
 
             # Want to check if the prefix is in our word set
             if prefix in word_set:
-                # We found our word so and it matches our substr
-                # so we want to continue building off that to
-                # form possible sentences
+                # We found our word so and it matches our
+                # substr, we are at the end of our substr
                 if prefix == substr:
                     res.append(prefix)
                 # If it doesn't equal our substring (e.g our input is catsanddog and
