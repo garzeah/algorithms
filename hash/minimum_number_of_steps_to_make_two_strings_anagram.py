@@ -8,10 +8,13 @@ class Solution:
         # then we have to take a step to make an anagram
         res = 0
         for char in t:
-            if freq[char]:
-                freq[char] -=1
-            else:
+            # We have exhausted every possible character in our freq and
+            # we still need to make deletions to make an anagram or it
+            # doesn't exist and we need to delete that
+            if freq[char] <= 0 or char not in freq:
                 res += 1
+            else:
+                freq[char] -= 1
 
         return res
 
