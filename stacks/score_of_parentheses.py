@@ -3,9 +3,14 @@ class Solution:
         stack = []
         mult = 0 # multiplier for nested parentheses
 
-        # Everytime we encounter '(', we will append a mult of 0.
-        # Then when we encounter ')', we will add the current
-        # mult with our multiplier max(1, mult * 2)
+        # Every time we encounter '(', we want to add the current iteration's
+        # multiplicity to our stack and reset it. When we encounter ')' we
+        # can built off of each multiplicity by adding the last value
+        # with max(1, mult * 2)
+        # ((())) = [0, 0, 0]
+        # [0, 0]; mult = 1
+        # [0]; mult = 2
+        # []; mult = 4
         for char in s:
             if char == '(':
                 stack.append(mult) # Cumulation of each level

@@ -26,15 +26,9 @@ class Solution:
             if node.right:
                 queue.append((node.right, col_idx + 1))
 
-        # Get a list of sorted keys so we can get
-        # the values in vertical order traversal
-        sorted_keys = []
-        for key in cols:
-            sorted_keys.append(key)
-        sorted_keys.sort()
-
+        # Get a list of sorted keys so we can get the values in vertical order traversal
         res = []
-        for key in sorted_keys:
+        for key in sorted(cols.keys()):
             res.append(cols[key])
 
         return res

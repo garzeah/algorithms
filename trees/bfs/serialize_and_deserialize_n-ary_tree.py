@@ -45,8 +45,8 @@ class Codec:
     def deserialize_helper(self, queue):
         if len(queue) > 0:
             # Retrieving the value and the length of its children
-            val, total_children = queue.popleft(), int(queue.popleft())
-            root = Node(int(val), []) # Initializing our root
+            val, total_children = int(queue.popleft()), int(queue.popleft())
+            root = Node(val, []) # Initializing our root
 
             # For every child a value has, we want to create a root
             # for it and add its children to the base root
