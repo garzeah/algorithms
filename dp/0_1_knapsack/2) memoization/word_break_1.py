@@ -1,31 +1,42 @@
 class Solution:
-    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
         word_set, dp = set(wordDict), {}
         return self.helper(s, word_set, dp)
 
-    def helper(self, s, word_set, dp):
-        # If the word is empty its in wordDict or we've
-        # stripped  off every word and result is empty
-        if len(s) == 0:
-            return True
+    def helper(self, substr, word_set, dp):
+        if substr in dp:
+            return dp[substr]
 
-        if s in dp:
-            return dp[s]
-
+        res = []
         for word in word_set:
-            # Check if any words in dictionary are in the beginning of s
-            prefix = s[0:len(word)]
+            prefix = substr[0:len(word)]
 
-            # If we found a match, recursive call with that part stripped off
-            if prefix == word and self.helper(s[len(word):], word_set, dp):
-                dp[prefix] = True
-                return dp[prefix]
+            # If our current substr doesn't start with any of the
+            # words in our word_set, keep going until it does
+            if substr.startswith(word) is False:
+                continue
 
-        dp[s] = False
-        return dp[s]
+            # If we are at the last word then we want to append it to the res
+            # then we want to store it in our cache where {'dog': ['dog']}
+            if prefix == substr:
+                res.append(prefix)
 
-# Time Complexity: O(n^2)
-# Space Complexity: O(n^2)
+            # This will keep calling until we hit the last word. For example, we have
+            # "sanddog" because we start with "cat". "cat" leads to "sand".
+            # rest_of_words = ["dog"]
+            # word = "sand"
+            # phrase = "sand dog"
+            # res = ["sand dog"]
+            # dp = { 'dog': ['dog'], 'sanddog': ['sand dog'] }
+            else:
+                rest_of_words = self.helper(substr[len(word):], word_set, dp)
+                for phrase in rest_of_words:
+                    res.append(prefix + " " + phrase)
+
+        return res
+
+# Time Complexity: O(n*m)
+# Space Complexity: O(n*m)
 # Solution:
-# - https://leetcode.com/problems/word-break/discuss/1017085/Simple-Python-Solution-w-Memoization
+# - https://leetcode.com/problems/word-break-ii/discuss/44311/Python-easy-to-understand-solution
 # - https://www.youtube.com/watch?v=Sx9NNgInc3A

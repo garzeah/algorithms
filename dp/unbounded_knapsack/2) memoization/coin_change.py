@@ -9,7 +9,7 @@ class Solution:
         if amount == 0:
             return 0
 
-        if i >= len(coins):
+        if amount < 0 or i >= len(coins):
             return float('inf')
 
         # check if we have not already processed a similar sub-problem
@@ -18,9 +18,7 @@ class Solution:
             # if the coin at i exceeds the amount, we shouldn't process this
             count1 = float('inf')
             if coins[i] <= amount:
-                res = self.helper(coins, amount - coins[i], dp, i)
-                if res != float('inf'):
-                    count1 = res + 1
+                count1 = 1 + self.helper(coins, target - coins[i], dp, i)
 
             # recursive call after excluding the coin at the i
             count2 = self.helper(coins, amount, dp, i + 1)
