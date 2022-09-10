@@ -5,9 +5,12 @@ class Solution:
         boats = 0
 
         while l <= r:
+            # We can fit 2 people on this boat
             if people[l] + people[r] <= limit:
                 l += 1
                 r -= 1
+            # Since it is sorted and r is <= limit, we can
+            # decrement and add an additional boat
             else:
                 r -= 1
 
