@@ -18,7 +18,7 @@ class Solution:
             elif freq[num + 1] and freq[num + 2]:
                 freq[num + 1] -= 1
                 freq[num + 2] -= 1
-                ends[num + 2] += 1 # Indicates that we have a subsequence that ends w/ i + 2
+                ends[num + 2] += 1 # Indicates that we have a subsequence that ends w/ num + 2
             # Otherwise, we can't place our number, so we return false
             else:
                 return False

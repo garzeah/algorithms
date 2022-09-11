@@ -25,7 +25,7 @@ class Solution:
                 if (
                     r in range(ROWS) and
                     c in range(COLS) and
-                    board[r][c] in [1, 2] # 1 means originally a 1 and 3 means it was originally a 1
+                    board[r][c] in [1, 2]
                 ):
                     neis += 1
 
