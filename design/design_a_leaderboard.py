@@ -8,23 +8,23 @@ class Leaderboard:
         if playerId not in self.score:
             self.score[playerId] = 0
 
-        self.score[playerId] += score
+        self.score[playerId] -= score
 
     # Time Complexity: O(nlogk) where n is the amount of players and k is the
     # amount of players
     def top(self, K: int) -> int:
-        max_heap = []
-        res = 0
+        max_heap = list(self.score.values())
+        heapify(max_heap)
 
-        for player, score in self.score.items():
-            heappush(max_heap, -score)
+        count, res = 0, 0
+        while max_heap:
+            res += -heappop(max_heap)
+            count += 1
 
-        i = 0
-        while max_heap and i < K:
-            res += heappop(max_heap)
-            i += 1
+            if count == K:
+                break
 
-        return -res
+        return res
 
     # Time Complexity: O(1)
     def reset(self, playerId: int) -> None:
