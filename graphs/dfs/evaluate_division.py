@@ -31,10 +31,15 @@ class Solution:
             if nei not in visited:
                 visited.add(nei)
                 res = self.dfs(adj, visited, nei, end)
-                if res == -1.0:
-                    continue
-                else:
+
+                # If we have a query that we can build off of
+                # we want to calculate the value for the nei
+                # a --> b --> c
+                #   2.0   3.0   = 6.0
+                if res != -1.0:
                     return adj[start][nei] * res
+                else:
+                    continue
 
         return -1.0
 
