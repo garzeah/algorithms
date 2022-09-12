@@ -1,19 +1,22 @@
 class Solution:
     def lastRemaining(self, n: int) -> int:
-        fwd = True # flag for forward/backward elimination
-        step = 2 # elimination step/interval
-        res = 1 # elimination "pointer" will start at 1 bc of range
+        # Moving forward/backwards and keeping
+        # track of times n is cut in half
+        fwd, k = True, 0
+        res = 1 # Starts at 1
 
         while n > 1:
-            # Want to remove the first number in our elimination pointer
+            # Everytime we have to shift the res (moving forward or
+            # n is odd bc if we're moving backwards, we lose the
+            # start of the value again) we can we add 2^k to our
+            # result to get to where it would have been
             if fwd or n % 2 == 1:
-                # When moving forward or if odd, we have to recalculate
-                # our result since we're removing the starting values
-                res += step // 2 # Moving head to the next "position" by adding 2^kth rounds (k starts at 0)
+                print(res)
+                res += 2 ** k
 
-            step *= 2 # Adding a step in order to get the kth round
-            n = n // 2 # Cutting size in half
-            fwd = not fwd # Reverse the pass direction
+            k += 1 # Since we're cutting it in half, add to k
+            n = n // 2 # Cutting it in half
+            fwd = not fwd # Reverse direction
 
         return res
 
