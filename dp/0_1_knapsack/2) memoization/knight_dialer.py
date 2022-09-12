@@ -26,17 +26,17 @@ class Solution:
         # we can dial that is of size n
         if dp[i][target] == -1:
             count = 0
-            for num in neighbors[i]:
-                count += self.helper(target - 1, neighbors, num, dp)
+            for nei in neighbors[i]:
+                count += self.helper(target - 1, neighbors, nei, dp)
 
             # Cache values so we don't have to recompute
             dp[i][target] = count
 
         return dp[i][target]
 
-# Time Complexity: O(n) because since we cached everything, we
+# Time Complexity: O(n*m) because since we cached everything, we
 # do not have to recompute the previous values
 
-# Space Complexity: O(n) because of the stack space in recursion
+# Space Complexity: O(n*m) because of the stack space in recursion
 
 # Solution: https://leetcode.com/problems/knight-dialer/discuss/1476546/Python-Simple-Recursion-%2B-Memoization
