@@ -1,36 +1,33 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-        word_set, dp = set(wordDict), {}
-        return self.helper(s, word_set, dp)
+        word_set = set(wordDict)
+        return self.helper(s, word_set)
 
-    def helper(self, substr, word_set, dp):
-        if substr in dp:
-            return dp[substr]
-
+    def helper(self, substr, word_set):
         res = []
-        for i in range(len(substr)):
-            # Want to get every possible substring
-            prefix = substr[:i + 1]
+        for word in word_set:
+            prefix = substr[0:len(word)]
 
-            # Want to check if the prefix is in our word set
-            if prefix in word_set:
-                # We found our word so and it matches our
-                # substr, we are at the end of our substr
-                if prefix == substr:
-                    res.append(prefix)
-                # If it doesn't equal our substring (e.g our input is catsanddog and
-                # we have cat but not sanddog) then we want to loop through the rest
-                # of the substring and for each phrase we get back, add to result.
-                # In the event we do have a prefix, want to continue looking
-                # for other matches to form our sentence
-                else:
-                    rest_of_words = self.helper(substr[i+1:], word_set, dp)
-                    for phrase in rest_of_words:
-                        res.append(prefix + ' ' + phrase)
+            # If our current substr doesn't start with any of the
+            # words in our word_set, keep going until it does
+            if substr.startswith(word) is False:
+                continue
 
-        dp[substr] = res
-        return dp[substr]
+            # If we are at the last word then we want to append it to the res
+            # then we want to store it in our cache where {'dog': ['dog']}
+            if prefix == substr:
+                res.append(prefix)
 
-# Solution:
-    # - https://www.youtube.com/watch?v=hRqJJF2j3To
-    # - https://leetcode.com/problems/word-break-ii/discuss/44311/Python-easy-to-understand-solution/119968
+            # This will keep calling until we hit the last word. For example, we have
+            # "sanddog" because we start with "cat". "cat" leads to "sand".
+            # rest_of_words = ["dog"]
+            # word = "sand"
+            # phrase = "sand dog"
+            # res = ["sand dog"]
+            # dp = { 'dog': ['dog'], 'sanddog': ['sand dog'] }
+            else:
+                rest_of_words = self.helper(substr[len(word):], word_set)
+                for phrase in rest_of_words:
+                    res.append(prefix + " " + phrase)
+
+        return res
