@@ -15,13 +15,13 @@ class Solution:
 
         # Compare the previous minimum with the current minimum in the heap
         while len(min_heap) >= 2:
-            start, end = heappop(min_heap)
+            prev_start, prev_end = heappop(min_heap)
 
             # If the previous minimum's end time overlaps with the next
-            # minimum's start time + the duration then we have the
+            # minimum's prev_start time + the duration then we have the
             # earliest time slot that works for both of the people
-            if end >= min_heap[0][0] + duration:
-                # Better to take the time ahead since it's overlapping
+            if prev_end >= min_heap[0][0] + duration:
+                # Better to take the time ahead since prev_start might not overlap
                 return [min_heap[0][0], min_heap[0][0] + duration]
 
         return []

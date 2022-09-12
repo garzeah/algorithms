@@ -6,9 +6,9 @@
 #         self.right = right
 class Solution:
     def largestBSTSubtree(self, root: Optional[TreeNode]) -> int:
-        self.res = 0
+        self.size = 0
         self.dfs(root)
-        return self.res
+        return self.size
 
     def dfs(self, root):
         if root is None:
@@ -27,17 +27,22 @@ class Solution:
         right_is_bst, right_size, right_min, right_max = self.dfs(root.right)
 
         # If we have a binary search tree...
-        if (left_is_bst and right_is_bst and root.val > left_max and root.val < right_min):
-            # When we hit our base case, we want to record the root value
-            left_min = root.val if left_min == float('inf') else left_min
-            right_max = root.val if right_max == float('-inf') else right_max
+        if (
+            left_is_bst and
+            right_is_bst and
+            root.val > left_max and
+            root.val < right_min
+        ):
+            # Want to record left_min and right_max to compare against root.val
+            left_min = min(left_min, root.val)
+            right_max = max(right_max, root.val)
 
             # Calculate the max length
-            local_res = left_size + right_size + 1
-            self.res = max(self.res, local_res)
+            local_size = left_size + right_size + 1
+            self.size = max(self.size, local_size)
 
             # Continue building off of it
-            return [True, local_res, left_min, right_max]
+            return [True, local_size, left_min, right_max]
         else:
             # We don't have a valid BST so just return false
             return [False, 0, float('inf'), float('-inf')]
