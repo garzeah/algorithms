@@ -1,9 +1,12 @@
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
-        word_set = set(wordDict)
-        return self.helper(s, word_set)
+        word_set, dp = set(wordDict), {}
+        return self.helper(s, word_set, dp)
 
-    def helper(self, substr, word_set):
+    def helper(self, substr, word_set, dp):
+        if substr in dp:
+            return dp[substr]
+
         res = []
         for word in word_set:
             prefix = substr[0:len(word)]
@@ -26,8 +29,9 @@ class Solution:
             # res = ["sand dog"]
             # dp = { 'dog': ['dog'], 'sanddog': ['sand dog'] }
             else:
-                rest_of_words = self.helper(substr[len(word):], word_set)
+                rest_of_words = self.helper(substr[len(word):], word_set, dp)
                 for phrase in rest_of_words:
                     res.append(prefix + " " + phrase)
 
+        dp[substr] = res
         return res
