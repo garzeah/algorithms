@@ -45,8 +45,8 @@ class MaxStack:
         # Scan the stack starting at 'index' to recompute the max values and shift all
         # values to the left by one:
         for i in range(max_idx, len(self.stack) - 1):
-            # We can keep the value and just shift it left
-            # since we don't have to record a new max
+            # We can keep the current values and just shift
+            # it left since we don't have to record a new max
             if prev_max <= self.stack[i + 1][0]:
                 prev_max = self.stack[i + 1][0] # Update prev_max
                 self.stack[i] = (prev_max, i)
