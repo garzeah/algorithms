@@ -14,6 +14,7 @@ class Solution:
 
         while queue:
             # Appending the last value of the queue
+            # to get the right side view
             result.append(queue[-1].val)
 
             for _ in range(len(queue)):

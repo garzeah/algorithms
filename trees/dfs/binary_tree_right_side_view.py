@@ -6,17 +6,18 @@
 #         self.right = right
 class Solution:
     def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
-        results = []
-        self.find_right_side(root, results, 0)
-        return results
+        return self.dfs(root, 0, [])
 
-    def find_right_side(self, curr_node, results, depth):
-        if curr_node:
-            if depth == len(results):
-                results.append(curr_node.val)
+    def dfs(self, root, height, res):
+        if root is None:
+            return
 
-            self.find_right_side(curr_node.right, results, depth + 1)
-            self.find_right_side(curr_node.left, results, depth + 1)
+        if height == len(res):
+            res.append(root.val)
 
+        self.dfs(root.right, height + 1, res)
+        self.dfs(root.left, height + 1, res)
+
+        return res
 # Time Complexity: O(n)
 # Space Complexity: O(n) bc of recursion stack
