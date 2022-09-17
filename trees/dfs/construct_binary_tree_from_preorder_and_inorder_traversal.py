@@ -27,5 +27,4 @@ class Solution:
             return root
 
 # Time Complexity: O(n) because of the recursion stack.
-
 # Space Complexity: O(n) because of recursion stack.

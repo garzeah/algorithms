@@ -27,7 +27,7 @@ class Solution:
 
         # Remove the current node from the path to backtrack, we need to remove the current node
         # while we are going up the recursive call stack.
-        del curr_path[-1]
+        curr_path.pop()
         return res
 
 # Time Complexity: The time complexity of the above algorithm is O(N^2), where ‘N’ is the
