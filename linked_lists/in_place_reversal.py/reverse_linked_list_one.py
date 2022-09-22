@@ -1,14 +1,14 @@
 class Solution:
     def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         prev = None
+        curr = head
 
-        while head:
-            temp_next = head.next # Temporarily store the next node
-            head.next = prev # Reverse the current node
-            prev = head # Before we move to the next node, point previous to the current node
-            head = temp_next # Move on the next node
+        while curr:
+            nxt = curr.next # Make a copy of the next node
+            curr.next = prev # Reverse node by pointing curr.next to prev
+            prev, curr = curr, nxt # Move up prev and curr so we can reverse the next node
 
-        return prev
+        return prev # Prev will be at the start of the reversed list
 
 # Time Complexity: O(n)
 # Space Complexity: O(1)

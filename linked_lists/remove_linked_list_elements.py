@@ -10,6 +10,9 @@ class Solution:
                 else: # If Node to remove is at the start
                     # Will "delete" the node by setting it to the next value
                     head = curr.next
+
+                # Want this for duplicate values such as [7,7,7,7]
+                # so we'll keep hitting the upper else statement
                 curr = curr.next
             else:  # Nothing needs to be removed, keep iterating
                 prev, curr = curr, curr.next

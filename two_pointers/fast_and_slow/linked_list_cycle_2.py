@@ -1,20 +1,18 @@
 class Solution:
     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
         slow, fast = head, head
-        cycle_length = 0
 
         # Determining whether it has a cycle or not
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
 
+            # If it's a cycle, find the start
             if slow == fast:
-                cycle_length = Solution.calculate_cycle_length(slow)
-                break
+                cycle_length = self.calculate_cycle_length(slow)
+                return self.find_start(head, cycle_length)
 
-        return Solution.find_start(head, cycle_length)
-
-    def calculate_cycle_length(slow):
+    def calculate_cycle_length(self, slow):
         curr = slow
         cycle_length = 0
 
