@@ -11,13 +11,13 @@ class Solution:
 
         # Rearrange to produce the LinkedList in the required order
         while left and right:
-            temp_next = left.next
+            nxt = left.next
             left.next = right # Assign new value
-            left = temp_next # Slide pointer up
+            left = nxt # Slide pointer up
 
-            temp_next = right.next
+            nxt = right.next
             right.next = left # Assign new value
-            right = temp_next # Slide pointer up
+            right = nxt # Slide pointer up
 
         # In the event our linked list is even in length, left
         # will still be pointing to a node so we need to clear it
@@ -26,14 +26,14 @@ class Solution:
 
         return head
 
-    def reverse(self, head):
+    def reverse(self, curr):
         prev = None
 
-        while head:
-            next = head.next # Temporarily store the next node
-            head.next = prev # Reverse the current node
-            prev = head # Before we move to the next node, point previous to the current node
-            head = next # Move on the next node
+        while curr:
+            nxt = curr.next # Temporarily store the next node
+            curr.next = prev # Reverse the current node
+            prev = curr # Before we move to the next node, point previous to the current node
+            curr = nxt # Move on the next node
 
         return prev
 
