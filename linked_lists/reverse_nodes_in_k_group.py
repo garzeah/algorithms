@@ -18,33 +18,43 @@ class Solution:
 
         k_length //= k
 
-        curr, prev = head, None
+        prev, curr = None, head
         while k_length != 0:
-            last_node_of_pre_sub_list = prev
+            # Want to get the last node of the previous sublist and the last
+            # node of the current sublist so that we can reverse nodes in
+            # groups of k. We can get these values by assigning it to the
+            # current prev and curr and reversing it.
+            last_prev, last_curr = prev, curr
 
-            # After reversing the LinkedList 'curr' will become the last node of the sub-list
-            last_node_of_sub_list = curr
+            # Reversing a k-group
             i = 0
-
-            while curr and i < k:  # Reverse 'k' nodes
-                temp_next = curr.next # Temporarily store the next node
-                curr.next = prev # Reverse the current node
-                prev = curr # Before we move to the next node, point previous to the current node
-                curr = temp_next # Move on the next node
+            while curr and i < k:
+                nxt = curr.next
+                curr.next = prev
+                prev, curr = curr, nxt
                 i += 1
 
-            # Connect with the previous part
-            if last_node_of_pre_sub_list:
-                last_node_of_pre_sub_list.next = prev
-            else: # For connecting the tail end of the reversed list
+            # After reversing a group, we are left with a disjointed linked list
+            # that is not connected anymore. We have to consider two things:
+
+            # If we have the last node of the previous sublist then that means we have
+            # a previous kth group that we have to connect with the current kth group
+            if last_prev:
+                last_prev.next = prev
+            # If we don't have the last node of the previous sublist then that means
+            # we just reversed the first kth group and we need to update the head to
+            # reflect the new start of the linked list.
+            else:
                 head = prev
 
-            # Connect with the next part
-            last_node_of_sub_list.next = curr
+            # Connect the disjointed linked lists
+            last_curr.next = curr
 
-            # Assign the last node of the previous sub list to prev
-            prev = last_node_of_sub_list
+            # Update prev so that it's right behind curr for when
+            # we reverse the next kth group
+            prev = last_curr
             k_length -= 1
+
         return head
 
 # Time Complexity: O(n)
