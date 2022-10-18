@@ -1,21 +1,23 @@
 class Solution:
     def maxProduct(self, nums: List[int]) -> int:
-        # We can use this to keep track of alternative negative
-        # values in the event we get an array with negative numbers
-        prev_min = prev_max = global_max = nums[0]
+        prev_min = prev_max = 1 # Base case
+        res = float('-inf')
 
-        # Because of an edge case where when we have an array of negative numbers
-        # it'll yield a sequence of negative and positive numbers. In order to
-        # find the maximum values, we need to keep track of the minimum values
-        # as they can yield the maximum values.
-        for i in range(1, len(nums)):
-            curr_min = min(prev_max * nums[i], prev_min * nums[i], nums[i])
-            curr_max = max(prev_max * nums[i], prev_min * nums[i], nums[i])
-            global_max = max(global_max, curr_max)
-            prev_max = curr_max
-            prev_min = curr_min
+        # For each number, we want to find the curr_min and curr_max
+        # so that it can be used to compute the next numbers
+        # curr_min and curr_max
+        for num in nums:
+            # We want to add num to curr_min and curr_max for cases like [-1, 8]
+            # since we'll be left with -8 as the curr_min and curr_max. It would
+            # not make sense since the curr_max should be 8 not -8
+            curr_min = min(num, prev_min * num, prev_max * num)
+            curr_max = max(num, prev_min * num, prev_max * num)
+            res = max(res, curr_max)
 
-        return global_max
+            # Moving up pointers to compute next curr_min and curr_max
+            prev_min, prev_max = curr_min, curr_max
+
+        return res
 
 # Time Complexity: O(n)
 # Space Compelxity: O(1)
