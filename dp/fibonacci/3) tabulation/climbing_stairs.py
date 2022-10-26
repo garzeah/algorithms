@@ -1,20 +1,21 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        if n == 0:
+        if n == 1:
             return 1
 
-        dp = [0 for _ in range(n + 1)]
-        one_step, two_step = 1, 1
+        if n == 2:
+            return 2
 
-        # Can use the previous sub-problems to
-        # arrive at the solution
-        for i in range(2, n + 1):
-            temp = one_step
-            one_step = one_step + two_step
-            two_step = temp
-            dp[i] = one_step
+        dp = [-1 for _ in range(n)]
+        dp[0], dp[1] = 1, 2
 
-        return dp[n]
+        # Can use previous sub-solutions to arive at nth solution
+        for i in range(2, n):
+            two_step = dp[i - 2]
+            one_step = dp[i - 1]
+            dp[i] = one_step + two_step
+
+        return dp[n - 1]
 
 # Time Complexity: O(n)
 # Space Complexity: O(n)
