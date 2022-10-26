@@ -10,11 +10,11 @@ class Solution:
         if len(nums) == 2:
             return max(nums[0], nums[1])
 
-        dp = [0 for _ in range(n + 1)]  # '+1' to handle the zero house
+        cache = [0 for _ in range(n + 1)]  # '+1' to handle the zero house
         rob_curr = nums[0]  # If there are no houses, the thief can't steal anything
         rob_adj = max(nums[0], nums[1])  # Only one house, so the thief have to steal from it
 
-        # Please note that dp[] has one extra element to handle zero house
+        # Please note that cache[] has one extra element to handle zero house
         for i in range(2, n):
             # We will take the max of stealing from current house and
             # skipping one to steal the next or skipping current
@@ -22,9 +22,9 @@ class Solution:
             temp = max(rob_curr + nums[i], rob_adj)
             rob_curr = rob_adj
             rob_adj = temp
-            dp[i] = rob_adj
+            cache[i] = rob_adj
 
-        return dp[n - 1]
+        return cache[n - 1]
 
 # Time Complexity: O(n)
 # Space Complexity: O(n)

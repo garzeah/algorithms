@@ -1,18 +1,17 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        n = len(nums)
-        if n == 1:
+        if len(nums) == 1:
             return nums[0]
 
-        steal_current = nums[0]
-        skip_current = max(nums[0], nums[1])
+        rob_curr = nums[0]
+        rob_adj = max(nums[0], nums[1])
 
         for i in range(2, n):
-            temp = max(steal_current + nums[i], skip_current)
-            steal_current = skip_current
-            skip_current = temp
+            temp = max(rob_curr + nums[i], rob_adj)
+            rob_curr = rob_adj
+            rob_adj = temp
 
-        return skip_current
+        return rob_adj
 
 # Time Complexity: O(n)
 # Space Complexity: O(1)

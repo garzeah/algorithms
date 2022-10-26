@@ -7,10 +7,13 @@ class Solution:
         if i >= len(nums):
             return 0
 
-        # Steal from current house and skip one to steal next
+        # In example [1, 2, 3, 1], we have 2 decisions when trying
+        # to find the maximum amount of money we can rob tonight
+        # 1) The decision to rob the current house and the remaining
+        # houses that are not adjacent to it
+        # 2) The decision to rob the adjacent house and the remaining
+        # houses that are not adjacent to it
         rob_curr = nums[i] + self.helper(nums, i + 2)
-
-        # Skip current house to steal from the adjacent house
         rob_adj = self.helper(nums, i + 1)
 
         return max(rob_curr, skip_current)
