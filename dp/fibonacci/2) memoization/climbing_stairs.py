@@ -1,9 +1,9 @@
 class Solution:
     def climbStairs(self, n: int) -> int:
-        dp = [0 for _ in range(n + 1)]
-        return self.helper(dp, n)
+        cache = [0 for _ in range(n + 1)]
+        return self.helper(n, cache)
 
-    def helper(self, dp, n):
+    def helper(self, n, cache):
         # Base Case (Can reach top)
         if n == 0:
             return 1
@@ -13,12 +13,12 @@ class Solution:
             return 0
 
         # If the call hasn't been made before, then it is time to record it
-        if dp[n] == 0:
-            one_step = self.helper(dp, n - 1)
-            two_step = self.helper(dp, n - 2)
-            dp[n] = one_step + two_step
+        if cache[n] == 0:
+            one_step = self.helper(n - 1, cache)
+            two_step = self.helper(n - 2, cache)
+            cache[n] = one_step + two_step
 
-        return dp[n]
+        return cache[n]
 
 
 # Time Complexity: O(N) because since we are using memoization, we are
