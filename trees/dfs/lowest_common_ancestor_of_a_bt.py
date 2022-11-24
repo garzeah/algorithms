@@ -22,12 +22,9 @@ class Solution:
         if left and right:
             return root
 
-        # Either one of the chidren returned a node, meaning either
-        # p or q was found on the left or right branch.
-        # Example: assuming 'p' found in the left child and right child returned
-        # 'None'. This means 'q' is somewhere below the node where 'p' was found.
-        # We dont need to search all the way because in such scenarios,
-        # the node where 'p' found is the LCA
+        # Only left or right returned a node meaning p and q are only on one side
+        # of the tree (left or right). If both p and q are on one side then that
+        # means whichever is encountered first is the LCA
         return left or right
 
 # Time Complexity: O(n)
