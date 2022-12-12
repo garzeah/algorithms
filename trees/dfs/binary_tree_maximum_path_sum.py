@@ -6,33 +6,29 @@
 #         self.right = right
 class Solution:
     def maxPathSum(self, root: Optional[TreeNode]) -> int:
-        self.global_max = float('-inf')
+        self.res = root.val
         self.dfs(root)
-        return self.global_max
+        return self.res
 
-    def dfs(self, curr_node):
-        if curr_node is None:
+    def dfs(self, root):
+        if root is None:
             return 0
 
-        left_max = self.dfs(curr_node.left)
-        right_max = self.dfs(curr_node.right)
+        leftMax = self.dfs(root.left)
+        rightMax = self.dfs(root.right)
 
         # Ignore paths with negative sums, since we need to find the maximum
-        # sum we should ignore any path which has an overall negative sum.
-        left_max = max(left_max, 0)
-        right_max = max(right_max, 0)
+        # sum we should ignore any path which has an overall negative sum
+        leftMax = max(leftMax, 0)
+        rightMax = max(rightMax, 0)
 
-        # Maximum path sum at the current node will be equal to the sum of
-        # the value of the current node and the sums of the left and right subtree
-        local_max = curr_node.val + left_max + right_max
+        # Compute max path sum WITH split
+        self.res = max(self.res, root.val + leftMax + rightMax)
 
-        # Update the global maximum sum
-        self.global_max = max(self.global_max, local_max)
+        # Return max path sum WITHOUT split
+        return root.val + max(leftMax, rightMax)
 
-        # Maximum sum of any path from the current node will be equal to the value
-        # of the current node and the maximum of the sums from left or right subtrees
-        return curr_node.val + max(left_max, right_max)
-
-# Time Complexity: O(n)
-# Space Complexity: O(n)
+# TC: O(n)
+# SC: O(n)
 # Solution: https://www.youtube.com/watch?v=Hr5cWUld4vU
+
