@@ -23,6 +23,8 @@ class Solution(object):
         return self.dfs(root.left, subRoot) or self.dfs(root.right, subRoot)
 
     def checkTree(self, root1, root2):
+        # Has to be on top or else we'll trigger false
+        # positive for if root1 is None or root2 is None
         if root1 is None and root2 is None:
             return True
 
