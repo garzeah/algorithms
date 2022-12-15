@@ -16,10 +16,10 @@ class Solution(object):
             for col in range(COLS):
                 num = mat[row][col]
 
-                # Add values to our nested list as long as it is less than c
+                # As long as we don't exceed the amount of columns
                 if len(res[-1]) < c:
                     res[-1].append(num)
-                # Create a new column to append to our list
+                # Otherwise, we have exceed the total amount so add a row
                 else:
                     res.append([num])
         return res
