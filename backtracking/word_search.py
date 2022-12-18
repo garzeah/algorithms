@@ -1,51 +1,31 @@
 class Solution:
-    def exist(self, board: List[List[str]], word: str) -> bool:
-        ROWS, COLS = len(board), len(board[0])
-        visited = set() # Since we don't revisit the same pos
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        ROWS, COLS = len(grid), len(grid[0])
+        queue, visited = deque(), set()
+        max_area = 0
 
-        def backtrack(row, col, i):
-            # Base case for when we find the word. This
-            # has to be on top because we want to check
-            # if we have a matching word first before
-            # it is out of bounds.
-            if i >= len(word):
-                return True
-
-            # Base case for when we don't find the word
-            if (
-                row < 0 or row >= ROWS or # Out of bounds
-                col < 0 or col >= COLS or # Out of bounds
-                (row, col) in visited or # Already visited
-                board[row][col] != word[i] # Not matching
-            ):
-                return False
-
-
+        def dfs(row, col):
+            local_area = 1
             visited.add((row, col))
 
-            # Checking adjacent positions for our word
-            res = (
-                backtrack(row + 1, col, i + 1) or # Bottom
-                backtrack(row - 1, col, i + 1) or # Top
-                backtrack(row, col + 1, i + 1) or # Right
-                backtrack(row, col - 1, i + 1) # Left
-            )
+            for (x, y) in [[1,0],[-1,0],[0,1],[0,-1]]:
+                r, c = row + x, col + y
 
-            visited.remove((row, col))
+                if (
+                    r in range(ROWS) and
+                    c in range(COLS) and
+                    (r, c) not in visited and
+                    grid[r][c] == 1
+                ):
+                    local_area += dfs(r, c)
 
-            return res
+            return local_area
+
+
 
         for row in range(ROWS):
             for col in range(COLS):
-                if backtrack(row, col, 0):
-                    return True
+                if grid[row][col] == 1 and (row, col) not in visited:
+                    max_area = max(max_area, dfs(row, col))
 
-        return False
-
-# Time Complexity: O(n * m * 4^n) where n is the number of columns
-# and m in the number of ROWS. For some positions, we will have
-# at most 4 possible choices to backtrack from.
-
-# Space Complexity: O(n * m * 4^n) because of the call stack.
-
-# Solution: https://www.youtube.com/watch?v=pfiQ_PS1g8E
+        return max_area
