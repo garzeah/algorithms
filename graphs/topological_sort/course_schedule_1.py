@@ -1,40 +1,40 @@
 class Solution:
     def findOrder(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        in_degree, adj, sorted_order = {}, {}, []
+        inDegree, adj, sortedOrder = {}, {}, []
         if numCourses <= 0:
-            return sorted_order
+            return sortedOrder
 
         # a. Initializing incoming degrees and adjancey list
         for i in range(numCourses):
-            in_degree[i] = 0 # Count of incoming prerequisites
+            inDegree[i] = 0 # Count of incoming prerequisites
             adj[i] = [] # Adjacency list
 
         # b. Build the adjacency list
         for child, parent in prerequisites:
             adj[parent].append(child)  # Put the child into it's parent's list
-            in_degree[child] += 1  # Increment child's in_degree
+            inDegree[child] += 1  # Increment child's inDegree
 
         # c. Find all sources i.e., all numCourses with 0 in-degrees
         sources = deque()
-        for key in in_degree:
-            if in_degree[key] == 0:
+        for key in inDegree:
+            if inDegree[key] == 0:
                 sources.append(key)
 
-        # d. For each source, add it to the sorted_order and subtract one from
+        # d. For each source, add it to the sortedOrder and subtract one from
         # all of its children's in-degrees if a child's in-degree becomes zero,
         # add it to the sources queue
         while sources:
             vertex = sources.popleft()
-            sorted_order.append(vertex)
+            sortedOrder.append(vertex)
 
             # Get the node's children to decrement their in-degrees
             for child in adj[vertex]:
-                in_degree[child] -= 1
-                if in_degree[child] == 0:
+                inDegree[child] -= 1
+                if inDegree[child] == 0:
                     sources.append(child)
 
         # Topological sort is not possible as the graph has a cycle
-        if len(sorted_order) != numCourses:
+        if len(sortedOrder) != numCourses:
             return False
 
         return True

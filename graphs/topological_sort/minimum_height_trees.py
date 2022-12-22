@@ -9,27 +9,25 @@ class Solution:
             return [0]
 
         # a. Initialize the graph
-        in_degree, adj = {}, {}
+        inDegree, adj = {}, {}
         for i in range(n):
-            in_degree[i] = 0 # Count of incoming edges
+            inDegree[i] = 0 # Count of incoming edges
             adj[i] = [] # Adjacency list graph
 
-        # b. Build the graph
-        for edge in edges:
-            n1, n2 = edge[0], edge[1]
-            # Since this is an undirected graph, therefore, add a link for both the nodes
+        # b. Build the graph. We are getting every possible
+        # combination of trees we can possibly make
+        for (n1, n2) in edges:
             adj[n1].append(n2)
             adj[n2].append(n1)
 
-            # Increment the in-degrees of both the nodes
-            in_degree[n1] += 1
-            in_degree[n2] += 1
+            inDegree[n1] += 1
+            inDegree[n2] += 1
 
         # c. Find all leaves (all nodes with 1 in-degrees)
         # since we plan on removing leaves level by level
         leaves = deque()
-        for key in in_degree:
-            if in_degree[key] == 1:
+        for key in inDegree:
+            if inDegree[key] == 1:
                 leaves.append(key)
 
         # d. Want to remove leaves level by level and once we're
@@ -46,8 +44,8 @@ class Solution:
 
                 # Finding all leaves so we can repeat
                 for nei in adj[leaf]:
-                    in_degree[nei] -= 1
-                    if in_degree[nei] == 1:
+                    inDegree[nei] -= 1
+                    if inDegree[nei] == 1:
                         leaves.append(nei)
 
         return layer
