@@ -1,31 +1,37 @@
 class Solution:
-    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
-        ROWS, COLS = len(grid), len(grid[0])
-        queue, visited = deque(), set()
-        max_area = 0
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        ROWS, COLS = len(board), len(board[0])
+        curr_path = set()
 
-        def dfs(row, col):
-            local_area = 1
-            visited.add((row, col))
+        def backtrack(row, col, i):
+            if i >= len(word):
+                return True
 
-            for (x, y) in [[1,0],[-1,0],[0,1],[0,-1]]:
-                r, c = row + x, col + y
-
-                if (
-                    r in range(ROWS) and
-                    c in range(COLS) and
-                    (r, c) not in visited and
-                    grid[r][c] == 1
-                ):
-                    local_area += dfs(r, c)
-
-            return local_area
+            if (
+                row < 0 or row >= ROWS or
+                col < 0 or col >= COLS or
+                (row, col) in curr_path or
+                board[row][col] != word[i]
+            ):
+                return False
 
 
+            curr_path.add((row, col))
+
+            res = (
+                backtrack(row + 1, col, i + 1) or
+                backtrack(row - 1, col, i + 1) or
+                backtrack(row, col + 1, i + 1) or
+                backtrack(row, col - 1, i + 1)
+            )
+
+            curr_path.remove((row, col))
+
+            return res
 
         for row in range(ROWS):
             for col in range(COLS):
-                if grid[row][col] == 1 and (row, col) not in visited:
-                    max_area = max(max_area, dfs(row, col))
+                if backtrack(row, col, 0):
+                    return True
 
-        return max_area
+        return False
