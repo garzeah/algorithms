@@ -1,19 +1,19 @@
 class Solution:
     def reorganizeString(self, s: str) -> str:
-        freq_map, heap, res = Counter(s), [], []
+        freq_map, max_heap, res = Counter(s), [], []
 
         for char, freq in freq_map.items():
-            heappush(heap, [-freq, char])
+            heappush(max_heap, [-freq, char])
 
         prev_char, prev_freq = None, None
-        while heap:
-            freq, char = heappop(heap)
+        while max_heap:
+            freq, char = heappop(max_heap)
 
             # If the prev_char's frequency is not 0 then we are allowed
             # to use the character again in reorganizing the string as
-            # long as there is a value in our heap
+            # long as there is a value in our max_heap
             if prev_freq:
-                heappush(heap, [prev_freq, prev_char])
+                heappush(max_heap, [prev_freq, prev_char])
 
             res.append(char)
             prev_char = char
