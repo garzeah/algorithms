@@ -7,34 +7,34 @@ class Twitter:
 
     def postTweet(self, userId: int, tweetId: int) -> None:
         self.tweets[userId].append([self.timestamp, tweetId])
-        self.timestamp -= 1 # Because we're using a heap to get most recent values
+        self.timestamp -= 1 # Because we're using a max_heap to get most recent values
 
     def getNewsFeed(self, userId: int) -> List[int]:
-        heap = []
+        max_heap = []
 
         # A user is technically following themselves so we need to add them
         self.following[userId].add(userId)
 
         # For every follower a user has, we want to retrieve the 10 most
-        # recent tweets and add that list into our heap. We'll
+        # recent tweets and add that list into our max_heap. We'll
         # traverse through each list using the index of each list
         # and its counts in order to achieve this
         for followeeId in self.following[userId]:
             if followeeId in self.tweets: # Has at least a tweet
                 index = len(self.tweets[followeeId]) - 1
                 timestamp, tweetId = self.tweets[followeeId][index]
-                heappush.append(heap, [timestamp, tweetId, followeeId, index - 1])
+                heappush.append(max_heap, [timestamp, tweetId, followeeId, index - 1])
 
         res = [] # ordered starting from most recent
-        while heap and len(res) < 10:
-            timestamp, tweetId, followeeId, index = heappop(heap)
+        while max_heap and len(res) < 10:
+            timestamp, tweetId, followeeId, index = heappop(max_heap)
             res.append(tweetId)
 
             # As long as we can still traverse through the list.
             # Similar to traversing k-sorted lists
             if index >= 0:
                 timestamp, tweetId = self.tweets[followeeId][index]
-                heappush(heap, [timestamp, tweetId, followeeId, index - 1])
+                heappush(max_heap, [timestamp, tweetId, followeeId, index - 1])
 
         return res
 
@@ -55,7 +55,7 @@ class Twitter:
 
 # Time Complexity:
 # - getNewsFeed(self, userId): O(n) for the amount of users inside the following.
-# O(10*logk) for performing the heap operations leaving us with O(n * log(k))
+# O(10*logk) for performing the max_heap operations leaving us with O(n * log(k))
 # where n is the amount of users in the following[userId] and k for getting
 # the top 10 most recent posts.
 
