@@ -1,21 +1,13 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        return self.helper(cost, len(cost))
+        cost.insert(0, 0)
+        return self.helper(cost, 0)
 
-    def helper(self, cost, n):
-        if n < len(cost):
+    def helper(self, cost, i):
+        if i >= len(cost):
             return 0
 
-        if n == 0:
-            return cost[0]
+        one_step = cost[i] + self.helper(cost, i + 1)
+        two_step = cost[i] + self.helper(cost, i + 2)
 
-        if n == 1:
-            return min(cost[0], cost[1])
-
-        return min(
-            cost[n - 1] + self.helper(cost, n - 1),
-            cost[n - 2] + self.helper(cost, n - 2)
-        )
-
-# TC: O(2^n)
-# SC: O(n)
+        return min(one_step, two_step)
