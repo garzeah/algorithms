@@ -27,5 +27,5 @@ class Solution:
         return max(rob_curr, rob_adj)
 
 # Time Complexity: O(2^n^2)
-# Space Compelxity: O(2^n^2) which is used to store the recursion stack
+# Space Compelxity: O(n) which is used to store the recursion stack
 # Solution: https://www.youtube.com/watch?v=rWAJCfYYOvM

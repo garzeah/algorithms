@@ -15,5 +15,5 @@ class Solution:
         return one_step + two_step
 
 # Time Complexity: O(N * 2^n)
-# Space Complexity: O(1)
+# Space Complexity: O(n)
 # Solution: https://www.youtube.com/watch?v=Y0lT9Fck7qI

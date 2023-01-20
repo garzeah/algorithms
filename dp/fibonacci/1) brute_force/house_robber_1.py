@@ -19,5 +19,5 @@ class Solution:
         return max(rob_curr, skip_current)
 
 # Time Complexity: O(2^n)
-# Space Compelxity: O(2^n) which is used to store the recursion stack
+# Space Compelxity: O(n) which is used to store the recursion stack
 # Solution: https://www.youtube.com/watch?v=73r3KWiEvyk
