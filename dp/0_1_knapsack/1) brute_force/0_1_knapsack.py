@@ -1,21 +1,31 @@
+# This is a 0/1 knapsack problem where each item can only be
+# selected once, as we don't have multiple quantities of any item
 def solve_knapsack(profits, weights, capacity):
-    return helper(profits, weights, capacity, 0)
+  return helper(profits, weights, capacity, 0)
 
-def helper(profits, weights, capacity, start):
-    # Base checks
-    if capacity <= 0 or start >= len(profits):
+def helper(profits, weights, capacity, i):
+    # Base cases
+    if capacity <= 0 or i >= len(profits):
         return 0
 
-    # recursive call after choosing the element at the start
-    # if the weight of the element at start exceeds the capacity, we  shouldn't process this
+    # Recursive call after choosing the element at the current index.
+    # If the weight of the element at current index exceeds the
+    # capacity, we shouldn't process this
     profit1 = 0
-    if weights[start] <= capacity:
-        profit1 = profits[start] + helper(profits, weights, capacity - weights[start], start + 1)
+    if weights[i] <= capacity:
+        profit1 = profits[i] + helper(profits, weights, capacity - weights[i], i + 1)
 
-    # recursive call after excluding the element at the start
-    profit2 = helper(profits, weights, capacity, start + 1)
+    # Recursive call after excluding the element at the current index
+    profit2 = helper(profits, weights, capacity, i + 1)
 
     return max(profit1, profit2)
+
+def main():
+  print(solve_knapsack([1, 6, 10, 16], [1, 2, 3, 5], 7))
+  print(solve_knapsack([1, 6, 10, 16], [1, 2, 3, 5], 6))
+
+
+main()
 
 # Time Complexity: O(2^n), where ‘n’ represents the total number of items.
 # This can also be confirmed from the above recursion tree. As we can see
