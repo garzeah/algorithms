@@ -1,18 +1,22 @@
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        return self.backtrack(nums, target, 0, 0)
+        total = sum(nums)
 
-    # We are using backtracking bc we are finding all
-    # the different ways we can get to our target
-    def backtrack(self, nums, target, total, i):
-        # We are at the end, return 1 or 1 depending on if total matches target
-        if i == len(nums):
-            return 1 if total == target else 0
+        # Invalid input since total must be >= target
+        if total < abs(target):
+            return 0
 
-        return (
-            self.backtrack(nums, target, total + nums[i], i + 1) +
-            self.backtrack(nums, target, total - nums[i], i + 1)
-        )
+        return self.helper(nums, target, 0)
+
+    # Want to find every possible expression that can hit out target
+    def helper(self, nums, target, i):
+        if i >= len(nums):
+            if target == 0:
+                return 1
+
+            return 0
+
+        return self.helper(nums, target - nums[i], i + 1) + self.helper(nums, target + nums[i], i + 1)
 
 
 # TC: O(2^n) where n is the length of numbers and m is the target
