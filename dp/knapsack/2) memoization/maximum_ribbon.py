@@ -9,12 +9,12 @@ def helper(n, sizes, memo, i):
     return 0
 
   if n < 0 or i >= len(sizes):
-    return -1
+    return float('inf')
 
   if memo[i][n] != -1:
     return memo[i][n]
 
-  count1 = -1
+  count1 = float('inf')
   if sizes[i] <= n:
     max_size = helper(n - sizes[i], sizes, memo, i)
     if max_size != -1:

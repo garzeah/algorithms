@@ -17,7 +17,7 @@ class Solution:
         if coins[i] <= amount:
             count1 = 1 + self.helper(coins, amount - coins[i], i)
 
-        # recursive call after excluding the coin at the i
+    # recursive call after excluding the coin at the i
         count2 = self.helper(coins, amount, i + 1)
 
         return min(count1, count2)
