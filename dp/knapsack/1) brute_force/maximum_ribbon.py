@@ -1,28 +1,18 @@
-import math
+def count_ribbon_pieces(n, sizes):
+  return helper(n, sizes, 0)
 
-
-def count_ribbon_pieces(ribbonLengths, total):
-  return helper(ribbonLengths, total, 0)
-
-def helper(ribbons, total, i):
-  if total == 0:
+def helper(n, sizes, i):
+  if n == 0:
     return 0
 
-  if i >= len(ribbons) or total < 0:
-    return float('-inf')
+  if n < 0 or i >= len(sizes):
+    return -1
 
-  count1 = float('-inf')
-  if ribbons[i] <= total:
-    count1 = 1 + helper(ribbons, total - ribbons[i], i)
+  count1 = -1
+  if sizes[i] <= n:
+    max_size = helper(n - sizes[i], sizes, i)
+    if max_size != -1:
+      count1 = 1 + max_size
 
-  count2 = helper(ribbons, total, i + 1)
+  count2 = helper(n, sizes, i + 1)
   return max(count1, count2)
-
-def main():
-  print(count_ribbon_pieces([2, 3, 5], 5))
-  print(count_ribbon_pieces([2, 3], 7))
-  print(count_ribbon_pieces([3, 5, 7], 13))
-  print(count_ribbon_pieces([3, 5], 7))
-
-
-main()
