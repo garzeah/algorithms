@@ -1,6 +1,5 @@
 class Solution:
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        n = len(cost)
         one_step, two_step = cost[0], cost[1]
 
         # As we iterate through the array, we want to keep track of
