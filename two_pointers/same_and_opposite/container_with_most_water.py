@@ -7,7 +7,7 @@ class Solution:
             minHeight = min(height[left], height[right])
             width = right - left # Calculating the distance from right to left
 
-            result = max(result, minHeight * width);
+            result = max(result, minHeight * width)
 
             # Calculating the max area with each iteration
             if height[left] < height[right]:
@@ -15,7 +15,7 @@ class Solution:
             else:
                 right -= 1
 
-        return result;
+        return result
 
 # Time Complexity: O(n)
 # Space Complexity: O(1)
