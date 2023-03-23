@@ -13,7 +13,8 @@ class Solution:
                 swap(left, i);
                 left += 1;
                 i += 1;
-            # Swap to pos. of right pointer (2)
+            # After we swap, we don't want to increment i since
+            # we may have to swap that value as well
             elif arr[i] == 2:
                 swap(right, i)
                 right -= 1
