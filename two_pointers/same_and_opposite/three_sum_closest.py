@@ -28,7 +28,7 @@ class Solution:
                     # our target_diff closer to 0 (which means our target)
                     right -= 1
 
-        # Return the closest number to target
+        # Return the closest sum of 3 numbers to target
         return target - min_diff
 
 # Time Complexity: Sorting the array will take O(N* logN).
