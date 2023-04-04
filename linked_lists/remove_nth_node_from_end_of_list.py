@@ -15,9 +15,11 @@ class Solution:
         for _ in range(n):
             right = right.next
 
-        # After n iterations, if right isn't at a node then that means
-        # we are removing the 1st node. It's an edge case for linked
-        # lists like [1], n = 1
+        # Edge case: What to do when values goes beyond the length of the
+        # linked list. If this happens then we want the closest value
+        # counting from the end of the list. We can resolve this by
+        # returning head.next since we'll always want to remove the
+        # head in this scenario
         if right is None:
             return head.next
 
