@@ -4,17 +4,15 @@ class Solution:
 
         while curr:
             if curr.val == val:
-                # If Node to remove is at the end or in the middle
-                if prev: # Will "delete" the node
+                if prev: # If we want to remove the node past the start
                     prev.next = curr.next
-                else: # If Node to remove is at the start
-                    # Will "delete" the node by setting it to the next value
+                else: # If we want to remove the first node
                     head = curr.next
 
-                # Want this for duplicate values such as [7,7,7,7]
-                # so we'll keep hitting the upper else statement
+                # Move it up, so we don't have a reference
+                # to the removed node in the next loop
                 curr = curr.next
-            else:  # Nothing needs to be removed, keep iterating
+            else: # Move it up since no match
                 prev, curr = curr, curr.next
 
         return head
