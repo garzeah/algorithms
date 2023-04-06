@@ -4,9 +4,9 @@ class Solution:
         curr = head
 
         while curr:
-            nxt = curr.next # Make a copy of the next node
-            curr.next = prev # Reverse node by pointing curr.next to prev
-            prev, curr = curr, nxt # Move up prev and curr so we can reverse the next node
+            nxt = curr.next # Creating a pointer to next node
+            curr.next = prev # Pointing to the previous node
+            prev, curr = curr, nxt # Slide the pointers up
 
         return prev # Prev will be at the start of the reversed list
 
