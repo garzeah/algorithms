@@ -1,28 +1,28 @@
 class Solution:
-    def insert(self, intervals: List[List[int]], new_interval: List[int]) -> List[List[int]]:
-        i = 0
-        merged = []
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        i, res = 0, []
+        start, end = 0, 1
 
-        # Find all intervals that come before new_interval
-        while i < len(intervals) and intervals[i][1] < new_interval[0]:
-            merged.append(intervals[i])
+        # Find all intervals that come before newInterval
+        while i < len(intervals) and intervals[i][end] < newInterval[start]:
+            res.append(intervals[i])
             i += 1
 
-        # Merge all intervals that overlap with 'new_interval'
-        while i < len(intervals) and new_interval[1] >= intervals[i][0]:
-            new_interval[0] = min(new_interval[0], intervals[i][0])
-            new_interval[1] = max(new_interval[1], intervals[i][1])
+        # Merge all intervals that overlap with newInterval
+        while i < len(intervals) and newInterval[end] >= intervals[i][start]:
+            newInterval[start] = min(newInterval[start], intervals[i][start])
+            newInterval[end] = max(newInterval[end], intervals[i][end])
             i += 1
 
-        # Append new_interval
-        merged.append(new_interval)
+        # Append newInterval
+        res.append(newInterval)
 
         # Add the remaining intervals
         while i < len(intervals):
-            merged.append(intervals[i])
+            res.append(intervals[i])
             i += 1
 
-        return merged
+        return res
 
 # Time Complexity: O(n)
 # Space Complexity: O(n)
