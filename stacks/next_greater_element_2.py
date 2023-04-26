@@ -8,15 +8,21 @@ class Solution(object):
         # In the first loop, we fill NGE all possible.
         stack, res = [], [-1] * len(nums)
         for i, num in enumerate(nums):
+            # If there is a number that is higher than the last value
+            # of the stack, then we want to pop those number(s) and
+            # add the new one in. When we pop those numbers, the
+            # current number will be the NGE. We store num and i
+            # in our stack to compare w/ the current number and
+            # if we pop, to mark the NGE
             while stack and num > stack[-1][0]:
                 _, idx = stack.pop()
                 res[idx] = num
             stack.append((num, i))
 
-        # In the second loop, there might be some elements left in the stack, so we
-        # iterate again (without appending to stack) and get NGE. The elements that
-        # are left in the stack even after second loop are max(nums).
         for num in nums:
+            # Since it's circular, we want to go around again and do the same
+            # thing as above in case any number that came before the last
+            # number could be the NGE
             while stack and num > stack[-1][0]:
                 _, idx = stack.pop()
                 res[idx] = num
