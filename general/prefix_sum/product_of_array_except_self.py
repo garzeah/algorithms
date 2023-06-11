@@ -2,6 +2,10 @@ class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         prefix, postfix, output = [], [], []
 
+        # For each number in an array, we want to multiply all the values
+        # before and after that number in order to get the product of
+        # array except self
+
         # Want the value before the first index, since it
         # doesn't exist just use 1 as default
         prefix_sum = 1
