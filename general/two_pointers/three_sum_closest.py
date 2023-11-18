@@ -20,12 +20,10 @@ class Solution:
                     min_diff = target_diff
 
                 if target_diff > 0:
-                    # We need a triplet with a bigger sum that'll bring
-                    # our target_diff closer to 0 (which means our target)
+                    # We need to subtract a bigger triplet to get to 0
                     left += 1
                 else:
-                    # We need a triplet with a smaller sum that'll bring
-                    # our target_diff closer to 0 (which means our target)
+                    # We need to subtract a smaller triplet to get to 0
                     right -= 1
 
         # Return the closest sum of 3 numbers to target
